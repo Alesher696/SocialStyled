@@ -9,16 +9,8 @@ import users from '../../assets/multiple-users-silhouette (1).png'
 
 
 export const NavBar = () => {
-    const [expandNavBar, setExpandNavBar] = useState<boolean>(false)
-    const onMouseExpandHandler = () => {
-        setExpandNavBar(true)
-    }
-    const onMouseWrapHandler = () => {
-        setExpandNavBar(false)
-    }
     return (
-        <NavBarWrapper onMouseEnter={onMouseExpandHandler} onMouseLeave={onMouseWrapHandler}>
-            {/*{expandNavBar ? <ExpandContent/> : <WrappedContent/>}*/}
+        <NavBarWrapper>
             <WrappedContent/>
         </NavBarWrapper>
     );
@@ -30,11 +22,11 @@ const NavBarWrapper = styled.div`
   position: absolute;
   height: 101vh;
   width: max-content;
-  padding:  0 0 0 10px;
+  padding: 0 0 0 10px;
 `
 
 const WrappedContentIcons = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column;
 `
 
@@ -43,16 +35,9 @@ const WrappedContent = () => {
         <WrappedContentIcons>
             <Icon image={start} color={'#43cb93'}/>
             <Icon image={message} color={'#9838cf'}/>
-            <Icon image={users} color={'#cacf38'}/>
+            <Icon image={users} color={'#cdd245'}/>
             <Icon image={music} color={'#cf385b'}/>
-            <Icon image={setting} color={'#94ea7b'}/>
-
+            <Icon image={setting} color={'#41d5f6'}/>
         </WrappedContentIcons>
-    )
-}
-
-const ExpandContent = () => {
-    return (
-        <div>ExpandContent</div>
     )
 }

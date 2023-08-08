@@ -6,7 +6,7 @@ export const Header = () => {
     return (
         <HeaderWrapper>
             <div>Social</div>
-            <div>by Dimych</div>
+            <div>by Sanyochek</div>
         </HeaderWrapper>
     );
 };

@@ -6,14 +6,16 @@ type PropsType = {
     image: string
     color: string
 }
-
+type PropsColorType={
+    color: string
+}
 
 export const Icon = (props: PropsType) => {
     return (
         <IconContainer>
             <BackgroundTop>.</BackgroundTop>
             <ForIconBackGround>
-                <IconInnerWrapper color={props.color} image={props.image}>
+                <IconInnerWrapper color={props.color}>
                     <IconWrapper src={props.image}/>
                 </IconInnerWrapper>
 
@@ -30,7 +32,8 @@ const IconContainer = styled.div`
   z-index: 3;
   right: 10px;
 `
-const IconInnerWrapper = styled.div<PropsType>`
+
+const IconInnerWrapper = styled.div<PropsColorType>`
   background-color: #3D50FA;
   position: relative;
   left: 5px;

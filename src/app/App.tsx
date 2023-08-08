@@ -4,20 +4,21 @@ import {Profile} from '../common/components/profile/Profile'
 import {Header} from "../common/components/header/Header";
 import {Footer} from "../common/components/footer/Footer";
 import {NavBar} from "../common/components/navBar/NavBar";
+import {News} from "../common/components/news/News";
 
 
 export function App() {
-  return (
-    <AppWrapper>
-       <Header/>
-        <ContentWrapper>
-            <NavBar/>
-            <Profile/>
-        </ContentWrapper>
-        <Footer/>
-    </AppWrapper>
-
-  );
+    return (
+        <AppWrapper>
+            <Header/>
+            <ContentWrapper>
+                <NavBar/>
+                <Profile/>
+                {/*<News/>*/}
+            </ContentWrapper>
+            <Footer/>
+        </AppWrapper>
+    );
 }
 
 const AppWrapper = styled.div`
@@ -40,19 +41,18 @@ const ContentWrapper = styled.div`
 
 
 
+//=========================/////===================================
 
+{/*<Button>button</Button>*/
+}
+{/*<Button $primary> primary button</Button>*/
+}
+{/*  <Link> link </Link>*/
+}
 
-
-
-{/*<Button>button</Button>*/}
-{/*<Button $primary> primary button</Button>*/}
-{/*  <Link> link </Link>*/}
-
-const Link = styled.a `
-    color: purple;
+const Link = styled.a`
+  color: purple;
   background-color: black;
-
-
 `
 
 const Button = styled.button<{ $primary?: boolean; }>`
@@ -67,7 +67,6 @@ const Button = styled.button<{ $primary?: boolean; }>`
     background: #BF4F74;
     color: white;
   `}
-
   &:hover ${Link} {
     background-color: aquamarine;
   }
@@ -76,4 +75,4 @@ const Button = styled.button<{ $primary?: boolean; }>`
     background-color: #15ad96;
   }
 `
-
+//=========================/////===================================
