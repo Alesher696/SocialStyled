@@ -3,17 +3,7 @@ import styled from "styled-components";
 
 
 export const News = () => {
-    const [profile, setProfile] = useState({
-        firstName: 'Иван',
-        lastName: 'Петров'
-    })
 
-    // @ts-ignore
-    const handleChange = ({ target: { value, alt } }) => {
-        setProfile({ ...profile, [alt]: value })
-    }
-
-    const { firstName, lastName } = profile
     return (
         <NewsWrapper>
            <New/>

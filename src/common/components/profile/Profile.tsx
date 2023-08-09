@@ -9,24 +9,24 @@ export const Profile = () => {
 
 //start is here
 
-    const [newPost, setNewPost] = useState('')
-    const [posts, setPost] = useState<string[]>(['1', '2', '3', '4', '5', '6'])
+    // const [newPost, setNewPost] = useState('')
+    // const [posts, setPost] = useState<string[]>(['1', '2', '3', '4', '5', '6'])
 
-// let newPost:string
-// const posts = ['1', '2', '3', '4']
+// let newPost:string = ''
+// const posts = ['1', '2', '3', '4', '5' ,'6', '7']
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setNewPost(e.currentTarget.value)
-        // newPost = e.currentTarget.value
-        console.log(newPost)
-    }
+    // const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    //     // setNewPost(e.currentTarget.value)
+    //     newPost = e.currentTarget.value
+    //     console.log(newPost)
+    // }
 
-    const onClickHandler = () => {
-        setPost([...posts, newPost])
-        setNewPost('')
-        // posts.push(newPost)
-        console.log(posts)
-    }
+    // const onClickHandler = () => {
+    //     // setPost([...posts, newPost])
+    //     // setNewPost('')
+    //     posts.push(newPost)
+    //     console.log(posts)
+    // }
 
     return (
         <ProfileWrapper>
@@ -43,11 +43,15 @@ export const Profile = () => {
                 <ProfileAvatar/>
             </ProfileInfo>
             {/*<News/>*/}
+            {/*//=========================/////===================================*/}
+
             <PostAddWrapper>
-                <AddPostButton onClick={onClickHandler}>Add post</AddPostButton>
-                <PostAreaInput onChange={onChangeHandler} placeholder={"What's News?"} value={newPost}/>
+                <AddPostButton > Add post </AddPostButton>
+                <PostAreaInput placeholder={"What's News?"}/>
             </PostAddWrapper>
-            <Posts posts={posts}/>
+            <Posts />
+
+            {/*//=========================/////===================================*/}
         </ProfileWrapper>
     );
 };
@@ -61,6 +65,7 @@ const ProfileWrapper = styled.div`
   margin: 0 auto;
   //border: 1px solid black;
   flex-direction: column;
+  padding-bottom: 10px;
 `
 
 const ProfileTheme = styled.div`
