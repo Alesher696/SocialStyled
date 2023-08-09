@@ -3,19 +3,29 @@ import styled from "styled-components";
 import avatar from '../../../assets/1676295972138872283.png'
 
 
-export const Posts = () => {
+type PropsType ={
+    posts: string[]
+}
+
+type PostPropsType ={
+    title: string
+}
+
+export const Posts = (props: PropsType) => {
 
     // const postList = props.posts.map((el: string, index: any) => (<Post title={el} key={index}/>))
     // const postList = props.posts.map((el: string) => { return <Post title={el}/> })
 
+const postList = props.posts.map( el => <Post title={el}/>)
+
     return (
         <MyPosts>
-            {/*{postList}*/}
+            {postList}
         </MyPosts>
     );
 };
 
-const Post = (props: any) => {
+const Post = (props: PostPropsType) => {
     return (
         <>
             <PostStyled>
@@ -28,11 +38,9 @@ const Post = (props: any) => {
                 <PostTitle>
                     {props.title}
                 </PostTitle>
-
             </PostStyled>
             <Triangle/>
         </>
-
     )
 }
 

@@ -8,6 +8,7 @@ import {News} from "../common/components/news/News";
 
 
 export function App() {
+
     return (
         <AppWrapper>
             <Header/>

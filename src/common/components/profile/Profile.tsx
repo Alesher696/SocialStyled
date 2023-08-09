@@ -9,24 +9,17 @@ export const Profile = () => {
 
 //start is here
 
-    // const [newPost, setNewPost] = useState('')
-    // const [posts, setPost] = useState<string[]>(['1', '2', '3', '4', '5', '6'])
+    const [newPost, setNewPost] = useState('')
+    const [posts, setPost] = useState<string[]>(['1', '2', '3', '4', '5', '6'])
 
-// let newPost:string = ''
-// const posts = ['1', '2', '3', '4', '5' ,'6', '7']
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setNewPost(e.currentTarget.value)
+    }
 
-    // const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    //     // setNewPost(e.currentTarget.value)
-    //     newPost = e.currentTarget.value
-    //     console.log(newPost)
-    // }
-
-    // const onClickHandler = () => {
-    //     // setPost([...posts, newPost])
-    //     // setNewPost('')
-    //     posts.push(newPost)
-    //     console.log(posts)
-    // }
+    const onClickHandler = () => {
+        setPost([...posts, newPost])
+        setNewPost('')
+    }
 
     return (
         <ProfileWrapper>
@@ -43,15 +36,11 @@ export const Profile = () => {
                 <ProfileAvatar/>
             </ProfileInfo>
             {/*<News/>*/}
-            {/*//=========================/////===================================*/}
-
             <PostAddWrapper>
-                <AddPostButton > Add post </AddPostButton>
-                <PostAreaInput placeholder={"What's News?"}/>
+                <AddPostButton onClick={onClickHandler}> Add post </AddPostButton>
+                <PostAreaInput onChange={onChangeHandler} placeholder={"What's News?"} value={newPost}/>
             </PostAddWrapper>
-            <Posts />
-
-            {/*//=========================/////===================================*/}
+            <Posts posts={posts}/>
         </ProfileWrapper>
     );
 };
