@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from "styled-components";
+import {NavLink} from "react-router-dom";
 
 
 type PropsType = {
     image: string
     color: string
+    path: string
 }
+
 type PropsColorType={
     color: string
 }
@@ -15,10 +18,11 @@ export const Icon = (props: PropsType) => {
         <IconContainer>
             <BackgroundTop>.</BackgroundTop>
             <ForIconBackGround>
+                <NavLink to={props.path}>
                 <IconInnerWrapper color={props.color}>
-                    <IconWrapper src={props.image}/>
+                        <IconWrapper src={props.image}/>
                 </IconInnerWrapper>
-
+                </NavLink>
             </ForIconBackGround>
             <BackgroundBottom>.</BackgroundBottom>
             <BackGroundBodyGrey/>

@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from "styled-components";
 
-export const Dialogs = () => {
+export const Users = () => {
     return (
-        <DialogsWrapper>
-dialogs
-        </DialogsWrapper>
+        <UsersWrapper>
+            users
+        </UsersWrapper>
     );
 };
 
-const DialogsWrapper = styled.div`
+const UsersWrapper = styled.div`
   display: flex;
   color: white;
   font-size: 24px;

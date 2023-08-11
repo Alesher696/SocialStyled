@@ -8,6 +8,7 @@ import start from '../../assets/play-store (1).png'
 import users from '../../assets/multiple-users-silhouette (1).png'
 
 
+
 export const NavBar = () => {
     return (
         <NavBarWrapper>
@@ -20,7 +21,7 @@ const NavBarWrapper = styled.div`
   background-color: #09090c;
   color: white;
   position: absolute;
-  height: 101vh;
+  height: 102vh;
   width: max-content;
   padding: 0 0 0 10px;
 `
@@ -33,11 +34,11 @@ const WrappedContentIcons = styled.div`
 const WrappedContent = () => {
     return (
         <WrappedContentIcons>
-            <Icon image={start} color={'#43cb93'}/>
-            <Icon image={message} color={'#9838cf'}/>
-            <Icon image={users} color={'#cdd245'}/>
-            <Icon image={music} color={'#cf385b'}/>
-            <Icon image={setting} color={'#41d5f6'}/>
+            <Icon image={start} color={'#43cb93'} path={'/profile'}/>
+            <Icon image={message} color={'#9838cf'} path={'/dialogs'}/>
+            <Icon image={users} color={'#cdd245'} path={'/users'}/>
+            <Icon image={music} color={'#cf385b'} path={'/music'}/>
+            <Icon image={setting} color={'#41d5f6'} path={'/settings'}/>
         </WrappedContentIcons>
     )
 }
