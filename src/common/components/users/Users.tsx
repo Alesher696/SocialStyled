@@ -12,19 +12,16 @@ const users = useSelector((state: storeType) => state.users)
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        dispatch(getUsersTC(1, 5))
+        dispatch(getUsersTC(users.currentPage, users.pageSize))
     },[])
 
-
     const onClickPageHandler = (page: number)=>{
-        dispatch(getUsersTC(page, 5))
+        dispatch(getUsersTC(page, users.pageSize))
     }
 
     return (
         <UsersWrapper>
-            <PaginationWrapper defaultCurrent={1} total={users.totalUsersCount} onChange={onClickPageHandler}></PaginationWrapper>
-            <PageWrapper>
-            </PageWrapper>
+            <PaginationWrapper defaultCurrent={1} total={users.totalUsersCount} onChange={onClickPageHandler} showSizeChanger={false}></PaginationWrapper>
             {users.users.map(el=> <UsersName key={el.id}>{el.name}</UsersName>)}
         </UsersWrapper>
     );
@@ -38,16 +35,6 @@ const UsersWrapper = styled.div`
   margin: 0 auto;
   flex-direction: column;
   min-height: 100vh;
-  
-`
-
-const PageWrapper = styled.div`
-
-`
-
-const Page = styled.span`
-cursor: pointer;
-  margin-inline: 2px;
 `
 
 const UsersName = styled.div`
@@ -57,13 +44,5 @@ const UsersName = styled.div`
 const PaginationWrapper = styled(Pagination)`
   .ant-pagination-item {
     margin: 0;
-    border-radius: 50%;
-
   }
-
-  
-  .colorText {
-    rgba(243, 243, 243, 0.88)
-  }
-
 `

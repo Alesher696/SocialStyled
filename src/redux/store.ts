@@ -35,3 +35,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unk
 
 export type ActionsType = profileActions | usersActions | appActions | dialogsActions  | authActions
 
+// @ts-ignore
+window.store = store;

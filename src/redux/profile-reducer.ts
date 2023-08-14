@@ -1,6 +1,6 @@
 export type profileActions = addPostACType
 
-type postType = {
+export type postType = {
     data:string
     id:number
     like: number
@@ -21,7 +21,7 @@ type initialProfileStateType = {
         {id: 5, data: "What's up guys?", like: 2},
         {id: 6, data: "What's up guys?", like: 2},
     ],
-    newPostText: "What's News?",
+    newPostText: "",
     profile : null
 
 }

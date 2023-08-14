@@ -9,7 +9,8 @@ import {Settings} from "../common/components/settings/Settings";
 import Login from "../features/login/Login";
 
 
-export function App() {
+export function App(props:any) {
+    console.log(props.state.profilePage)
     return (
         <Routes>
             <Route path={'/'} element={<LayOut/>}>

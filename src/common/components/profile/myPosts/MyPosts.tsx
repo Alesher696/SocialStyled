@@ -3,6 +3,7 @@ import styled from "styled-components";
 import avatar from '../../../assets/1676295972138872283.png'
 import {useDispatch, useSelector} from "react-redux";
 import {storeType} from "../../../../redux/store";
+import {postType} from "../../../../redux/profile-reducer";
 
 
 
@@ -19,7 +20,7 @@ export const MyPosts = () => {
     const profile = useSelector((state: storeType) => state.profile)
     // const dispatch = useDispatch()
 
-    const postList = profile.posts.map((el:any) => <Post key={el.id} title={el.data}/>)
+    const postList = profile.posts.map((el:postType) => <Post key={el.id} title={el.data}/>)
 
     return (
         <Posts>
