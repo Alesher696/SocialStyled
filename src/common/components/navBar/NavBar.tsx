@@ -21,7 +21,7 @@ const NavBarWrapper = styled.div`
   background-color: #09090c;
   color: white;
   position: absolute;
-  height: 102vh;
+  height: 110vh;
   width: max-content;
   padding: 0 0 0 10px;
 `

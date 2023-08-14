@@ -6,6 +6,10 @@ import {MyPosts} from "../../../common/components/profile/myPosts/MyPosts";
 import {ProfilePropsType} from "../profile/ProfileContainer";
 
 
+type conditionProps={
+    condition: boolean
+}
+
 export const Profile = (props:ProfilePropsType) => {
 
 //start is here
@@ -42,7 +46,7 @@ export const Profile = (props:ProfilePropsType) => {
             </ProfileInfo>
             {/*<News/>*/}
             <PostAddWrapper>
-                <AddPostButton onClick={addPost}> Add post </AddPostButton>
+                <AddPostButton onClick={addPost} condition={!!props.profile.newPostText} disabled={!props.profile.newPostText}> Add post </AddPostButton>
                 <PostAreaInput onChange={onChangeHandler} placeholder={"What's News?"} value={props.profile.newPostText}/>
             </PostAddWrapper>
             <MyPosts profile={props.profile}/>
@@ -116,19 +120,20 @@ const PostAddWrapper = styled.div`
   margin-top: -65px;
 `
 
-const AddPostButton = styled.button`
+export const AddPostButton = styled.button<conditionProps>`
   height: 30px;
   background-color: #3D50FA;
   border: none;
   outline: none;
-  -webkit-box-shadow: 0px 1px 19px 4px #3D50FA;
-  -moz-box-shadow: 0px 1px 19px 4px #3D50FA;
-  box-shadow: 0px 1px 19px 4px #3D50FA;
   border-radius: 7px;
   width: 150px;
   color: white;
   cursor: pointer;
   margin-bottom: 5px;
+  z-index: 2;
+  -webkit-box-shadow: ${props => props.condition ? '0px 1px 19px 4px #3D50FA' : 'none'};
+  -moz-box-shadow: ${props => props.condition ? '0px 1px 19px 4px #3D50FA' : 'none'};
+  box-shadow: ${props => props.condition ? '0px 1px 19px 4px #3D50FA' : 'none'};
   //transition: all 500ms ease;
   //position: relative;
 `

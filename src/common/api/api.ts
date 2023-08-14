@@ -1,5 +1,13 @@
 import axios from "axios";
+import {profileInfoType} from "../../redux/profile-reducer";
 
+
+type responseType<T> = {
+    data: T
+    messages: string[],
+    fieldsErrors: string[],
+    resultCode: number
+}
 
 const Instance = axios.create({
     withCredentials: true,
@@ -16,31 +24,14 @@ export const usersAPI = {
 }
 
 export const profileAPI = {
-getUserProfile(userId:number) {
-    return Instance.get(`/profile/${userId}`)
-}
-}
-
-export const authAPI ={
-
+    getUserProfile(userId: number) {
+        return Instance.get<responseType<profileInfoType>>(`/profile/${userId}`)
+    }
 }
 
+export const authAPI = {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 // export type DataType={
@@ -49,7 +40,6 @@ export const authAPI ={
 //     rememberMe?: boolean
 //     captcha?:boolean
 // }
-
 
 
 //

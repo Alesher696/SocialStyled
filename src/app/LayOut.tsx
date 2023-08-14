@@ -4,11 +4,13 @@ import {NavBar} from "../common/components/navBar/NavBar";
 import {Footer} from "../common/components/footer/Footer";
 import styled from "styled-components";
 import {Navigate, Outlet, useLocation} from 'react-router-dom';
+import {AddMessage} from "../common/components/dialogs/AddMessage";
 
 export const LayOut = () => {
 
     const location = useLocation()
     const isInitLocation = location.pathname === '/'
+    const isDialogsLocation = location.pathname === '/dialogs'
     //при логинизации не катит//
 
     return (
@@ -20,6 +22,7 @@ export const LayOut = () => {
                 <Outlet/>
                 {/*<News/>*/}
             </ContentWrapper>
+            {isDialogsLocation && <AddMessage/>}
             <Footer/>
         </AppWrapper>
     );
@@ -33,3 +36,4 @@ const AppWrapper = styled.div`
 const ContentWrapper = styled.div`
   display: flex;
 `
+
