@@ -1,4 +1,4 @@
-export type profileActionsType = addPostACType
+export type profileActions = addPostACType
 
 type postType = {
     data:string
@@ -26,7 +26,7 @@ type initialProfileStateType = {
 
 }
 
-export const profileReducer = (state: initialProfileStateType = initialState, action: profileActionsType):initialProfileStateType => {
+export const profileReducer = (state: initialProfileStateType = initialState, action: profileActions):initialProfileStateType => {
     switch (action.type) {
         case 'ADD-POST':
             return {...state}

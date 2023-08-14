@@ -16,7 +16,7 @@ export const Profile = () => {
         // setNewPost(e.currentTarget.value)
     }
 
-    const onClickHandler = () => {
+    const addPost = () => {
         // setPost([...posts, newPost])
         // setNewPost('')
     }
@@ -37,7 +37,7 @@ export const Profile = () => {
             </ProfileInfo>
             {/*<News/>*/}
             <PostAddWrapper>
-                <AddPostButton onClick={onClickHandler}> Add post </AddPostButton>
+                <AddPostButton onClick={addPost}> Add post </AddPostButton>
                 <PostAreaInput onChange={onChangeHandler} placeholder={"What's News?"}/>
             </PostAddWrapper>
             <MyPosts/>
