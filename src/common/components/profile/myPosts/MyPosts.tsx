@@ -1,26 +1,19 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import avatar from '../../../assets/1676295972138872283.png'
-import {useDispatch, useSelector} from "react-redux";
-import {storeType} from "../../../../redux/store";
-import {postType} from "../../../../redux/profile-reducer";
+import {initialProfileStateType, postType} from "../../../../redux/profile-reducer";
 
 
-
-type PropsType = {
-    posts: string[]
+type MyPostPropsType = {
+    profile: initialProfileStateType
+}
+type PostPropsType={
+    title:string
 }
 
-type PostPropsType = {
-    title: string
-}
+export const MyPosts = (props:MyPostPropsType) => {
 
-export const MyPosts = () => {
-
-    const profile = useSelector((state: storeType) => state.profile)
-    // const dispatch = useDispatch()
-
-    const postList = profile.posts.map((el:postType) => <Post key={el.id} title={el.data}/>)
+    const postList = props.profile.posts.map((el:postType) => <Post key={el.id} title={el.data}/>)
 
     return (
         <Posts>

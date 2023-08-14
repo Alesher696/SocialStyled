@@ -15,9 +15,15 @@ export const usersAPI = {
     }
 }
 
+export const profileAPI = {
+getUserProfile(userId:number) {
+    return Instance.get(`/profile/${userId}`)
+}
+}
 
+export const authAPI ={
 
-
+}
 
 
 

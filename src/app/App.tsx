@@ -1,21 +1,21 @@
 import React from 'react';
 import {Route, Routes} from 'react-router-dom';
 import {LayOut} from "../app/LayOut";
-import {Profile} from "../common/components/profile/Profile";
 import {Dialogs} from "../common/components/dialogs/Dialogs";
 import {Users} from "../common/components/users/Users";
 import Music from "../common/components/music/Music";
 import {Settings} from "../common/components/settings/Settings";
 import Login from "../features/login/Login";
+import {ProfileContainer} from "../common/components/profile/ProfileContainer";
 
 
 export function App(props:any) {
-    console.log(props.state.profilePage)
+
     return (
         <Routes>
             <Route path={'/'} element={<LayOut/>}>
-                <Route index element={<Profile/>}></Route>
-                <Route path={'/profile'} element={<Profile/>}></Route>
+                <Route index element={<ProfileContainer/>}></Route>
+                <Route path={'/profile/:userId?'} element={<ProfileContainer/>}></Route>
                 <Route path={'/dialogs'} element={<Dialogs/>}></Route>
                 <Route path={'/users'} element={<Users/>}></Route>
                 <Route path={'/music'} element={<Music/>}></Route>

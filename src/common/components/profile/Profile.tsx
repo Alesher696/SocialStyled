@@ -1,24 +1,29 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useEffect} from 'react';
 import styled from "styled-components";
 import theme from '../../assets/1681961897_kartinki-pibig-info-p-nasishchennaya-kartinka-arti-krasivo-1.jpg'
 import avatar from '../../assets/1676295972138872283.png'
 import {MyPosts} from "../../../common/components/profile/myPosts/MyPosts";
+import {ProfilePropsType} from "../profile/ProfileContainer";
 
 
-export const Profile = () => {
+export const Profile = (props:ProfilePropsType) => {
 
 //start is here
 
-    // const [newPost, setNewPost] = useState('')
-    // const [posts, setPost] = useState<string[]>(['1', '2', '3', '4', '5', '6'])
+    // const profile = useSelector((state: storeType) => state.profile)
+    // const dispatch = useDispatch()
+
+    useEffect(()=>{
+        props.getUserProfileTC(props.auth.id!)
+    },[])
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        // setNewPost(e.currentTarget.value)
+        props.setNewPostTextAC(e.currentTarget.value)
     }
 
     const addPost = () => {
-        // setPost([...posts, newPost])
-        // setNewPost('')
+        props.addPostAC()
+        props.setNewPostTextAC('')
     }
 
     return (
@@ -38,9 +43,9 @@ export const Profile = () => {
             {/*<News/>*/}
             <PostAddWrapper>
                 <AddPostButton onClick={addPost}> Add post </AddPostButton>
-                <PostAreaInput onChange={onChangeHandler} placeholder={"What's News?"}/>
+                <PostAreaInput onChange={onChangeHandler} placeholder={"What's News?"} value={props.profile.newPostText}/>
             </PostAddWrapper>
-            <MyPosts/>
+            <MyPosts profile={props.profile}/>
         </ProfileWrapper>
     );
 };
