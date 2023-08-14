@@ -1,27 +1,30 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import avatar from '../../../assets/1676295972138872283.png'
+import {useDispatch, useSelector} from "react-redux";
+import {storeType} from "../../../../redux/store";
 
 
-type PropsType ={
+
+type PropsType = {
     posts: string[]
 }
 
-type PostPropsType ={
+type PostPropsType = {
     title: string
 }
 
-export const Posts = (props: PropsType) => {
+export const MyPosts = () => {
 
-    // const postList = props.posts.map((el: string, index: any) => (<Post title={el} key={index}/>))
-    // const postList = props.posts.map((el: string) => { return <Post title={el}/> })
+    const profile = useSelector((state: storeType) => state.profile)
+    // const dispatch = useDispatch()
 
-const postList = props.posts.map( el => <Post title={el}/>)
+    const postList = profile.posts.map((el:any) => <Post key={el.id} title={el.data}/>)
 
     return (
-        <MyPosts>
+        <Posts>
             {postList}
-        </MyPosts>
+        </Posts>
     );
 };
 
@@ -46,7 +49,7 @@ const Post = (props: PostPropsType) => {
 
 //=========================MYPOSTS=================================
 
-const MyPosts = styled.div`
+const Posts = styled.div`
   display: flex;
   margin-top: 40px;
   margin-inline: 10px;

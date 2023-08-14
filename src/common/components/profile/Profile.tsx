@@ -2,23 +2,23 @@ import React, {ChangeEvent, useState} from 'react';
 import styled from "styled-components";
 import theme from '../../assets/1681961897_kartinki-pibig-info-p-nasishchennaya-kartinka-arti-krasivo-1.jpg'
 import avatar from '../../assets/1676295972138872283.png'
-import {Posts} from "../../../common/components/profile/myPosts/Posts";
+import {MyPosts} from "../../../common/components/profile/myPosts/MyPosts";
 
 
 export const Profile = () => {
 
 //start is here
 
-    const [newPost, setNewPost] = useState('')
-    const [posts, setPost] = useState<string[]>(['1', '2', '3', '4', '5', '6'])
+    // const [newPost, setNewPost] = useState('')
+    // const [posts, setPost] = useState<string[]>(['1', '2', '3', '4', '5', '6'])
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setNewPost(e.currentTarget.value)
+        // setNewPost(e.currentTarget.value)
     }
 
     const onClickHandler = () => {
-        setPost([...posts, newPost])
-        setNewPost('')
+        // setPost([...posts, newPost])
+        // setNewPost('')
     }
 
     return (
@@ -38,9 +38,9 @@ export const Profile = () => {
             {/*<News/>*/}
             <PostAddWrapper>
                 <AddPostButton onClick={onClickHandler}> Add post </AddPostButton>
-                <PostAreaInput onChange={onChangeHandler} placeholder={"What's News?"} value={newPost}/>
+                <PostAreaInput onChange={onChangeHandler} placeholder={"What's News?"}/>
             </PostAddWrapper>
-            <Posts posts={posts}/>
+            <MyPosts/>
         </ProfileWrapper>
     );
 };

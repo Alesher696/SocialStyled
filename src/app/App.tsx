@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navigate, Route, Routes} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import {LayOut} from "../app/LayOut";
 import {Profile} from "../common/components/profile/Profile";
 import {Dialogs} from "../common/components/dialogs/Dialogs";
