@@ -1,7 +1,10 @@
 import React, {ChangeEvent, useState} from 'react';
 import styled from "styled-components";
-import {AddPostButton} from "../../components/profile/Profile";
 import send from '../../assets/send (1).png'
+import {useDispatch, useSelector} from "react-redux";
+import {storeType} from "../../../redux/store";
+import {addNewMessageAC, dialogCreatorTC} from "../../../redux/dialogs-reducer";
+
 
 type addBtnPropsType = {
     condition: boolean
@@ -9,16 +12,33 @@ type addBtnPropsType = {
 
 export const AddMessage = () => {
 
-    const [addMes, setMes] = useState('')
+    // const [addMes, setMes] = useState('')
+    const dialogs = useSelector((state: storeType) => state.dialogs)
+    const dispatch = useDispatch()
 
-    const addMessageOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setMes(e.currentTarget.value)
+    const addNewMessageOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch(addNewMessageAC(e.currentTarget.value))
     }
 
+    const onClickAddMessage = () => {
+        dispatch(dialogCreatorTC(dialogs.activeUserId))
+        dispatch(addNewMessageAC(''))
+    }
+
+    const onEnterAddMessage = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            onClickAddMessage()
+        }
+    }
     return (
         <AddMessageWrapper>
-            <AddMessageInput placeholder={'Write a message...'} onChange={addMessageOnChange}/>
-            <AddBtnInnerWrapper condition={!!addMes}>
+            <AddMessageInput placeholder={'Write a message...'}
+                             onChange={addNewMessageOnChange}
+                             value={dialogs.newMessage}
+                             onKeyDown={onEnterAddMessage}
+            />
+            <AddBtnInnerWrapper condition={!!dialogs.newMessage}
+                                onClick={onClickAddMessage}>
                 <IconAddBtnWrapper src={send}/>
             </AddBtnInnerWrapper>
         </AddMessageWrapper>
@@ -57,12 +77,10 @@ const AddBtnInnerWrapper = styled.div<addBtnPropsType>`
   -webkit-box-shadow: 0 1px 19px 4px #3D50FA;
   -moz-box-shadow: 0 1px 19px 4px #3D50FA;
   box-shadow: 0 1px 10px 4px #3D50FA;
-  
   //==============================================================
   opacity: ${props => props.condition ? '1' : '0'};
   visibility: ${props => props.condition ? 'visible' : 'hidden'};
-  transition: opacity 0.2s ease, visibility 0.2s ease ;
-  
+  transition: opacity 0.2s ease, visibility 0.2s ease;
   //==============================================================
 `
 

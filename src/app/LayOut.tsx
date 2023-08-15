@@ -17,7 +17,10 @@ export const LayOut = () => {
         <AppWrapper>
             <Header/>
             <ContentWrapper>
-                <NavBar/>
+                <NavBarWrapper>
+                    <NavBar/>
+                </NavBarWrapper>
+
                 {/*{isInitLocation && <Navigate to={'profile'}/>}*/}
                 <Outlet/>
                 {/*<News/>*/}
@@ -31,9 +34,16 @@ export const LayOut = () => {
 const AppWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  
 `
 
 const ContentWrapper = styled.div`
   display: flex;
+  max-height: max-content;
+  flex-grow: 1;/* Занимает доступное пространство, меняется в зависимости от высоты Outlet */
 `
 
+const NavBarWrapper = styled.div`
+  flex: 0 0 auto; /* Не изменяется по высоте, занимает только необходимое пространство */
+  
+`;

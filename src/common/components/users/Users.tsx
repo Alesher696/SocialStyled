@@ -34,7 +34,7 @@ const UsersWrapper = styled.div`
   font-size: 24px;
   margin: 0 auto;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 720px;
 `
 
 const UsersName = styled.div`

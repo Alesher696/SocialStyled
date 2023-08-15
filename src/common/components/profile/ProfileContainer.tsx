@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from "react-redux";
 import {storeType} from "../../../redux/store";
 import {addPostAC, getUserProfileTC, initialProfileStateType, setNewPostTextAC} from "../../../redux/profile-reducer";
-import {Dispatch} from "redux";
 import {Profile} from "../profile/Profile";
 import {initialAuthStateType} from "../../../redux/auth-reducer";
 

@@ -36,7 +36,6 @@ const Post = (props: PostPropsType) => {
                     {props.title}
                 </PostTitle>
             </PostStyled>
-            <Triangle/>
         </>
     )
 }
@@ -100,15 +99,3 @@ const PostTitle = styled.div`
 `
 
 //=========================/////===================================
-
-const Triangle = styled.div`
-  width: 0;
-  height: 0;
-  border-left: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 15px solid rgb(67, 67, 80);
-  transform: rotate(180deg);
-  position: relative;
-  right: 40px;
-  top: 96px;
-`
