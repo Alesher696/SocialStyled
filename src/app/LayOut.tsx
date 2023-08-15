@@ -20,7 +20,6 @@ export const LayOut = () => {
                 <NavBarWrapper>
                     <NavBar/>
                 </NavBarWrapper>
-
                 {/*{isInitLocation && <Navigate to={'profile'}/>}*/}
                 <Outlet/>
                 {/*<News/>*/}
@@ -34,13 +33,28 @@ export const LayOut = () => {
 const AppWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: auto;
   
 `
 
 const ContentWrapper = styled.div`
   display: flex;
-  max-height: max-content;
   flex-grow: 1;/* Занимает доступное пространство, меняется в зависимости от высоты Outlet */
+  overflow: auto;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #494957;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #2e2f3a;
+    border-radius: 5px;
+  }
 `
 
 const NavBarWrapper = styled.div`

@@ -20,12 +20,12 @@ export const NavBar = () => {
 const NavBarWrapper = styled.div`
   background-color: #09090c;
   color: white;
-  position: absolute;
   //height: 110vh;
   height: 102%;
   max-height: max-content;
   width: max-content;
   padding: 0 0 0 10px;
+  position: fixed;
   
 `
 

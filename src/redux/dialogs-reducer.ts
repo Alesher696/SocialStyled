@@ -31,9 +31,9 @@ const initialState: initialStateType = {
     messages: {
         [1]: {userMessage: ['hello by chatGPT', 'all is a cool', 'im fine, thanks!'], me: ['hi man', 'whats up?', 'how are u?']},
         [2]: {userMessage: ['hello by Alex', 'all is a cool', 'im fine, thanks!'], me: ['hi man', 'whats up?', 'how are u?']},
-        [3]: {userMessage: ['hello by Olga', 'all is a cool', 'im fine, thanks!'], me: ['hi man', 'whats up?', 'how are u?']},
+        [3]: {userMessage: ['hello by Olga', 'u can send it using mobile bank?', 'im fine, thanks!'], me: ['hello', 'i have money for u', 'i need your phone number']},
         [4]: {userMessage: ['hello by Dimka', 'all is a cool', 'im fine, thanks!'], me: ['hi man', 'whats up?', 'how are u?']},
-        [5]: {userMessage: ['hello by Andrey', 'all is a cool', 'im fine, thanks!'], me: ['hi man', 'whats up?', 'how are u?']},
+        [5]: {userMessage: ['hello by Andrey', 'of course yes my friend', 'vodka!'], me: ['hi man', 'lets get a drink?', 'what u would like?']},
 
     },
     activeUserId: 1,

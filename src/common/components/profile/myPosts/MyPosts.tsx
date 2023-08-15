@@ -49,6 +49,7 @@ const Posts = styled.div`
   flex-flow: wrap;
   gap: 20px;
   justify-content: center;
+  
 `
 
 //=========================POST====================================

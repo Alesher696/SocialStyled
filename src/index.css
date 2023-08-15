@@ -6,6 +6,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 code {
@@ -13,20 +14,3 @@ code {
     monospace;
 }
 
-/* Стилизация полосы прокрутки */
-::-webkit-scrollbar {
-  width: 10px; /* Ширина полосы прокрутки */
-  /*display: none;*/
-}
-
-/* Стилизация области, по которой можно перетаскивать полосу прокрутки */
-::-webkit-scrollbar-thumb {
-  background-color: #09090c; /* Цвет полосы прокрутки */
-  /*border-radius: 5px; !* Закругление углов полосы прокрутки *!*/
-
-}
-
-/* Стилизация области, по которой происходит прокрутка вверх и вниз */
-::-webkit-scrollbar-track {
-  background-color: #2e2f3a; /* Цвет области прокрутки */
-}

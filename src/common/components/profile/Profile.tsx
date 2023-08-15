@@ -57,13 +57,12 @@ export const Profile = (props:ProfilePropsType) => {
 const ProfileWrapper = styled.div`
   background-color: #2e2f3a;
   display: flex;
-  height: max-content;
-  min-height: 100vh;
+  height: 710px;
   width: 800px;
   margin: 0 auto;
   //border: 1px solid black;
   flex-direction: column;
-  padding-bottom: 10px;
+  padding-bottom:10px;
 `
 
 const ProfileTheme = styled.div`
@@ -81,6 +80,7 @@ const ProfileInfo = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  
 `
 
 const ProfileAvatar = styled.div`
@@ -91,6 +91,7 @@ const ProfileAvatar = styled.div`
   width: 220px;
   height: 250px;
   margin-top: -20px;
+ 
 `
 
 const ProfileNameStatusWrapper = styled.div`
