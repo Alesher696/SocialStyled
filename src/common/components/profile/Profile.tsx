@@ -6,7 +6,7 @@ import {MyPosts} from "../../../common/components/profile/myPosts/MyPosts";
 import {ProfilePropsType} from "../profile/ProfileContainer";
 
 
-type conditionProps={
+type addBtnConditionProps={
     condition: boolean
 }
 
@@ -120,22 +120,21 @@ const PostAddWrapper = styled.div`
   margin-top: -65px;
 `
 
-export const AddPostButton = styled.button<conditionProps>`
+export const AddPostButton = styled.button<addBtnConditionProps>`
   height: 30px;
-  background-color: #3D50FA;
+  background-color: ${props => props.condition ? '#3D50FA' : 'rgba(61, 80, 250, 0.6)'};
   border: none;
   outline: none;
   border-radius: 7px;
   width: 150px;
-  color: white;
-  cursor: pointer;
+  color: ${props => props.condition ? 'white' : 'grey'};
+  cursor: ${props => props.condition ? 'pointer' : 'default'};
   margin-bottom: 5px;
   z-index: 2;
   -webkit-box-shadow: ${props => props.condition ? '0px 1px 19px 4px #3D50FA' : 'none'};
   -moz-box-shadow: ${props => props.condition ? '0px 1px 19px 4px #3D50FA' : 'none'};
   box-shadow: ${props => props.condition ? '0px 1px 19px 4px #3D50FA' : 'none'};
-  //transition: all 500ms ease;
-  //position: relative;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 `
 
 const PostAreaInput = styled.input`
