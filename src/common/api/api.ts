@@ -26,12 +26,53 @@ export const usersAPI = {
 export const profileAPI = {
     getUserProfile(userId: number) {
         return Instance.get<responseType<profileInfoType>>(`/profile/${userId}`)
+    },
+    getUserStatus(userId: string) {
+        return Instance(`/profile/status/${userId}`)
+    },
+    setProfileStatus(status: string) {
+        return Instance.put(`/profile/status`, {"status": status})
+    },
+    setProfilePhoto(image: string) {
+        return Instance.put(`/profile/photo`, {"image": image})
     }
 }
 
 export const authAPI = {
-
+    authMe() {
+        return Instance.get(`/auth/me`)
+    },
+    logIn(email: string, password: string) {
+        return Instance.post(`/auth/login`, {"email": email, "password": password}, {})
+    },
+    logOut() {
+        return Instance.delete(`/auth/login`)
+    }
 }
+
+export const followAPI = {
+    follow(userId: string) {
+        return Instance.post(`/follow/${userId}`)
+    },
+    unfollow(userId: string) {
+        return Instance.delete(`/follow/${userId}`)
+    },
+    getFollowedUser(userId: string) {
+        return Instance.get(`/follow/${userId}`)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // export type DataType={
@@ -39,25 +80,4 @@ export const authAPI = {
 //     password: string
 //     rememberMe?: boolean
 //     captcha?:boolean
-// }
-
-
-//
-// export const authAPI = {
-//     authMe() {
-//         return Instance.get(`auth/me`).then(response => response.data)
-//     },
-//     login(data:DataType){
-//         return Instance.post(`/auth/login`, data).then(res=> res.data)
-//     },
-//     logOut(){
-//         return Instance.delete(`/auth/login`).then(res=> res.data)
-//     }
-// }
-//
-// /// {} - data ?????
-// export const profileAPI = {
-//     getProfile(userId:number = 2){
-//         return Instance.get(`profile/${userId}`)
-//     }
 // }
