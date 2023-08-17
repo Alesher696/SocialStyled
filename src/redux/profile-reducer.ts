@@ -105,7 +105,6 @@ export const getUserProfileTC = (userId: number): AppThunk => {
         profileAPI.getUserProfile(userId)
             .then(response =>{
             dispatch(setUserProfileAC(response.data.data))
-                console.log(response.data)
         } )
     }
 }
