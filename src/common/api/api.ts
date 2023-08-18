@@ -20,8 +20,8 @@ const Instance = axios.create({
 })
 
 export const usersAPI = {
-    getUsers(currentPage: number = 1, pageSize: number = 10) {
-        return Instance.get(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data)
+    getUsers(currentPage: number = 1, pageSize: number = 10, term?:string) {
+        return Instance.get(`users?page=${currentPage}&count=${pageSize}`, {params: {term}}).then(response => response.data)
     },
     getFollowedUsers(currentPage: number = 1, pageSize: number = 10) {
         return Instance.get(`users?page=${currentPage}&count=${pageSize}&friend=${true}`).then(response => response.data)
@@ -40,6 +40,21 @@ export const profileAPI = {
     },
     setProfilePhoto(image: string) {
         return Instance.put(`/profile/photo`, {"image": image})
+    }
+}
+
+export const dialogsAPI={
+    getMessageList(userId:number){
+        return Instance.get(`dialogs/${userId}/messages`)
+    },
+    sendMessage(userId:number){
+        return Instance.post(`dialogs/${userId}/messages`)
+    },
+    createDialog(userId:number){
+        return Instance.put(`dialogs/${userId}`)
+    },
+    listOfNewMessages(){
+        return Instance.get(`dialogs/messages/new/count`)
     }
 }
 

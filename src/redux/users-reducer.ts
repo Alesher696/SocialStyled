@@ -138,9 +138,9 @@ const setUnfollowUserAC = (userId: number) => {
     } as const
 }
 
-export const getUsersTC = (currentPage: number, pageSize: number) => {
+export const getUsersTC = (currentPage: number, pageSize: number, user?:any) => {
     return (dispatch: Dispatch) => {
-        usersAPI.getUsers(currentPage, pageSize)
+        usersAPI.getUsers(currentPage, pageSize, user)
             .then((data) => {
                 dispatch(setUsersAC(data.items))
                 dispatch(setUserTotalCountAC(data.totalCount))

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {ChangeEvent, useEffect} from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {
@@ -6,11 +6,11 @@ import {
     getFollowedUsersTC,
     getUsersTC,
     setCurrentPageAC,
-    unFollowUserTC,
-    userType
+    unFollowUserTC
 } from "../../../redux/users-reducer";
 import {storeType} from "../../../redux/store";
 import {Pagination} from 'antd';
+import {NavLink} from "react-router-dom";
 
 
 export const Users = () => {
@@ -19,6 +19,7 @@ export const Users = () => {
     const dispatch = useDispatch()
 
     const userFollowerStatus = ['follow', 'unfollow']
+    const [termUser, setTermUser] = React.useState('')
 
     useEffect(() => {
         dispatch(getUsersTC(users.currentPage, users.pageSize))
@@ -30,7 +31,7 @@ export const Users = () => {
 
     const onClickPageHandler = (page: number) => {
         dispatch(setCurrentPageAC(page));
-        dispatch(getUsersTC(page, users.pageSize))
+        dispatch(getUsersTC(page, users.pageSize, termUser))
     }
 
     const followUnfollowHandler = (userId: number, status: boolean) => {
@@ -41,11 +42,20 @@ export const Users = () => {
         }
     }
 
+    const getSearchUserHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        dispatch(getUsersTC(users.currentPage, users.pageSize, e.currentTarget.value))
+        setTermUser(e.currentTarget.value)
+    }
+
     return (
         <UsersWrapper>
             <div>
-                <PaginationWrapper defaultCurrent={1} total={users.totalUsersCount} onChange={onClickPageHandler}
-                                   showSizeChanger={false}></PaginationWrapper>
+                <input onChange={getSearchUserHandler}/>
+                <button> search...</button>
+            </div>
+
+
+            <div>
                 {users.users.map(el =>
                     <UsersName key={el.id}>
                         {el.name}
@@ -54,8 +64,14 @@ export const Users = () => {
                         <button
                             onClick={() => followUnfollowHandler(el.id, el.followed)}>{el.followed ? userFollowerStatus[1] : userFollowerStatus[0]}
                         </button>
+                        <NavLink to={`/dialogs/${el.id}/messages`}>
+                            <button>Write a message</button>
+                        </NavLink>
                     </UsersName>)}
             </div>
+            <br/>
+            <PaginationWrapper defaultCurrent={1} total={users.totalUsersCount} onChange={onClickPageHandler}
+                               showSizeChanger={false}></PaginationWrapper>
             <div>
                 <br/>
                 <div>followedUsers:</div>

@@ -7,6 +7,7 @@ import Music from "../common/components/music/Music";
 import {Settings} from "../common/components/settings/Settings";
 import Login from "../features/login/Login";
 import {ProfileContainer} from "../common/components/profile/ProfileContainer";
+import {Messages} from "../common/components/dialogs/Messages";
 
 
 export function App(props:any) {
@@ -17,6 +18,7 @@ export function App(props:any) {
                 <Route index element={<ProfileContainer/>}></Route>
                 <Route path={'/profile/:userId?'} element={<ProfileContainer/>}></Route>
                 <Route path={'/dialogs/'} element={<Dialogs/>}></Route>
+                <Route path={'/dialogs/:userId/messages'} element={<Messages/>}></Route>
                 <Route path={'/users'} element={<Users/>}></Route>
                 <Route path={'/music'} element={<Music/>}></Route>
                 <Route path={'/settings'} element={<Settings/>}></Route>
