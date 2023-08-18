@@ -1,7 +1,14 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {followUserTC, getUsersTC, setCurrentPageAC, unFollowUserTC, userType} from "../../../redux/users-reducer";
+import {
+    followUserTC,
+    getFollowedUsersTC,
+    getUsersTC,
+    setCurrentPageAC,
+    unFollowUserTC,
+    userType
+} from "../../../redux/users-reducer";
 import {storeType} from "../../../redux/store";
 import {Pagination} from 'antd';
 
@@ -15,6 +22,10 @@ export const Users = () => {
 
     useEffect(() => {
         dispatch(getUsersTC(users.currentPage, users.pageSize))
+    }, [])
+
+    useEffect(() => {
+        dispatch(getFollowedUsersTC())
     }, [])
 
     const onClickPageHandler = (page: number) => {
@@ -38,6 +49,8 @@ export const Users = () => {
                 {users.users.map(el =>
                     <UsersName key={el.id}>
                         {el.name}
+                        <br/>
+                        {el.id}
                         <button
                             onClick={() => followUnfollowHandler(el.id, el.followed)}>{el.followed ? userFollowerStatus[1] : userFollowerStatus[0]}
                         </button>

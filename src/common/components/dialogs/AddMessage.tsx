@@ -4,6 +4,7 @@ import send from '../../assets/send (1).png'
 import {useDispatch, useSelector} from "react-redux";
 import {storeType} from "../../../redux/store";
 import {addNewMessageAC, dialogCreatorTC} from "../../../redux/dialogs-reducer";
+import { StyleSheetManager } from 'styled-components';
 
 
 type addBtnPropsType = {
@@ -31,6 +32,7 @@ export const AddMessage = () => {
         }
     }
     return (
+        <StyleSheetManager shouldForwardProp={(prop) => prop !== 'condition'}>
         <AddMessageWrapper>
             <AddMessageInput placeholder={'Write a message...'}
                              onChange={addNewMessageOnChange}
@@ -42,6 +44,7 @@ export const AddMessage = () => {
                 <IconAddBtnWrapper src={send}/>
             </AddBtnInnerWrapper>
         </AddMessageWrapper>
+        </StyleSheetManager>
 
     );
 };

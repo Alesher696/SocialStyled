@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect} from 'react';
-import styled from "styled-components";
+import styled, {StyleSheetManager} from "styled-components";
 import theme from '../../assets/1681961897_kartinki-pibig-info-p-nasishchennaya-kartinka-arti-krasivo-1.jpg'
 import avatar from '../../assets/1676295972138872283.png'
 import {MyPosts} from "../../../common/components/profile/myPosts/MyPosts";
@@ -31,6 +31,7 @@ export const Profile = (props:ProfilePropsType) => {
     }
 
     return (
+        <StyleSheetManager shouldForwardProp={(prop) => prop !== 'condition'}>
         <ProfileWrapper>
             <ProfileTheme/>
             <ProfileInfo>
@@ -46,11 +47,16 @@ export const Profile = (props:ProfilePropsType) => {
             </ProfileInfo>
             {/*<News/>*/}
             <PostAddWrapper>
-                <AddPostButton onClick={addPost} condition={!!props.profile.newPostText} disabled={!props.profile.newPostText}> Add post </AddPostButton>
-                <PostAreaInput onChange={onChangeHandler} placeholder={"What's News?"} value={props.profile.newPostText}/>
+                <AddPostButton onClick={addPost}
+                               condition={!!props.profile.newPostText}
+                               disabled={!props.profile.newPostText}> Add post </AddPostButton>
+                <PostAreaInput onChange={onChangeHandler}
+                               placeholder={"What's News?"}
+                               value={props.profile.newPostText}/>
             </PostAddWrapper>
             <MyPosts profile={props.profile}/>
         </ProfileWrapper>
+        </StyleSheetManager>
     );
 };
 

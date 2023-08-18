@@ -145,6 +145,12 @@ export const getUsersTC = (currentPage: number, pageSize: number) => {
                 dispatch(setUsersAC(data.items))
                 dispatch(setUserTotalCountAC(data.totalCount))
             })
+
+    }
+}
+
+export const getFollowedUsersTC = ()=>{
+    return (dispatch:Dispatch)=>{
         usersAPI.getFollowedUsers(1, 100)
             .then((data) => {
                 dispatch(setFollowedUsersAC(data.items))

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {storeType} from "../../../redux/store";
 import {setActiveUserIdAC} from "../../../redux/dialogs-reducer";
+import {ChatMessages} from "../../../common/components/dialogs/ChatMessages";
 
 
 export const Dialogs = () => {
@@ -15,8 +16,17 @@ export const Dialogs = () => {
     const messageUserList = dialogs.messages[dialogs.activeUserId].me
     const messageMeList = dialogs.messages[dialogs.activeUserId].userMessage
 
-    const combinedMessages = []
+    const combinedMessages: { type: string, text: string }[] = []
     const maxLength = Math.max(messageUserList.length, messageMeList.length )
+    const messagesWrapperRef = useRef<HTMLDivElement | null>(null);
+
+
+    useEffect(()=>{
+        if (messagesWrapperRef.current) {
+            messagesWrapperRef.current.scrollTop = messagesWrapperRef.current.scrollHeight;
+        }
+    }, [combinedMessages])
+
 
     for(let i=0; i< maxLength; i++){
         if(messageUserList[i]){
@@ -27,10 +37,10 @@ export const Dialogs = () => {
         }
     }
 
+
     return (
         <DialogsWrapper>
-
-            <MessagesWrapper>
+            <MessagesWrapper ref={messagesWrapperRef}>
                 {combinedMessages.map((message,index)=>(
                     <MessageWrapper key={index} type={message.type}>
                         <Messages type={message.type}>
@@ -43,6 +53,7 @@ export const Dialogs = () => {
             <UsersWrapper>
                 {userList}
             </UsersWrapper>
+            {/*<ChatMessages/>*/}
         </DialogsWrapper>
     );
 };
@@ -53,12 +64,12 @@ const DialogsWrapper = styled.div`
   font-size: 24px;
   margin: 0 auto;
   justify-content: space-around;
-  width: 60%;
+  width: 80%;
 
 `
 
 const UsersWrapper = styled.div`
-  flex: 0 0 30%; /* Занимает 30% ширины родительского блока */
+  flex: 0 0 20%; /* Занимает 30% ширины родительского блока */
   flex-flow: column;
   background-color: rgba(30, 31, 38, 0.63);
   display: flex;

@@ -1,6 +1,8 @@
 import axios from "axios";
 import {profileInfoType} from "../../redux/profile-reducer";
 
+//22597 id
+
 
 type responseType<T> = {
     data: T
@@ -25,7 +27,7 @@ export const usersAPI = {
         return Instance.get(`users?page=${currentPage}&count=${pageSize}&friend=${true}`).then(response => response.data)
     }
 }
-
+ 
 export const profileAPI = {
     getUserProfile(userId: number) {
         return Instance.get<responseType<profileInfoType>>(`/profile/${userId}`)
