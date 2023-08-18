@@ -3,7 +3,7 @@ import styled from "styled-components";
 import send from '../../assets/send (1).png'
 import {useDispatch, useSelector} from "react-redux";
 import {storeType} from "../../../redux/store";
-import {addNewMessageAC, dialogCreatorTC} from "../../../redux/dialogs-reducer";
+import {addNewMessageAC} from "../../../redux/dialogs-reducer";
 import { StyleSheetManager } from 'styled-components';
 
 
@@ -22,7 +22,6 @@ export const AddMessage = () => {
     }
 
     const onClickAddMessage = () => {
-        dispatch(dialogCreatorTC(dialogs.activeUserId))
         dispatch(addNewMessageAC(''))
     }
 

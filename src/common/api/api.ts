@@ -2,7 +2,9 @@ import axios from "axios";
 import {profileInfoType} from "../../redux/profile-reducer";
 
 //22597 id
+type getMessagesResponseType={
 
+}
 
 type responseType<T> = {
     data: T

@@ -17,8 +17,8 @@ export function App(props:any) {
             <Route path={'/'} element={<LayOut/>}>
                 <Route index element={<ProfileContainer/>}></Route>
                 <Route path={'/profile/:userId?'} element={<ProfileContainer/>}></Route>
-                <Route path={'/dialogs/'} element={<Dialogs/>}></Route>
-                <Route path={'/dialogs/:userId/messages'} element={<Messages/>}></Route>
+                <Route path={'/dialogs/:userId?/messages?'} element={<Dialogs/>}></Route>
+                {/*<Route path={'/dialogs/:userId?/messages?'} element={<Messages/>}></Route>*/}
                 <Route path={'/users'} element={<Users/>}></Route>
                 <Route path={'/music'} element={<Music/>}></Route>
                 <Route path={'/settings'} element={<Settings/>}></Route>

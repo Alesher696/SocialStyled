@@ -11,6 +11,7 @@ import {
 import {storeType} from "../../../redux/store";
 import {Pagination} from 'antd';
 import {NavLink} from "react-router-dom";
+import {getMessagesListTC, setActiveUserIdAC, setEntityUserInArrayAC} from "../../../redux/dialogs-reducer";
 
 
 export const Users = () => {
@@ -47,6 +48,12 @@ export const Users = () => {
         setTermUser(e.currentTarget.value)
     }
 
+    const onClickActiveUserIdHandler = (userId: number, userName: string) => {
+        dispatch(setActiveUserIdAC(userId))
+        dispatch(setEntityUserInArrayAC(userId, userName))
+        dispatch(getMessagesListTC(userId))
+    }
+
     return (
         <UsersWrapper>
             <div>
@@ -64,7 +71,8 @@ export const Users = () => {
                         <button
                             onClick={() => followUnfollowHandler(el.id, el.followed)}>{el.followed ? userFollowerStatus[1] : userFollowerStatus[0]}
                         </button>
-                        <NavLink to={`/dialogs/${el.id}/messages`}>
+                        <NavLink to={`/dialogs/${el.id}/messages`}
+                                 onClick={() => onClickActiveUserIdHandler(el.id, el.name)}>
                             <button>Write a message</button>
                         </NavLink>
                     </UsersName>)}
@@ -81,6 +89,10 @@ export const Users = () => {
                         <button
                             onClick={() => followUnfollowHandler(el.id, el.followed)}>{el.followed ? userFollowerStatus[1] : userFollowerStatus[0]}
                         </button>
+                        <NavLink to={`/dialogs/${el.id}/messages`}
+                                 onClick={() => onClickActiveUserIdHandler(el.id, el.name)}>
+                            <button>Write a message</button>
+                        </NavLink>
                     </UsersName>)}
             </div>
         </UsersWrapper>

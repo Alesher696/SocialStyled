@@ -1,20 +1,27 @@
 import {Dispatch} from "redux";
-import {log} from "util";
+import {dialogsAPI} from "../common/api/api";
 
-export type dialogsActions = setActiveUserIdType | addMessageType | addMessageInStateType
+
+export type dialogsActions = setActiveUserIdType | addMessageType | addMessagesInStateType | setEntityUserInArrayType
 
 type userType = {
-    id: number
-    name: string
+    userId: number
+    userName: string
 }
-type dialogType = {
-    userMessage: string[]
-    me: string[]
+export type messageType = {
+    id: string,
+    body: string,
+    translatedBody: null,
+    addedAt: Date,
+    senderId: number,
+    senderName: string,
+    recipientId: number,
+    viewed: boolean
 }
 export type initialStateType = {
     users: userType[]
     messages: {
-        [id: number]: dialogType
+        [userId: number]: messageType[]
     }
     activeUserId: number
     newMessage: string
@@ -22,19 +29,15 @@ export type initialStateType = {
 
 const initialState: initialStateType = {
     users: [
-        {id: 1, name: 'chatGPT'},
-        {id: 2, name: 'Alex'},
-        {id: 3, name: 'Olga'},
-        {id: 4, name: 'Dimych'},
-        {id: 5, name: 'Andrey'},
+
+
+        // {userId: 5, userName: 'Andrey'},
     ],
     messages: {
-        [1]: {userMessage: ['hello by chatGPT', 'all is a cool', 'im fine, thanks!'], me: ['hi man', 'whats up?', 'how are u?']},
-        [2]: {userMessage: ['hello by Alex', 'all is a cool', 'im fine, thanks!'], me: ['hi man', 'whats up?', 'how are u?']},
-        [3]: {userMessage: ['hello by Olga', 'u can send it using mobile bank?', 'im fine, thanks!'], me: ['hello', 'i have money for u', 'i need your phone number']},
-        [4]: {userMessage: ['hello by Dimka', 'all is a cool', 'im fine, thanks!'], me: ['hi man', 'whats up?', 'how are u?']},
-        [5]: {userMessage: ['hello by Andrey', 'of course yes my friend', 'vodka!'], me: ['hi man', 'lets get a drink?', 'what u would like?']},
 
+
+        // [3]: {userMessage: ['hello by Olga', 'u can send it using mobile bank?', 'im fine, thanks!'], me: ['hello', 'i have money for u', 'i need your phone number']},
+        // [29842]: {userMessage: ['hello','hehe'], me: ['hello','hehe']},
     },
     activeUserId: 1,
     newMessage: ''
@@ -49,20 +52,33 @@ export const dialogsReducer = (state: initialStateType = initialState, action: d
         case "ADD-NEW-MESSAGE": {
             return {...state, newMessage: action.payload.message}
         }
-        case "ADD-MESSAGE-IN-STATE": {
-            const messageFromBot = "I'm really sorry. I'm just a bot... And my Creator is teaching me right now!"
-            const userId = action.payload.userId
-            const newMessage = state.newMessage
-            const updatedMessages =  {...state.messages, [userId]:{
-                userMessage:[...state.messages[userId].userMessage, messageFromBot],
-                    me:[...state.messages[userId].me, newMessage]
-                }}
+        case "ADD-MESSAGES-IN-STATE": {
+            return {...state, messages: {[action.payload.userId]: action.payload.messages}}
+        }
+        case 'CREATE-ENTITY-USER': {
+            const newUser = {userId: action.payload.userId, userName: action.payload.userName}
+            const existingUserIndex = state.users.findIndex(user => user.userId === newUser.userId);
 
-            return {...state, messages: updatedMessages}
+            if (existingUserIndex !== -1) {
+                return {...state}
+            } else {
+                return {...state, users: [...state.users, newUser]};
+            }
         }
         default:
             return state
     }
+}
+
+export type setEntityUserInArrayType = ReturnType<typeof setEntityUserInArrayAC>
+
+export const setEntityUserInArrayAC = (userId: number, userName: string) => {
+    return {
+        type: 'CREATE-ENTITY-USER',
+        payload: {
+            userId, userName
+        }
+    } as const
 }
 
 export type setActiveUserIdType = ReturnType<typeof setActiveUserIdAC>
@@ -87,23 +103,26 @@ export const addNewMessageAC = (message: string) => {
     } as const
 }
 
-export type addMessageInStateType = ReturnType<typeof addMessageInStateAC>
+export type addMessagesInStateType = ReturnType<typeof addMessagesInStateAC>
 
-const addMessageInStateAC = (userId:number) => {
+const addMessagesInStateAC = (userId: number, messages:messageType[]) => {
     return {
-        type: 'ADD-MESSAGE-IN-STATE',
-        payload:{
-            userId
+        type: 'ADD-MESSAGES-IN-STATE',
+        payload: {
+            userId,
+            messages
         }
     } as const
 }
 
-export const dialogCreatorTC = (userId:number) => {
-    return (dispatch: Dispatch) => {
-
-        dispatch(addMessageInStateAC(userId))
-        // dispatch(addMessageInStateAC())
-        // dispatch(addMessageInStateAC())
-
+export const getMessagesListTC = (userId: number) => {
+    return async (dispatch: Dispatch) => {
+        const result = await dialogsAPI.getMessageList(userId)
+        dispatch(addMessagesInStateAC(userId, result.data.items))
     }
 }
+
+//============================================================================
+
+
+
