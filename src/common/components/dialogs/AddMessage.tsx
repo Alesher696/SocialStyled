@@ -3,7 +3,7 @@ import styled from "styled-components";
 import send from '../../assets/send (1).png'
 import {useDispatch, useSelector} from "react-redux";
 import {storeType} from "../../../redux/store";
-import {addNewMessageAC} from "../../../redux/dialogs-reducer";
+import {addNewMessageAC, sendMessageTC} from "../../../redux/dialogs-reducer";
 import { StyleSheetManager } from 'styled-components';
 
 
@@ -22,7 +22,7 @@ export const AddMessage = () => {
     }
 
     const onClickAddMessage = () => {
-        dispatch(addNewMessageAC(''))
+        dispatch(sendMessageTC(dialogs.activeUserId, dialogs.newMessage))
     }
 
     const onEnterAddMessage = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -30,6 +30,7 @@ export const AddMessage = () => {
             onClickAddMessage()
         }
     }
+
     return (
         <StyleSheetManager shouldForwardProp={(prop) => prop !== 'condition'}>
         <AddMessageWrapper>

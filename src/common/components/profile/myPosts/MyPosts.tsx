@@ -59,7 +59,7 @@ const PostStyled = styled.div`
   width: max-content;
   min-height: 100px;
   height: max-content;
-  background-color: rgba(89, 89, 108, 0.47);
+  background-color: #2A2A33AA;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   display: flex;

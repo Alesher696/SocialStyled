@@ -61,7 +61,7 @@ export const Profile = (props:ProfilePropsType) => {
 };
 
 const ProfileWrapper = styled.div`
-  background-color: #2e2f3a;
+  background-color: #1a1a21;
   display: flex;
   height: 710px;
   width: 800px;
@@ -153,7 +153,7 @@ const PostAreaInput = styled.input`
   box-sizing: border-box;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
   border-radius: 4px;
-  background-color: rgba(89, 89, 108, 0.47);
+  background-color: #2A2A33AA;
   font-size: 16px;
   resize: none;
   outline: none;
@@ -161,7 +161,7 @@ const PostAreaInput = styled.input`
   overflow: auto;
 
   &::placeholder {
-    color: rgba(170, 170, 196, 0.47);
+    color: rgba(127, 127, 145, 0.47);
   }
 `
 

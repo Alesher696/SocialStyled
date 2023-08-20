@@ -15,7 +15,7 @@ export const LayOut = () => {
     const isInitLocation = location.pathname === '/'
     const isDialogsLocation = location.pathname === '/dialogs' ||  location.pathname === `/dialogs/${dialogs.activeUserId}/messages`
     //при логинизации не катит//
-    console.log(dialogs.activeUserId)
+
     return (
         <AppWrapper>
             <Header/>

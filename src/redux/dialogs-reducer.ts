@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
 import {dialogsAPI} from "../common/api/api";
+import {storeType} from "../redux/store";
 
 
 export type dialogsActions = setActiveUserIdType | addMessageType | addMessagesInStateType | setEntityUserInArrayType
@@ -16,7 +17,8 @@ export type messageType = {
     senderId: number,
     senderName: string,
     recipientId: number,
-    viewed: boolean
+    viewed: boolean,
+
 }
 export type initialStateType = {
     users: userType[]
@@ -122,6 +124,13 @@ export const getMessagesListTC = (userId: number) => {
     }
 }
 
+export const sendMessageTC = (userId:number, message:string) =>{
+    return async (dispatch:Dispatch)=>{
+        const result = await dialogsAPI.sendMessage(userId, message)
+        // dispatch(addMessagesInStateAC(userId, entityMessageForState))
+        dispatch(addNewMessageAC(''))
+    }
+}
 //============================================================================
 
 
