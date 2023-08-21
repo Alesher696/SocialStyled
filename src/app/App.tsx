@@ -5,12 +5,12 @@ import {Dialogs} from "../common/components/dialogs/Dialogs";
 import {Users} from "../common/components/users/Users";
 import Music from "../common/components/music/Music";
 import {Settings} from "../common/components/settings/Settings";
-import Login from "../features/login/Login";
 import {ProfileContainer} from "../common/components/profile/ProfileContainer";
 import {useDispatch, useSelector} from "react-redux";
 import {initializeAppTC} from "../redux/app-reducer";
 import {storeType} from "../redux/store";
 import {Loader} from "../common/components/loader/Loader";
+import {Login} from "../features/login/Login";
 
 
 export function App(props: any) {

@@ -1,6 +1,7 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../common/api/api";
 
+
 export type authActions = setUserDataType | setIsLoggedInType
 
 export type initialAuthStateType = {
@@ -8,15 +9,16 @@ export type initialAuthStateType = {
     login: null | string
     email: null | string
     isLoggedIn: boolean
+    rememberMe: boolean
 }
 
 const initialState: initialAuthStateType = {
     id: null,
     login: null,
     email: null,
+    rememberMe: false,
     isLoggedIn: false
 }
-
 
 export const authReducer = (state: initialAuthStateType = initialState, action: authActions): initialAuthStateType => {
     switch (action.type) {
@@ -58,13 +60,28 @@ export const setIsLoggedInAC = (value: boolean) => {
     } as const
 }
 
-
-export const authLogInTC = () => {
-
+export const authLogInTC = (email: string, password: string) => {
+    return async (dispatch: Dispatch) => {
+        try {
+            const result = await authAPI.logIn(email, password)
+            if (result.data.resultCode === 0) {
+                dispatch(setIsLoggedInAC(true))
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
 }
 
 export const authLogOutTC = () => {
     return async (dispatch: Dispatch) => {
-        const result = await authAPI.logOut()
+        try {
+            const result = await authAPI.logOut()
+            if (result.data.resultCode === 0) {
+                dispatch(setIsLoggedInAC(false))
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
 }

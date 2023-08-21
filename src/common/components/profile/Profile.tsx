@@ -4,6 +4,7 @@ import theme from '../../assets/1681961897_kartinki-pibig-info-p-nasishchennaya-
 import avatar from '../../assets/1676295972138872283.png'
 import {MyPosts} from "../../../common/components/profile/myPosts/MyPosts";
 import {ProfilePropsType} from "../profile/ProfileContainer";
+import {TextUploadModal} from "../../../common/components/profile/modal window/UploadModal";
 
 
 
@@ -15,10 +16,7 @@ export const Profile = (props:ProfilePropsType) => {
 
 //start is here
 
-
-
     console.log('profile is rendered ')
-
 
     useEffect(()=>{
         props.getUserProfileTC(props.auth.id!)
@@ -47,7 +45,11 @@ export const Profile = (props:ProfilePropsType) => {
                         Извини, уважаемая, мне нужно заниматься моими кошачьими делами, так что не тревожь меня.
                     </ProfileStatus>
                 </ProfileNameStatusWrapper>
-                <ProfileAvatar/>
+                <div>
+                    <ProfileAvatar/>
+                    <TextUploadModal/>
+                </div>
+
             </ProfileInfo>
             {/*<News/>*/}
             <PostAddWrapper>
@@ -70,9 +72,9 @@ const ProfileWrapper = styled.div`
   height: 710px;
   width: 800px;
   margin: 0 auto;
-  border: 1px solid black;
   flex-direction: column;
   padding-bottom:10px;
+  border: 1px solid black;
 `
 
 const ProfileTheme = styled.div`
@@ -102,6 +104,7 @@ const ProfileAvatar = styled.div`
   width: 220px;
   height: 250px;
   margin-top: -20px;
+  border-radius: 0 5px 0 0;
  
 `
 
@@ -164,6 +167,7 @@ const PostAreaInput = styled.input`
   outline: none;
   color: #ffffff;
   overflow: auto;
+  
 
   &::placeholder {
     color: rgba(127, 127, 145, 0.47);

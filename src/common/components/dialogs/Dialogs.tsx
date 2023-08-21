@@ -78,7 +78,6 @@ const DialogsWrapper = styled.div`
   margin: 0 auto;
   justify-content: space-around;
   width: 80%;
-  
 `
 
 const UsersWrapper = styled.div`
@@ -88,7 +87,6 @@ const UsersWrapper = styled.div`
   display: flex;
   justify-items: center;
   align-items: center;
-
 `
 
 const User = styled.div`

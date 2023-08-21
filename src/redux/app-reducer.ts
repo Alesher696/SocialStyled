@@ -23,7 +23,6 @@ export const appReducer = (state: initialStateType = initialState, action: appAc
     }
 }
 
-
 export type setIsInitializedType = ReturnType<typeof setIsInitializedAC>
 
 export const setIsInitializedAC = (isInitialized: boolean) => {
@@ -37,15 +36,15 @@ export const setIsInitializedAC = (isInitialized: boolean) => {
 
 export const initializeAppTC = () => {
     return async (dispatch: Dispatch) => {
-        const result = await authAPI.authMe()
-        if (result.data.resultCode === 0) {
-            dispatch(setUserDataAC(result.data.data))
-            dispatch(setIsLoggedInAC(true))
-
-            // } else if (res.data.resultCode === 1) {
-            //         handleServerAppError(res.data, dispatch)
-            //     }
+        try {
+            const result = await authAPI.authMe()
+            if (result.data.resultCode === 0) {
+                dispatch(setUserDataAC(result.data.data))
+                dispatch(setIsLoggedInAC(true))
+            }
+            dispatch(setIsInitializedAC(true))
+        } catch (e) {
+            console.log(e)
         }
-        dispatch(setIsInitializedAC(true))
     }
 }

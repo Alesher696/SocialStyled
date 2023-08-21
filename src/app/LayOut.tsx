@@ -20,12 +20,11 @@ export const LayOut = () => {
     const dispatch = useDispatch()
     //при логинизации не катит//
 
-
     useEffect(() => {
         if (!auth.isLoggedIn) {
             return
         }
-        // dispatch(getUserProfileTC(auth.id!))
+        dispatch(getUserProfileTC(auth.id!))
     }, [])
 
     console.log('layout is rendered ')
