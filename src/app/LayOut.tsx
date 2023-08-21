@@ -1,21 +1,38 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Header} from "../common/components/header/Header";
 import {NavBar} from "../common/components/navBar/NavBar";
 import {Footer} from "../common/components/footer/Footer";
 import styled from "styled-components";
 import {Navigate, Outlet, useLocation} from 'react-router-dom';
 import {AddMessage} from "../common/components/dialogs/AddMessage";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {storeType} from "../redux/store";
+import {getUserProfileTC} from "../redux/profile-reducer";
 
 export const LayOut = () => {
 
     const dialogs = useSelector((state: storeType) => state.dialogs)
     const location = useLocation()
     const isInitLocation = location.pathname === '/'
-    const isDialogsLocation = location.pathname === '/dialogs' ||  location.pathname === `/dialogs/${dialogs.activeUserId}/messages`
+    const isDialogsLocation = location.pathname === '/dialogs' || location.pathname === `/dialogs/${dialogs.activeUserId}/messages`
+
+    const auth = useSelector((state: storeType) => state.auth)
+    const dispatch = useDispatch()
     //при логинизации не катит//
 
+
+    useEffect(() => {
+        if (!auth.isLoggedIn) {
+            return
+        }
+        // dispatch(getUserProfileTC(auth.id!))
+    }, [])
+
+    console.log('layout is rendered ')
+
+    if (!auth.isLoggedIn) {
+        return <Navigate to={'/login'}/>
+    }
     return (
         <AppWrapper>
             <Header/>

@@ -1,8 +1,17 @@
 import React from 'react';
 import styled from "styled-components";
+import {useDispatch} from "react-redux";
+import {authLogOutTC} from "../../../redux/auth-reducer";
 
 
 export const Footer = () => {
+
+    const dispatch = useDispatch()
+
+    const logOutHandler =()=>{
+        dispatch(authLogOutTC())
+    }
+
     return (
         <FooterWrapper>
             <LinksWrapper >
@@ -16,6 +25,7 @@ export const Footer = () => {
             <div>
                 <Span>© 2023 Company, Inc</Span>
             </div>
+            <button onClick={logOutHandler}>Log Out</button>
         </FooterWrapper>
     );
 };

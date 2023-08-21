@@ -16,6 +16,8 @@ import {getMessagesListTC, setActiveUserIdAC, setEntityUserInArrayAC} from "../.
 
 export const Users = () => {
 
+    console.log('users is rendered ')
+
     const users = useSelector((state: storeType) => state.users)
     const dispatch = useDispatch()
 

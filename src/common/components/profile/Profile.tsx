@@ -6,6 +6,7 @@ import {MyPosts} from "../../../common/components/profile/myPosts/MyPosts";
 import {ProfilePropsType} from "../profile/ProfileContainer";
 
 
+
 type addBtnConditionProps={
     condition: boolean
 }
@@ -14,8 +15,10 @@ export const Profile = (props:ProfilePropsType) => {
 
 //start is here
 
-    // const profile = useSelector((state: storeType) => state.profile)
-    // const dispatch = useDispatch()
+
+
+    console.log('profile is rendered ')
+
 
     useEffect(()=>{
         props.getUserProfileTC(props.auth.id!)
@@ -28,6 +31,7 @@ export const Profile = (props:ProfilePropsType) => {
     const addPost = () => {
         props.addPostAC()
         props.setNewPostTextAC('')
+
     }
 
     return (
@@ -66,7 +70,7 @@ const ProfileWrapper = styled.div`
   height: 710px;
   width: 800px;
   margin: 0 auto;
-  //border: 1px solid black;
+  border: 1px solid black;
   flex-direction: column;
   padding-bottom:10px;
 `
@@ -80,6 +84,7 @@ const ProfileTheme = styled.div`
   height: 150px;
   margin-left: -100px; //отрицательное смещение
   margin-right: -100px;
+  border-radius: 0 0 15px 15px;
 `
 
 const ProfileInfo = styled.div`

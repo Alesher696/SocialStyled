@@ -1,25 +1,51 @@
+import {Dispatch} from "redux";
+import {authAPI} from "../common/api/api";
+import {setIsLoggedInAC, setUserDataAC} from "../redux/auth-reducer";
 
 
-export type appActions =addPostACType
+export type appActions = setIsInitializedType
 
-type initialStateType={
-
+type initialStateType = {
+    isInitialized: boolean
 }
 
-const initialState={
+const initialState = {
+    isInitialized: false,
+}
 
+export const appReducer = (state: initialStateType = initialState, action: appActions) => {
+    switch (action.type) {
+        case "APP/SET-IS-INITIALIZED": {
+            return {...state, isInitialized: action.payload.isInitialized}
+        }
+        default:
+            return state;
+    }
 }
 
 
-export const appReducer = (state: initialStateType = initialState, action: appActions)=>{
-return state
-}
+export type setIsInitializedType = ReturnType<typeof setIsInitializedAC>
 
-
-export type addPostACType = ReturnType<typeof addPostAC>
-
-export const addPostAC = () =>{
+export const setIsInitializedAC = (isInitialized: boolean) => {
     return {
-        type:'ADD-POST'
+        type: 'APP/SET-IS-INITIALIZED',
+        payload: {
+            isInitialized
+        }
+    } as const
+}
+
+export const initializeAppTC = () => {
+    return async (dispatch: Dispatch) => {
+        const result = await authAPI.authMe()
+        if (result.data.resultCode === 0) {
+            dispatch(setUserDataAC(result.data.data))
+            dispatch(setIsLoggedInAC(true))
+
+            // } else if (res.data.resultCode === 1) {
+            //         handleServerAppError(res.data, dispatch)
+            //     }
+        }
+        dispatch(setIsInitializedAC(true))
     }
 }
