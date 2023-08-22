@@ -4,7 +4,7 @@ import theme from '../../assets/1681961897_kartinki-pibig-info-p-nasishchennaya-
 import avatar from '../../assets/1676295972138872283.png'
 import {MyPosts} from "../../../common/components/profile/myPosts/MyPosts";
 import {ProfilePropsType} from "../profile/ProfileContainer";
-import {TextUploadModal} from "../../../common/components/profile/modal window/UploadModal";
+import {PhotoUploadModal} from "../../../common/components/profile/modal window/UploadModal";
 
 
 
@@ -20,12 +20,13 @@ export const Profile = (props:ProfilePropsType) => {
 
     useEffect(()=>{
         props.getUserProfileTC(props.auth.id!)
+        props.getUserStatusTC(props.auth.id!)
     },[])
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         props.setNewPostTextAC(e.currentTarget.value)
     }
-
+    // console.log(props.profile)
     const addPost = () => {
         props.addPostAC()
         props.setNewPostTextAC('')
@@ -39,15 +40,15 @@ export const Profile = (props:ProfilePropsType) => {
             <ProfileInfo>
                 <ProfileNameStatusWrapper>
                     <ProfileName>
-                        Vas'ka Borisovich
+                        {props.profile.profileInfo?.fullName}
                     </ProfileName>
                     <ProfileStatus>
-                        Извини, уважаемая, мне нужно заниматься моими кошачьими делами, так что не тревожь меня.
+                        {props.profile.status}
                     </ProfileStatus>
                 </ProfileNameStatusWrapper>
                 <div>
                     <ProfileAvatar/>
-                    <TextUploadModal/>
+                    <PhotoUploadModal/>
                 </div>
 
             </ProfileInfo>
@@ -55,7 +56,7 @@ export const Profile = (props:ProfilePropsType) => {
             <PostAddWrapper>
                 <AddPostButton onClick={addPost}
                                condition={!!props.profile.newPostText}
-                               disabled={!props.profile.newPostText}> Add post </AddPostButton>
+                               disabled={!props.profile.newPostText}> img </AddPostButton>
                 <PostAreaInput onChange={onChangeHandler}
                                placeholder={"What's News?"}
                                value={props.profile.newPostText}/>
@@ -74,7 +75,8 @@ const ProfileWrapper = styled.div`
   margin: 0 auto;
   flex-direction: column;
   padding-bottom:10px;
-  border: 1px solid black;
+  
+  //border: 1px solid black;
 `
 
 const ProfileTheme = styled.div`
@@ -130,9 +132,14 @@ const ProfileStatus = styled.div`
 
 const PostAddWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   width: 570px;
-  margin-top: -65px;
+  
+  background-color: #0e0e11;
+  //align-items: center;
+  padding: 10px;
+  border-radius: 7px;
 `
 
 export const AddPostButton = styled.button<addBtnConditionProps>`
@@ -141,10 +148,10 @@ export const AddPostButton = styled.button<addBtnConditionProps>`
   border: none;
   outline: none;
   border-radius: 7px;
-  width: 150px;
+  width: 50px;
   color: ${props => props.condition ? 'white' : 'grey'};
   cursor: ${props => props.condition ? 'pointer' : 'default'};
-  margin-bottom: 5px;
+  //margin-bottom: 5px;
   z-index: 2;
   -webkit-box-shadow: ${props => props.condition ? '0px 1px 19px 4px #3D50FA' : 'none'};
   -moz-box-shadow: ${props => props.condition ? '0px 1px 19px 4px #3D50FA' : 'none'};
@@ -155,9 +162,9 @@ export const AddPostButton = styled.button<addBtnConditionProps>`
 const PostAreaInput = styled.input`
   all: unset;
   text-align: center;
-  width: 570px;
+  width: 500px;
   height: 30px;
-  padding: 12px 20px;
+  //padding: 12px 20px;
   box-sizing: border-box;
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
   border-radius: 4px;

@@ -1,8 +1,14 @@
 import {Dispatch} from "redux";
-import {profileAPI} from "../common/api/api";
+import {profileAPI, profileInfoResponseType} from "../common/api/api";
 import {AppThunk} from "../redux/store";
 
-export type profileActions = addPostType | setNewPostTextType | setUserProfileType
+
+export type profileActions =
+    addPostType |
+    setNewPostTextType |
+    setUserProfileType |
+    setUserStatusType |
+    setProfilePhotoType
 
 
 export type postType = {
@@ -38,6 +44,7 @@ export type initialProfileStateType = {
     posts: postType[]
     newPostText: string
     profileInfo: null | profileInfoType
+    status: string | null
 }
 
 const initialState: initialProfileStateType = {
@@ -48,8 +55,8 @@ const initialState: initialProfileStateType = {
         {id: 4, data: "I'm cool kitty?", like: 2},
     ],
     newPostText: "",
-    profileInfo: null
-
+    profileInfo: null,
+    status: null
 }
 
 export const profileReducer = (state: initialProfileStateType = initialState, action: profileActions): initialProfileStateType => {
@@ -65,6 +72,12 @@ export const profileReducer = (state: initialProfileStateType = initialState, ac
         case 'SET-USER-PROFILE': {
             return {...state, profileInfo: action.payload.profile}
         }
+        case 'SET-USER-STATUS':{
+            return{...state, status: action.payload.status}
+        }
+        // case "SET-PROFILE-PHOTO":{
+        //     return{...state, profileInfo:{...state.profileInfo, photos:action.payload.photos}}
+        // }
         default:
             return state
     }
@@ -100,11 +113,84 @@ export const setUserProfileAC = (profile: profileInfoType) => {
     } as const
 }
 
+type setUserStatusType = ReturnType<typeof setUserStatusAC>
+
+export const setUserStatusAC = (status: string) => {
+    return {
+        type: "SET-USER-STATUS",
+        payload: {
+            status
+        }
+    } as const
+}
+
+type setProfilePhotoType = ReturnType<typeof setProfilePhotoAC>
+
+const setProfilePhotoAC = (photos:{ small: null | string, large: null | string})=>{
+    return{
+        type:"SET-PROFILE-PHOTO",
+        payload:{
+            photos
+        }
+    }as const
+}
+
 export const getUserProfileTC = (userId: number): AppThunk => {
     return (dispatch: Dispatch) => {
-        profileAPI.getUserProfile(userId)
-            .then(response =>{
-            dispatch(setUserProfileAC(response.data.data))
-        } )
+        try {
+            profileAPI.getUserProfile(userId)
+                .then(response => {
+                    dispatch(setUserProfileAC(response.data))
+                })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+}
+export const setUserProfileInfoTC=(profileData: profileInfoResponseType)=>{
+    return async (dispatch: Dispatch)=>{
+        try{
+            const result = await profileAPI.setProfileInfo(profileData)
+        }catch (e) {
+            console.log(e)
+        }
+    }
+}
+
+export const setUserStatusTC = (status: string) => {
+    return async (dispatch: Dispatch) => {
+        try {
+            const result = await profileAPI.setProfileStatus(status)
+            if (result.data.resultCode === 0) {
+                dispatch(setUserStatusAC(status))
+            }
+        } catch (e) {
+            console.log(e)
+        }
+    }
+}
+
+export const getUserStatusTC = (userId: number) => {
+    return async (dispatch: Dispatch) => {
+        try {
+            const result = await profileAPI.getUserStatus(userId)
+            dispatch(setUserStatusAC(result.data))
+        } catch (e) {
+            console.log(e)
+        }
+    }
+}
+
+export const setProfilePhotoTC = (image: File) => {
+    return async (dispatch: Dispatch) => {
+        try {
+            const result = await profileAPI.setProfilePhoto(image)
+            if (result.data.resultCode === 0) {
+                dispatch(setProfilePhotoAC(result.data.data.photos))
+            }
+        } catch (e) {
+            console.log(e)
+        }
     }
 }

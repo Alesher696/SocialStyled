@@ -1,7 +1,13 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {storeType} from "../../../redux/store";
-import {addPostAC, getUserProfileTC, initialProfileStateType, setNewPostTextAC} from "../../../redux/profile-reducer";
+import {
+    addPostAC,
+    getUserProfileTC,
+    getUserStatusTC,
+    initialProfileStateType,
+    setNewPostTextAC
+} from "../../../redux/profile-reducer";
 import {Profile} from "../profile/Profile";
 import {initialAuthStateType} from "../../../redux/auth-reducer";
 
@@ -14,9 +20,10 @@ type mapStateToPropsType = {
 }
 
 type mapDispatchToPropsType = {
-    addPostAC: () => void
-    setNewPostTextAC: (newPost: string) => void
-    getUserProfileTC:(userId:number)=> void
+    addPostAC: () => void,
+    setNewPostTextAC: (newPost: string) => void,
+    getUserProfileTC:(userId:number)=> void,
+    getUserStatusTC:(userId:number)=> void
 }
 
 const mapStateToProps = (state: storeType) => {
@@ -40,5 +47,5 @@ const mapStateToProps = (state: storeType) => {
 //     }
 // }
 
-export const ProfileContainer = connect(mapStateToProps, {addPostAC,setNewPostTextAC , getUserProfileTC})(Profile)
+export const ProfileContainer = connect(mapStateToProps, {addPostAC, setNewPostTextAC , getUserProfileTC, getUserStatusTC})(Profile)
 

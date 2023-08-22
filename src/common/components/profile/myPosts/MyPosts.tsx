@@ -43,19 +43,21 @@ const Post = (props: PostPropsType) => {
 //=========================MYPOSTS=================================
 
 const Posts = styled.div`
+  width: 750px;
   display: flex;
   margin-top: 40px;
-  margin-inline: 10px;
   flex-flow: wrap;
-  gap: 20px;
+  gap: 10px;
   justify-content: center;
-  
+  background-color: #0e0e11;
+  padding: 10px 0 10px 0;
+  border-radius: 10px;
 `
 
 //=========================POST====================================
 
 const PostStyled = styled.div`
-  min-width: 300px;
+  min-width: 350px;
   width: max-content;
   min-height: 100px;
   height: max-content;

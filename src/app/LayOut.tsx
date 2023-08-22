@@ -44,7 +44,7 @@ export const LayOut = () => {
                 {/*<News/>*/}
             </ContentWrapper>
             {isDialogsLocation && <AddMessage/>}
-            <Footer/>
+            {/*<Footer/>*/}
         </AppWrapper>
     );
 };

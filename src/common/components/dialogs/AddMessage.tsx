@@ -54,6 +54,9 @@ const AddMessageWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #09090c;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 `
 
 const AddMessageInput = styled.input`
