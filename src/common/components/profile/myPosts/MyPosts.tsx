@@ -17,8 +17,11 @@ export const MyPosts = (props:MyPostPropsType) => {
 
     return (
         <Posts>
+
             {postList}
-        </Posts>
+
+
+         </Posts>
     );
 };
 
@@ -43,15 +46,10 @@ const Post = (props: PostPropsType) => {
 //=========================MYPOSTS=================================
 
 const Posts = styled.div`
-  width: 750px;
   display: flex;
-  margin-top: 40px;
   flex-flow: wrap;
   gap: 10px;
   justify-content: center;
-  background-color: #0e0e11;
-  padding: 10px 0 10px 0;
-  border-radius: 10px;
 `
 
 //=========================POST====================================
@@ -60,9 +58,9 @@ const PostStyled = styled.div`
   min-width: 350px;
   width: max-content;
   min-height: 100px;
-  height: max-content;
-  background-color: #2A2A33AA;
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+  //height: max-content;
+  background-color: #1a1a21;
+  box-shadow: 0 0 7px rgba(47, 46, 46, 0.5);
   border-radius: 5px;
   display: flex;
   flex-direction: row;
