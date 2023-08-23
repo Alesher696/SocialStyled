@@ -4,7 +4,7 @@ import send from '../../assets/send (1).png'
 import {useDispatch, useSelector} from "react-redux";
 import {storeType} from "../../../redux/store";
 import {addNewMessageAC, sendMessageTC} from "../../../redux/dialogs-reducer";
-import { StyleSheetManager } from 'styled-components';
+import {StyleSheetManager} from 'styled-components';
 
 
 type addBtnPropsType = {
@@ -13,7 +13,6 @@ type addBtnPropsType = {
 
 export const AddMessage = () => {
 
-    // const [addMes, setMes] = useState('')
     const dialogs = useSelector((state: storeType) => state.dialogs)
     const dispatch = useDispatch()
 
@@ -33,17 +32,17 @@ export const AddMessage = () => {
 
     return (
         <StyleSheetManager shouldForwardProp={(prop) => prop !== 'condition'}>
-        <AddMessageWrapper>
-            <AddMessageInput placeholder={'Write a message...'}
-                             onChange={addNewMessageOnChange}
-                             value={dialogs.newMessage}
-                             onKeyDown={onEnterAddMessage}
-            />
-            <AddBtnInnerWrapper condition={!!dialogs.newMessage}
-                                onClick={onClickAddMessage}>
-                <IconAddBtnWrapper src={send}/>
-            </AddBtnInnerWrapper>
-        </AddMessageWrapper>
+            <AddMessageWrapper>
+                <AddMessageInput placeholder={'Write a message...'}
+                                 onChange={addNewMessageOnChange}
+                                 value={dialogs.newMessage}
+                                 onKeyDown={onEnterAddMessage}
+                />
+                <AddBtnInnerWrapper condition={!!dialogs.newMessage}
+                                    onClick={onClickAddMessage}>
+                    <IconAddBtnWrapper src={send}/>
+                </AddBtnInnerWrapper>
+            </AddMessageWrapper>
         </StyleSheetManager>
 
     );
@@ -53,26 +52,26 @@ const AddMessageWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #09090c;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  height: 40px;
+  background-color: #121218;
+  border-radius: 0 0 10px 10px;
 `
 
 const AddMessageInput = styled.input`
   all: unset;
-  background-color: #09090c;
+  background-color: #121218;
   color: white;
-  height: 2.5em;
+  height: 40px;
   width: 80%;
   margin-bottom: 1px;
-  margin-inline: 100px;
+  margin-inline: 20px;
   padding-left: 5px;
+  font-size: 15px;
 `
 
 const AddBtnInnerWrapper = styled.div<addBtnPropsType>`
   cursor: pointer;
-  margin-right: 2px;
+  //margin-right: 2px;
   background-color: #3D50FA;
   width: 40px;
   height: 40px;
@@ -87,7 +86,7 @@ const AddBtnInnerWrapper = styled.div<addBtnPropsType>`
   //==============================================================
   opacity: ${props => props.condition ? '1' : '0'};
   visibility: ${props => props.condition ? 'visible' : 'hidden'};
-  transition: opacity 0.2s ease, visibility 0.2s ease;
+  transition: opacity 0.3s ease, visibility 0.2s ease;
   //==============================================================
 `
 

@@ -36,6 +36,7 @@ export const Profile = (props:ProfilePropsType) => {
     return (
         <StyleSheetManager shouldForwardProp={(prop) => prop !== 'condition'}>
         <ProfileWrapper>
+            <div>
             <ProfileTheme/>
             <ProfileInfo>
                 <ProfileNameStatusWrapper>
@@ -45,26 +46,26 @@ export const Profile = (props:ProfilePropsType) => {
                     <ProfileStatus>
                         {props.profile.status}
                     </ProfileStatus>
+                    <PostAddWrapper>
+                        <AddPostButton onClick={addPost}
+                                       condition={!!props.profile.newPostText}
+                                       disabled={!props.profile.newPostText}> img </AddPostButton>
+                        <PostAreaInput onChange={onChangeHandler}
+                                       placeholder={"What's News?"}
+                                       value={props.profile.newPostText}/>
+                    </PostAddWrapper>
                 </ProfileNameStatusWrapper>
                 <div>
                     <ProfileAvatar/>
                     <PhotoUploadModal/>
                 </div>
-
             </ProfileInfo>
             {/*<News/>*/}
-            <PostAddWrapper>
-                <AddPostButton onClick={addPost}
-                               condition={!!props.profile.newPostText}
-                               disabled={!props.profile.newPostText}> img </AddPostButton>
-                <PostAreaInput onChange={onChangeHandler}
-                               placeholder={"What's News?"}
-                               value={props.profile.newPostText}/>
-            </PostAddWrapper>
+
             <div>
                 <MyPosts profile={props.profile}/>
             </div>
-
+            </div>
         </ProfileWrapper>
         </StyleSheetManager>
     );
@@ -73,13 +74,10 @@ export const Profile = (props:ProfilePropsType) => {
 const ProfileWrapper = styled.div`
   background-color: #1a1a21;
   display: flex;
-  height: 710px;
-  width: 800px;
   margin: 0 auto;
   flex-direction: column;
-  padding-bottom:10px;
-  
-  //border: 1px solid black;
+  //padding-bottom:10px;
+  gap: 10px;
 `
 
 const ProfileTheme = styled.div`
@@ -108,14 +106,18 @@ const ProfileAvatar = styled.div`
   background-size: cover;
   width: 220px;
   height: 250px;
-  margin-top: -20px;
-  border-radius: 0 5px 0 0;
+  //margin-top: -20px;
+ 
  
 `
 
 const ProfileNameStatusWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  border: 1px solid #464646;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(27, 31, 38, 0.12);
 `
 
 const ProfileName = styled.div`

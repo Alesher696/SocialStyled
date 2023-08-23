@@ -18,4 +18,5 @@ background-color: #09090c;
   align-items: center;
   height: 3em;
   color: white;
+  position: relative;
 `
