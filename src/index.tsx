@@ -5,7 +5,7 @@ import './index.css';
 import {BrowserRouter, createBrowserRouter} from 'react-router-dom'
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
-// import {state, subscribe} from "./garbage/state";
+
 
 
 ReactDOM.render(
@@ -31,23 +31,5 @@ ReactDOM.render(
 //         // ],
 //     },
 // ]);
-
-
-
-//===================================================================
-// let rerenderEntireTree = (state:any)=>{
-//     ReactDOM.render(
-//         <BrowserRouter>
-//             <Provider store={store}>
-//                 <App state={state}/>
-//             </Provider>
-//         </BrowserRouter>,
-//         document.getElementById('root')
-//     );
-// }
-//
-// rerenderEntireTree(state)
-// subscribe(rerenderEntireTree)
-//===================================================================
 
 
