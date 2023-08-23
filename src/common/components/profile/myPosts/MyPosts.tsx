@@ -17,7 +17,7 @@ export const MyPosts = (props:MyPostPropsType) => {
 
     return (
         <Posts>
-            {postList}
+            {posts}
         </Posts>
     );
 };
@@ -33,7 +33,7 @@ const Post = (props: PostPropsType) => {
                     </TimePost>
                 </AvatarAndTimeWrapper>
                 <PostTitle>
-                    {props.title}
+                    {props.text}
                 </PostTitle>
             </PostStyled>
         </>
