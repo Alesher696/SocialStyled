@@ -61,7 +61,10 @@ export const Profile = (props:ProfilePropsType) => {
                                placeholder={"What's News?"}
                                value={props.profile.newPostText}/>
             </PostAddWrapper>
-            <MyPosts profile={props.profile}/>
+            <div>
+                <MyPosts profile={props.profile}/>
+            </div>
+
         </ProfileWrapper>
         </StyleSheetManager>
     );

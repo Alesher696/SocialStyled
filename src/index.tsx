@@ -17,21 +17,20 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App/>,
-        // loader: rootLoader,
-        // children: [
-        //     {
-        //         path: "team",
-        //         element: <Team />,
-        //         // loader: teamLoader,
-        //     },
-        // ],
-    },
-]);
-
+// const router = createBrowserRouter([
+//     {
+//         path: "/",
+//         element: <App/>,
+//         // loader: rootLoader,
+//         // children: [
+//         //     {
+//         //         path: "team",
+//         //         element: <Team />,
+//         //         // loader: teamLoader,
+//         //     },
+//         // ],
+//     },
+// ]);
 
 
 
