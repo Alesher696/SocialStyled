@@ -17,10 +17,7 @@ export const MyPosts = (props:MyPostPropsType) => {
 
     return (
         <Posts>
-
             {postList}
-
-
          </Posts>
     );
 };

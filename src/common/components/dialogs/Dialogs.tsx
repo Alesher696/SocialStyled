@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import styled from "styled-components";
+import styled, {StyleSheetManager} from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {storeType} from "../../../redux/store";
 import {getMessagesListTC, messageType, setActiveUserIdAC} from "../../../redux/dialogs-reducer";
@@ -26,8 +26,8 @@ export const Dialogs = () => {
 
     const userList = dialogs.users.map((el) =>
 
-        <User onClick={() => userOnClickHandler(el.userId)} isActive={activeChatUserLocation}>{el.userName}
-            <NavLink to={`/dialogs/${el.userId}/messages`} key={el.userId}>
+        <User  key={el.userId} onClick={() => userOnClickHandler(el.userId)}>{el.userName}
+            <NavLink to={`/dialogs/${el.userId}/messages`}>
             </NavLink>
         </User>
     )
@@ -68,11 +68,12 @@ const MessagesList = (props: any) => {
         return (
             <MessageWrapper>
                 {dialogs.messages[dialogs.activeUserId].map((message: messageType) => (
-                    <Messages key={message.id} authId={authId} senderId={message.senderId}>
+                    <Messages key={message.id} authid={authId} senderid={message.senderId}>
                         {message.body}
                     </Messages>
                 ))}
             </MessageWrapper>
+
         )
 };
 
@@ -98,7 +99,7 @@ const UsersWrapper = styled.div`
 
 `
 
-const User = styled.div<{isActive: boolean}>`
+const User = styled.div`
   cursor: pointer;
   width: max-content;
   //margin-bottom: 10px;
@@ -128,9 +129,9 @@ const MessagesWrapper = styled.div`
   width: 800px;
 `
 
-const Messages = styled.span<{ authId: number, senderId: number }>`
-  background-color: ${props => props.authId === props.senderId ? '#38438c' : '#494957'};
-  border-radius: ${props => props.authId === props.senderId ? '7px 7px 2px 7px' : '7px 7px 7px 2px'};
+const Messages = styled.span<{ authid: number, senderid: number }>`
+  background-color: ${props => props.authid === props.senderid ? '#38438c' : '#494957'};
+  border-radius: ${props => props.authid === props.senderid ? '7px 7px 2px 7px' : '7px 7px 7px 2px'};
   width: max-content;
   padding: 10px;
   margin: 5px;

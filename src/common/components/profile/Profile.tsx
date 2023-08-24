@@ -2,9 +2,14 @@ import React, {ChangeEvent, useEffect} from 'react';
 import styled, {StyleSheetManager} from "styled-components";
 import theme from '../../assets/1681961897_kartinki-pibig-info-p-nasishchennaya-kartinka-arti-krasivo-1.jpg'
 import avatar from '../../assets/1676295972138872283.png'
-import {MyPosts} from "../../../common/components/profile/myPosts/MyPosts";
+import {MyPosts} from "./myPosts/MyPosts";
 import {ProfilePropsType} from "../profile/ProfileContainer";
-import {PhotoUploadModal} from "../../../common/components/profile/modal window/UploadModal";
+import {SetThemeBtn} from "./drop down btn/SetThemeBtn";
+import {EditableStatus} from "./editable status/EditableStatus";
+import {SetDataModalBtn} from "./modal window/SetDataModalBtn";
+import {SetUserInfoModalBtn} from "./modal window/SetUserInfoModalBtn";
+import {SendOutlined} from "@ant-design/icons";
+import {ProfileInfo} from "./ProfileInfo";
 
 
 type addBtnConditionProps = {
@@ -13,51 +18,55 @@ type addBtnConditionProps = {
 
 export const Profile = (props: ProfilePropsType) => {
 
-//start is here
-
     console.log('profile is rendered ')
-
-    useEffect(() => {
-        props.getUserProfileTC(props.auth.id!)
-        props.getUserStatusTC(props.auth.id!)
-    }, [])
+    console.log(props.profile)
+    // useEffect(() => {
+    //     // props.getUserProfileTC(props.auth.id!)
+    // }, [])
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         props.setNewPostTextAC(e.currentTarget.value)
     }
-    // console.log(props.profile)
+
     const addPost = () => {
         props.addPostAC()
         props.setNewPostTextAC('')
-
     }
 
     return (
         <StyleSheetManager shouldForwardProp={(prop) => prop !== 'condition'}>
             <ProfileWrapper>
-                <div>
-                    <ProfileTheme/>
+                <ProfileInnerWrapper>
+                    <ProfileTheme>
+                        <SetThemeBtn/>
+                    </ProfileTheme>
                     <ProfileNameStatusWrapper>
-                        <UnderThemeWrapper>
+                        <div>
                             <ProfileName>
                                 {props.profile.profileInfo?.fullName}
                             </ProfileName>
                             <ProfileStatus>
-                                {props.profile.status}
+                                <EditableStatus status={props.profile.status}/>
+                                <ModalBtnWrapper>
+                                    <SetDataModalBtn/>
+                                    <SetUserInfoModalBtn/>
+                                </ModalBtnWrapper>
                             </ProfileStatus>
-                            <ProfileAvatar/>
-                        </UnderThemeWrapper>
-
+                            <ProfileAvatar avatar={props.profile.profileInfo?.photos.large!}/>
+                        </div>
                     </ProfileNameStatusWrapper>
-                </div>
-                <ProfileInfo>
-                    info
-                </ProfileInfo>
+                </ProfileInnerWrapper>
+                <ProfileInfo contacts={props.profile.profileInfo?.contacts!}
+                             aboutMe={props.profile.profileInfo?.aboutMe!}
+                             lookingForAJob={props.profile.profileInfo?.lookingForAJob!}
+                             lookingForAJobDescription={props.profile.profileInfo?.lookingForAJobDescription!}
+                />
                 <div>
                     <PostAddWrapper>
                         <AddPostButton onClick={addPost}
                                        condition={!!props.profile.newPostText}
-                                       disabled={!props.profile.newPostText}> img </AddPostButton>
+                                       disabled={!props.profile.newPostText}> <SendOutlined color={'white'} rev/>
+                        </AddPostButton>
                         <PostAreaInput onChange={onChangeHandler}
                                        placeholder={"What's News?"}
                                        value={props.profile.newPostText}/>
@@ -71,9 +80,6 @@ export const Profile = (props: ProfilePropsType) => {
     );
 };
 
-const UnderThemeWrapper = styled.div`
-  
-`
 
 const ProfileWrapper = styled.div`
   background-color: #1a1a21;
@@ -83,23 +89,29 @@ const ProfileWrapper = styled.div`
   gap: 10px;
 `
 
+const ProfileInnerWrapper = styled.div`
+
+`
+
 const ProfileTheme = styled.div`
   background-image: url(${theme});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  //width: 800px;
+  width: 821px;
   height: 150px;
   //margin-left: -100px; //отрицательное смещение
   //margin-right: -100px;
   border-radius: 15px 15px 0 0;
+  display: flex;
+  flex-direction: row-reverse;
 `
 
-const ProfileAvatar = styled.div`
+const ProfileAvatar = styled.div<{ avatar: string | null }>`
   position: relative;
   left: 640px;
-  bottom: 90px;
-  background-image: url(${avatar});
+  bottom: 160px;
+  background-image: url(${props => props.avatar ? props.avatar : avatar});
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -115,7 +127,7 @@ const ProfileNameStatusWrapper = styled.div`
   border-radius: 0 0 15px 15px;
   padding: 10px;
   background-color: rgba(27, 31, 38, 0.12);
-  height: 120px;
+  height: 100px;
 `
 
 const ProfileName = styled.div`
@@ -131,16 +143,6 @@ const ProfileStatus = styled.div`
   max-width: 800px;
 `
 
-const ProfileInfo = styled.div`
-  margin-top: 5px;
-  color: white;
-  font-size: 14px;
-  flex-flow: wrap;
-  max-width: 820px;
-  border: 1px solid #464646;
-  border-radius: 15px;
-  padding: 10px 0 10px 0;
-`
 
 const MyPostsWrapper = styled.div`
   width: 820px;
@@ -170,7 +172,7 @@ export const AddPostButton = styled.button<addBtnConditionProps>`
   border: none;
   outline: none;
   border-radius: 7px;
-  width: 50px;
+  width: 30px;
   color: ${props => props.condition ? 'white' : 'grey'};
   cursor: ${props => props.condition ? 'pointer' : 'default'};
   z-index: 2;
@@ -202,3 +204,9 @@ const PostAreaInput = styled.input`
 //=========================/////===================================
 
 
+const ModalBtnWrapper = styled.div`
+  display: flex;
+  margin-top: 25px;
+  flex-direction: row;
+  gap: 10px;
+`

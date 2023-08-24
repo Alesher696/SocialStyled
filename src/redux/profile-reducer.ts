@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {profileAPI, profileInfoResponseType} from "../common/api/api";
-import {AppThunk} from "../redux/store";
+import {AppDispatch, AppThunk} from "../redux/store";
 
 
 export type profileActions =
@@ -17,18 +17,20 @@ export type postType = {
     like: number
 }
 
+export type contactsType = {
+    facebook: null | string,
+    website: null | string,
+    vk: null | string,
+    twitter: null | string,
+    instagram: null | string,
+    youtube: null | string,
+    github: null | string,
+    mainLink: null | string
+}
+
 export type profileInfoType = {
     aboutMe: null | string,
-    contacts: {
-        facebook: null | string,
-        website: null | string,
-        vk: null | string,
-        twitter: null | string,
-        instagram: null | string,
-        youtube: null | string,
-        github: null | string,
-        mainLink: null | string
-    },
+    contacts: contactsType
     lookingForAJob: boolean,
     lookingForAJobDescription: null | string,
     fullName: string,
@@ -72,8 +74,8 @@ export const profileReducer = (state: initialProfileStateType = initialState, ac
         case 'SET-USER-PROFILE': {
             return {...state, profileInfo: action.payload.profile}
         }
-        case 'SET-USER-STATUS':{
-            return{...state, status: action.payload.status}
+        case 'SET-USER-STATUS': {
+            return {...state, status: action.payload.status}
         }
         // case "SET-PROFILE-PHOTO":{
         //     return{...state, profileInfo:{...state.profileInfo, photos:action.payload.photos}}
@@ -126,40 +128,41 @@ export const setUserStatusAC = (status: string) => {
 
 type setProfilePhotoType = ReturnType<typeof setProfilePhotoAC>
 
-const setProfilePhotoAC = (photos:{ small: null | string, large: null | string})=>{
-    return{
-        type:"SET-PROFILE-PHOTO",
-        payload:{
+const setProfilePhotoAC = (photos: { small: null | string, large: null | string }) => {
+    return {
+        type: "SET-PROFILE-PHOTO",
+        payload: {
             photos
         }
-    }as const
+    } as const
 }
 
 export const getUserProfileTC = (userId: number): AppThunk => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: AppDispatch) => {
         try {
             profileAPI.getUserProfile(userId)
                 .then(response => {
                     dispatch(setUserProfileAC(response.data))
+                    dispatch(getUserStatusTC(userId))
                 })
         } catch (e) {
             console.log(e)
         }
     }
-
 }
-export const setUserProfileInfoTC=(profileData: profileInfoResponseType)=>{
-    return async (dispatch: Dispatch)=>{
-        try{
+
+export const setUserProfileInfoTC = (profileData: profileInfoResponseType): AppThunk => {
+    return async (dispatch: AppDispatch) => {
+        try {
             const result = await profileAPI.setProfileInfo(profileData)
-        }catch (e) {
+        } catch (e) {
             console.log(e)
         }
     }
 }
 
-export const setUserStatusTC = (status: string) => {
-    return async (dispatch: Dispatch) => {
+export const setUserStatusTC = (status: string): AppThunk => {
+    return async (dispatch: AppDispatch) => {
         try {
             const result = await profileAPI.setProfileStatus(status)
             if (result.data.resultCode === 0) {
@@ -171,8 +174,8 @@ export const setUserStatusTC = (status: string) => {
     }
 }
 
-export const getUserStatusTC = (userId: number) => {
-    return async (dispatch: Dispatch) => {
+export const getUserStatusTC = (userId: number): AppThunk => {
+    return async (dispatch: AppDispatch) => {
         try {
             const result = await profileAPI.getUserStatus(userId)
             dispatch(setUserStatusAC(result.data))
@@ -182,8 +185,8 @@ export const getUserStatusTC = (userId: number) => {
     }
 }
 
-export const setProfilePhotoTC = (image: File) => {
-    return async (dispatch: Dispatch) => {
+export const setProfilePhotoTC = (image: File): AppThunk => {
+    return async (dispatch: AppDispatch) => {
         try {
             const result = await profileAPI.setProfilePhoto(image)
             if (result.data.resultCode === 0) {
