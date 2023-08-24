@@ -9,12 +9,12 @@ import {getUserProfileTC} from "../redux/profile-reducer";
 
 export const LayOut = () => {
 
-    const dialogs = useSelector((state: storeType) => state.dialogs)
     // const location = useLocation()
     // const isInitLocation = location.pathname === '/'
 
 
     const auth = useSelector((state: storeType) => state.auth)
+    const profile = useSelector((state: storeType) => state.profile)
     const dispatch = useDispatch()
     //при логинизации не катит//
 
@@ -27,7 +27,7 @@ export const LayOut = () => {
 
     console.log('layout is rendered ')
 
-    if (!auth.isLoggedIn) {
+    if (!auth.isLoggedIn || !profile) {
         return <Navigate to={'/login'}/>
     }
     return (
