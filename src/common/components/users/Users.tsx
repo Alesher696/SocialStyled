@@ -72,7 +72,7 @@ export const Users = () => {
                         <button
                             onClick={() => followUnfollowHandler(el.id, el.followed)}>{el.followed ? userFollowerStatus[1] : userFollowerStatus[0]}
                         </button>
-                        <NavLink to={`/dialogs/${el.id}/messages`}
+                        <NavLink to={`/SocialStyled/dialogs/${el.id}/messages`}
                                  onClick={() => onClickActiveUserIdHandler(el.id, el.name)}>
                             <button>Write a message</button>
                         </NavLink>
@@ -90,7 +90,7 @@ export const Users = () => {
                         <button
                             onClick={() => followUnfollowHandler(el.id, el.followed)}>{el.followed ? userFollowerStatus[1] : userFollowerStatus[0]}
                         </button>
-                        <NavLink to={`/dialogs/${el.id}/messages`}
+                        <NavLink to={`/SocialStyled/dialogs/${el.id}/messages`}
                                  onClick={() => onClickActiveUserIdHandler(el.id, el.name)}>
                             <button>Write a message</button>
                         </NavLink>

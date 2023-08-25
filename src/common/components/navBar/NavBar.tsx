@@ -37,11 +37,11 @@ const WrappedContentIcons = styled.div`
 const WrappedContent = () => {
     return (
         <WrappedContentIcons>
-            <Icon image={start} color={'#43cb93'} path={'/profile'}/>
-            <Icon image={message} color={'#9838cf'} path={'/dialogs'}/>
-            <Icon image={users} color={'#cdd245'} path={'/users'}/>
-            <Icon image={music} color={'#cf385b'} path={'/music'}/>
-            <Icon image={setting} color={'#41d5f6'} path={'/settings'}/>
+            <Icon image={start} color={'#43cb93'} path={'/SocialStyled/profile'}/>
+            <Icon image={message} color={'#9838cf'} path={'/SocialStyled/dialogs'}/>
+            <Icon image={users} color={'#cdd245'} path={'/SocialStyled/users'}/>
+            <Icon image={music} color={'#cf385b'} path={'/SocialStyled/music'}/>
+            <Icon image={setting} color={'#41d5f6'} path={'/SocialStyled/settings'}/>
         </WrappedContentIcons>
     )
 }
