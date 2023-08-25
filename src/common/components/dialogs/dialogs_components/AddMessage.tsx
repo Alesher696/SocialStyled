@@ -73,11 +73,12 @@ const AddMessageInput = styled.input`
 `
 
 const AddBtnInnerWrapper = styled.div<addBtnPropsType>`
+  margin-right: 5px;
   cursor: pointer;
   //margin-right: 2px;
   background-color: #3D50FA;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   z-index: 3;
   display: flex;
   justify-content: center;

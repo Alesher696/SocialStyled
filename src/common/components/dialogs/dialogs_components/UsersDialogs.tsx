@@ -21,7 +21,7 @@ export const UsersDialogs = (props: UsersDialogsProps) => {
     }
 
     const userList = props.dialogs.all_dialogs?.map((el) =>
-        <User key={el.id} to={`/dialogs/${el.id}/messages`} onClick={() => userOnClickHandler(el.id)}>
+        <User key={el.id} to={`/SocialStyled/dialogs/${el.id}/messages`} onClick={() => userOnClickHandler(el.id)}>
             <div>
                 {el.userName}
             </div>
