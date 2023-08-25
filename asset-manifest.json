@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/SocialStyled/static/css/main.8577a239.css",
-    "main.js": "/SocialStyled/static/js/main.63838001.js",
+    "main.js": "/SocialStyled/static/js/main.25cf68ba.js",
     "static/media/png": "/SocialStyled/static/media/1676295972138872283.6f68e0cd529473dd78a7.png",
     "static/media/1681961897_kartinki-pibig-info-p-nasishchennaya-kartinka-arti-krasivo-1.jpg": "/SocialStyled/static/media/1681961897_kartinki-pibig-info-p-nasishchennaya-kartinka-arti-krasivo-1.2ed5b21c0869f5eebb6c.jpg",
     "static/media/vk.png": "/SocialStyled/static/media/vk.7603f231edc3debcd3f2.png",
@@ -9,10 +9,10 @@
     "static/media/ball-triangle.svg": "/SocialStyled/static/media/ball-triangle.26bdbaf85c961541b7da22df5e5714a8.svg",
     "index.html": "/SocialStyled/index.html",
     "main.8577a239.css.map": "/SocialStyled/static/css/main.8577a239.css.map",
-    "main.63838001.js.map": "/SocialStyled/static/js/main.63838001.js.map"
+    "main.25cf68ba.js.map": "/SocialStyled/static/js/main.25cf68ba.js.map"
   },
   "entrypoints": [
     "static/css/main.8577a239.css",
-    "static/js/main.63838001.js"
+    "static/js/main.25cf68ba.js"
   ]
 }
