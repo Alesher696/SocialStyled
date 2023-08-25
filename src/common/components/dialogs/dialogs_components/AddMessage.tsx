@@ -1,9 +1,9 @@
 import React, {ChangeEvent, useState} from 'react';
 import styled from "styled-components";
-import send from '../../assets/send (1).png'
+import send from '../../../assets/send (1).png'
 import {useDispatch, useSelector} from "react-redux";
-import {storeType} from "../../../redux/store";
-import {addNewMessageAC, sendMessageTC} from "../../../redux/dialogs-reducer";
+import {storeType} from "../../../../redux/store";
+import {addNewMessageAC, sendMessageTC} from "../../../../redux/dialogs-reducer";
 import {StyleSheetManager} from 'styled-components';
 
 
@@ -21,7 +21,7 @@ export const AddMessage = () => {
     }
 
     const onClickAddMessage = () => {
-        dispatch(sendMessageTC(dialogs.activeUserId, dialogs.newMessage))
+        dispatch(sendMessageTC(dialogs.activeUserId!, dialogs.newMessage))
     }
 
     const onEnterAddMessage = (e: React.KeyboardEvent<HTMLInputElement>) => {

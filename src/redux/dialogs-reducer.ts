@@ -1,14 +1,27 @@
 import {Dispatch} from "redux";
 import {dialogsAPI} from "../common/api/api";
-import {storeType} from "../redux/store";
 
 
-export type dialogsActions = setActiveUserIdType | addMessageType | addMessagesInStateType | setEntityUserInArrayType
+export type dialogsActions =
+    setActiveUserIdType |
+    addMessageType |
+    addMessagesInStateType |
+    setEntityUserInArrayType |
+    setAllDialogsType
 
-type userType = {
-    userId: number
-    userName: string
+type dialogsType = {
+    id: number,
+    userName: string,
+    hasNewMessages: boolean,
+    lastDialogActivityDate: Date,
+    lastUserActivityDate: Date,
+    newMessagesCount: number,
+    photos: {
+        small: null | string,
+        large: null | string
+    }
 }
+
 export type messageType = {
     id: string,
     body: string,
@@ -20,27 +33,19 @@ export type messageType = {
     viewed: boolean,
 
 }
+
 export type initialStateType = {
-    users: userType[]
+    all_dialogs: dialogsType[] | null
     messages: {
         [userId: number]: messageType[]
     }
-    activeUserId: number
+    activeUserId: number | null
     newMessage: string
 }
 
 const initialState: initialStateType = {
-    users: [
-
-
-        // {userId: 5, userName: 'Andrey'},
-    ],
-    messages: {
-
-
-        // [3]: {userMessage: ['hello by Olga', 'u can send it using mobile bank?', 'im fine, thanks!'], me: ['hello', 'i have money for u', 'i need your phone number']},
-        // [29842]: {userMessage: ['hello','hehe'], me: ['hello','hehe']},
-    },
+    all_dialogs: null,
+    messages: {},
     activeUserId: 1,
     newMessage: ''
 }
@@ -57,16 +62,19 @@ export const dialogsReducer = (state: initialStateType = initialState, action: d
         case "ADD-MESSAGES-IN-STATE": {
             return {...state, messages: {[action.payload.userId]: action.payload.messages}}
         }
-        case 'CREATE-ENTITY-USER': {
-            const newUser = {userId: action.payload.userId, userName: action.payload.userName}
-            const existingUserIndex = state.users.findIndex(user => user.userId === newUser.userId);
-
-            if (existingUserIndex !== -1) {
-                return {...state}
-            } else {
-                return {...state, users: [...state.users, newUser]};
-            }
+        case "SET-ALL-DIALOGS":{
+            return{...state, all_dialogs: action.payload.all_dialogs}
         }
+        // case 'CREATE-ENTITY-USER': {
+        //     const newUser = {userId: action.payload.userId, userName: action.payload.userName}
+        //     const existingUserIndex = state.users.findIndex(user => user.userId === newUser.userId);
+        //
+        //     if (existingUserIndex !== -1) {
+        //         return {...state}
+        //     } else {
+        //         return {...state, users: [...state.users, newUser]};
+        //     }
+        // }
         default:
             return state
     }
@@ -117,19 +125,43 @@ const addMessagesInStateAC = (userId: number, messages:messageType[]) => {
     } as const
 }
 
+export type setAllDialogsType = ReturnType<typeof setAllDialogsAC>
+
+const setAllDialogsAC = (all_dialogs:dialogsType[]) => {
+    return {
+        type: 'SET-ALL-DIALOGS',
+        payload: {
+            all_dialogs
+        }
+    } as const
+}
+
 export const getMessagesListTC = (userId: number) => {
     return async (dispatch: Dispatch) => {
         const result = await dialogsAPI.getMessageList(userId)
         dispatch(addMessagesInStateAC(userId, result.data.items))
-        console.log(result)
     }
 }
 
 export const sendMessageTC = (userId:number, message:string) =>{
     return async (dispatch:Dispatch)=>{
-        const result = await dialogsAPI.sendMessage(userId, message)
-        // dispatch(addMessagesInStateAC(userId, entityMessageForState))
-        dispatch(addNewMessageAC(''))
+        try {
+            const result = await dialogsAPI.sendMessage(userId, message)
+            if (result.data.resultCode === 0){
+                dispatch(addNewMessageAC(''))
+            }
+        }
+       catch (e) {
+           console.log(e)
+       }
+    }
+}
+
+export const getDialogsTC = () =>{
+    return async (dispatch:Dispatch)=>{
+        const result = await dialogsAPI.getDialogs()
+        dispatch(setAllDialogsAC(result.data))
+        console.log(result)
     }
 }
 //============================================================================
