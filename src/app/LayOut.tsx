@@ -19,7 +19,7 @@ export const LayOut = () => {
     }, [])
 
     if (!auth.isLoggedIn) {
-        return <Navigate to={'/login'}/>
+        return <Navigate to={'/SocialStyled/login'}/>
     }
     return (
         <AppWrapper>

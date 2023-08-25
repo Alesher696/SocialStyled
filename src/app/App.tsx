@@ -36,15 +36,15 @@ export function App(props: any) {
     }
         return (
             <Routes>
-                <Route path={'/'} element={<LayOut/>}>
+                <Route path={'/SocialStyled/'} element={<LayOut/>}>
                     <Route index element={<ProfileContainer/>}></Route>
-                    <Route path={'/profile/:userId?'} element={<ProfileContainer/>}></Route>
-                    <Route path={'/dialogs/:userId?/messages?'} element={<Dialogs/>}></Route>
-                    <Route path={'/users'} element={<Users/>}></Route>
-                    <Route path={'/music'} element={<Music/>}></Route>
-                    <Route path={'/settings'} element={<Settings/>}></Route>
+                    <Route path={'/SocialStyled/profile/:userId?'} element={<ProfileContainer/>}></Route>
+                    <Route path={'/SocialStyled/dialogs/:userId?/messages?'} element={<Dialogs/>}></Route>
+                    <Route path={'/SocialStyled/users'} element={<Users/>}></Route>
+                    <Route path={'/SocialStyled/music'} element={<Music/>}></Route>
+                    <Route path={'/SocialStyled/settings'} element={<Settings/>}></Route>
                 </Route>
-                <Route path={'/login'} element={<Login/>}></Route>
+                <Route path={'/SocialStyled/login'} element={<Login/>}></Route>
             </Routes>
         );
 }
