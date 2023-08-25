@@ -11,7 +11,7 @@ import {
 import {storeType} from "../../../redux/store";
 import {Pagination} from 'antd';
 import {NavLink} from "react-router-dom";
-import {getMessagesListTC, setActiveUserIdAC, setEntityUserInArrayAC} from "../../../redux/dialogs-reducer";
+import {getMessagesListTC, setActiveUserIdAC} from "../../../redux/dialogs-reducer";
 
 
 export const Users = () => {
@@ -52,7 +52,6 @@ export const Users = () => {
 
     const onClickActiveUserIdHandler = (userId: number, userName: string) => {
         dispatch(setActiveUserIdAC(userId))
-        dispatch(setEntityUserInArrayAC(userId, userName))
         dispatch(getMessagesListTC(userId))
     }
 

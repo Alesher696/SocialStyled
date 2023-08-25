@@ -3,7 +3,7 @@ import styled from "styled-components";
 import send from '../../../assets/send (1).png'
 import {useDispatch, useSelector} from "react-redux";
 import {storeType} from "../../../../redux/store";
-import {addNewMessageAC, sendMessageTC} from "../../../../redux/dialogs-reducer";
+import {sendMessageTC} from "../../../../redux/dialogs-reducer";
 import {StyleSheetManager} from 'styled-components';
 
 
@@ -13,15 +13,18 @@ type addBtnPropsType = {
 
 export const AddMessage = () => {
 
+    const [newMessage, setNewMessage] = useState('')
     const dialogs = useSelector((state: storeType) => state.dialogs)
     const dispatch = useDispatch()
 
     const addNewMessageOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(addNewMessageAC(e.currentTarget.value))
+       setNewMessage(e.currentTarget.value)
     }
 
     const onClickAddMessage = () => {
-        dispatch(sendMessageTC(dialogs.activeUserId!, dialogs.newMessage))
+        // dispatch(addNewMessageAC(newMessage))
+        dispatch(sendMessageTC(dialogs.activeUserId!, newMessage))
+        setNewMessage('')
     }
 
     const onEnterAddMessage = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -35,10 +38,10 @@ export const AddMessage = () => {
             <AddMessageWrapper>
                 <AddMessageInput placeholder={'Write a message...'}
                                  onChange={addNewMessageOnChange}
-                                 value={dialogs.newMessage}
+                                 value={newMessage}
                                  onKeyDown={onEnterAddMessage}
                 />
-                <AddBtnInnerWrapper condition={!!dialogs.newMessage}
+                <AddBtnInnerWrapper condition={!!newMessage}
                                     onClick={onClickAddMessage}>
                     <IconAddBtnWrapper src={send}/>
                 </AddBtnInnerWrapper>

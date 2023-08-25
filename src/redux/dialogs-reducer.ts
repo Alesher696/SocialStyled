@@ -4,9 +4,7 @@ import {dialogsAPI} from "../common/api/api";
 
 export type dialogsActions =
     setActiveUserIdType |
-    addMessageType |
     addMessagesInStateType |
-    setEntityUserInArrayType |
     setAllDialogsType
 
 type dialogsType = {
@@ -31,7 +29,6 @@ export type messageType = {
     senderName: string,
     recipientId: number,
     viewed: boolean,
-
 }
 
 export type initialStateType = {
@@ -40,56 +37,31 @@ export type initialStateType = {
         [userId: number]: messageType[]
     }
     activeUserId: number | null
-    newMessage: string
 }
 
 const initialState: initialStateType = {
     all_dialogs: null,
     messages: {},
     activeUserId: 1,
-    newMessage: ''
 }
-
 
 export const dialogsReducer = (state: initialStateType = initialState, action: dialogsActions) => {
     switch (action.type) {
         case 'SET-ACTIVE-USER-ID': {
             return {...state, activeUserId: action.payload.userId}
         }
-        case "ADD-NEW-MESSAGE": {
-            return {...state, newMessage: action.payload.message}
-        }
+
         case "ADD-MESSAGES-IN-STATE": {
             return {...state, messages: {[action.payload.userId]: action.payload.messages}}
         }
         case "SET-ALL-DIALOGS":{
             return{...state, all_dialogs: action.payload.all_dialogs}
         }
-        // case 'CREATE-ENTITY-USER': {
-        //     const newUser = {userId: action.payload.userId, userName: action.payload.userName}
-        //     const existingUserIndex = state.users.findIndex(user => user.userId === newUser.userId);
-        //
-        //     if (existingUserIndex !== -1) {
-        //         return {...state}
-        //     } else {
-        //         return {...state, users: [...state.users, newUser]};
-        //     }
-        // }
         default:
             return state
     }
 }
 
-export type setEntityUserInArrayType = ReturnType<typeof setEntityUserInArrayAC>
-
-export const setEntityUserInArrayAC = (userId: number, userName: string) => {
-    return {
-        type: 'CREATE-ENTITY-USER',
-        payload: {
-            userId, userName
-        }
-    } as const
-}
 
 export type setActiveUserIdType = ReturnType<typeof setActiveUserIdAC>
 
@@ -98,17 +70,6 @@ export const setActiveUserIdAC = (userId: number) => {
         type: 'SET-ACTIVE-USER-ID',
         payload: {
             userId
-        }
-    } as const
-}
-
-export type addMessageType = ReturnType<typeof addNewMessageAC>
-
-export const addNewMessageAC = (message: string) => {
-    return {
-        type: 'ADD-NEW-MESSAGE',
-        payload: {
-            message
         }
     } as const
 }
@@ -148,7 +109,6 @@ export const sendMessageTC = (userId:number, message:string) =>{
         try {
             const result = await dialogsAPI.sendMessage(userId, message)
             if (result.data.resultCode === 0){
-                dispatch(addNewMessageAC(''))
             }
         }
        catch (e) {
@@ -161,7 +121,6 @@ export const getDialogsTC = () =>{
     return async (dispatch:Dispatch)=>{
         const result = await dialogsAPI.getDialogs()
         dispatch(setAllDialogsAC(result.data))
-        console.log(result)
     }
 }
 //============================================================================

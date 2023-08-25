@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {Navigate, Route, Routes} from 'react-router-dom';
 import {LayOut} from "../app/LayOut";
 import {Dialogs} from "../common/components/dialogs/Dialogs";
@@ -17,7 +17,10 @@ export function App(props: any) {
 
     console.log('app is rendered ')
 
+    const auth = useSelector((state: storeType) => state.auth)
     const app = useSelector((state: storeType) => state.app)
+    const profile = useSelector((state: storeType) => state.profile)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -25,16 +28,18 @@ export function App(props: any) {
     }, [])
 
     if (!app.isInitialized) {
-        return <Loader/>
-    } else
+        return <Loader/>; // Отображаем Loader, если приложение не инициализировано
+    }
 
+    if (profile.profileInfo === undefined || null) {
+        return <Loader/>; // Отображаем Loader, если profileInfo === null
+    }
         return (
             <Routes>
                 <Route path={'/'} element={<LayOut/>}>
                     <Route index element={<ProfileContainer/>}></Route>
                     <Route path={'/profile/:userId?'} element={<ProfileContainer/>}></Route>
                     <Route path={'/dialogs/:userId?/messages?'} element={<Dialogs/>}></Route>
-                    {/*<Route path={'/dialogs/:userId?/messages?'} element={<Messages/>}></Route>*/}
                     <Route path={'/users'} element={<Users/>}></Route>
                     <Route path={'/music'} element={<Music/>}></Route>
                     <Route path={'/settings'} element={<Settings/>}></Route>
@@ -43,7 +48,6 @@ export function App(props: any) {
             </Routes>
         );
 }
-
 
 //=========================/////===================================
 

@@ -9,25 +9,16 @@ import {getUserProfileTC} from "../redux/profile-reducer";
 
 export const LayOut = () => {
 
-    // const location = useLocation()
-    // const isInitLocation = location.pathname === '/'
-
+    console.log('layout is rendered ')
 
     const auth = useSelector((state: storeType) => state.auth)
-    const profile = useSelector((state: storeType) => state.profile)
     const dispatch = useDispatch()
-    //при логинизации не катит//
 
     useEffect(() => {
-        if (!auth.isLoggedIn) {
-            return
-        }
         dispatch(getUserProfileTC(auth.id!))
     }, [])
 
-    console.log('layout is rendered ')
-
-    if (!auth.isLoggedIn || !profile) {
+    if (!auth.isLoggedIn) {
         return <Navigate to={'/login'}/>
     }
     return (

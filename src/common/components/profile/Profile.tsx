@@ -19,10 +19,6 @@ type addBtnConditionProps = {
 export const Profile = (props: ProfilePropsType) => {
 
     console.log('profile is rendered ')
-    console.log(props.profile)
-    // useEffect(() => {
-    //     // props.getUserProfileTC(props.auth.id!)
-    // }, [])
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         props.setNewPostTextAC(e.currentTarget.value)
@@ -61,7 +57,7 @@ export const Profile = (props: ProfilePropsType) => {
                              lookingForAJob={props.profile.profileInfo?.lookingForAJob!}
                              lookingForAJobDescription={props.profile.profileInfo?.lookingForAJobDescription!}
                 />
-                <div>
+                <>
                     <PostAddWrapper>
                         <AddPostButton onClick={addPost}
                                        condition={!!props.profile.newPostText}
@@ -71,7 +67,7 @@ export const Profile = (props: ProfilePropsType) => {
                                        placeholder={"What's News?"}
                                        value={props.profile.newPostText}/>
                     </PostAddWrapper>
-                </div>
+                </>
                 <MyPostsWrapper>
                     <MyPosts profile={props.profile}/>
                 </MyPostsWrapper>

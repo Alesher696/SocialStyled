@@ -1,5 +1,5 @@
-import React, {useEffect, useRef} from 'react';
-import styled, {StyleSheetManager} from "styled-components";
+import React, {useEffect} from 'react';
+import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import {storeType} from "../../../redux/store";
 import {getDialogsTC} from "../../../redux/dialogs-reducer";
@@ -43,7 +43,7 @@ const UsersWrapper = styled.div`
   height: max-content;
   width: 200px;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 6px 6px 6px 6px;
   border: 1px solid #464646;
 `
 
