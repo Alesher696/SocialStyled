@@ -91,7 +91,7 @@ const IconWrapper = styled.img`
 
 const ForIconBackGround = styled.div`
   display: flex;
-  background-color: #1a1a21;
+  background-color: #121217;
   //background-color: #c2b3e5;
   width: 40px;
   height: 50px;
@@ -102,8 +102,7 @@ const ForIconBackGround = styled.div`
 `
 
 const BackGroundBodyGrey = styled.div`
-  background-color: #1a1a21;
-  //background-color: #9838cf;
+  background-color: #121217;  //background-color: #9838cf;
   width: 35px;
   height: 70px;
   z-index: 1;
