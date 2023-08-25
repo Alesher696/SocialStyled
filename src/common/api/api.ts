@@ -72,7 +72,7 @@ export const profileAPI = {
 
 export const dialogsAPI={
     getMessageList(userId:number){
-        return Instance.get(`dialogs/${userId}/messages`)
+        return Instance.get(`dialogs/${userId}/messages?count=20`)
     },
     sendMessage(userId:number, message:string){
         return Instance.post(`dialogs/${userId}/messages`, {body: message})

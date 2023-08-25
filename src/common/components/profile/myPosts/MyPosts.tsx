@@ -55,13 +55,11 @@ const PostStyled = styled.div`
   min-width: 350px;
   width: max-content;
   min-height: 100px;
-  //height: max-content;
   background-color: #1a1a21;
   box-shadow: 0 0 7px rgba(47, 46, 46, 0.5);
   border-radius: 5px;
   display: flex;
   flex-direction: row;
-  //justify-content: space-between;
   align-items: center;
   overflow-wrap: anywhere;
 `

@@ -121,6 +121,7 @@ export const getMessagesListTC = (userId: number) => {
     return async (dispatch: Dispatch) => {
         const result = await dialogsAPI.getMessageList(userId)
         dispatch(addMessagesInStateAC(userId, result.data.items))
+        console.log(result)
     }
 }
 

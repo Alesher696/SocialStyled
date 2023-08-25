@@ -82,7 +82,7 @@ export const Profile = (props: ProfilePropsType) => {
 
 
 const ProfileWrapper = styled.div`
-  background-color: #1a1a21;
+  background-color: #121217;
   display: flex;
   margin: 0 auto;
   flex-direction: column;
@@ -90,7 +90,7 @@ const ProfileWrapper = styled.div`
 `
 
 const ProfileInnerWrapper = styled.div`
-
+  background-color: #1a1a21;
 `
 
 const ProfileTheme = styled.div`
@@ -160,7 +160,7 @@ const PostAddWrapper = styled.div`
   flex-direction: row;
   justify-content: start;
   width: 800px;
-  background-color: #1B1F261E;
+  background-color: #1a1a21;
   border: 1px solid #464646;
   border-radius: 15px;
   padding: 10px;
