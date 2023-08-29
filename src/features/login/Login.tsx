@@ -26,7 +26,7 @@ import {Navigate} from "react-router-dom";
 
 
         if (auth.isLoggedIn) {
-            return <Navigate to={'/'}/>
+            return <Navigate to={'/SocialStyled'}/>
         }
 
         return (
