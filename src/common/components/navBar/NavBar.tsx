@@ -10,6 +10,7 @@ import users from '../../assets/multiple-users-silhouette (1).png'
 
 
 export const NavBar = () => {
+
     return (
         <NavBarWrapper>
             <WrappedContent/>
@@ -20,9 +21,7 @@ export const NavBar = () => {
 const NavBarWrapper = styled.div`
   background-color: #09090c;
   color: white;
-  //height: 110vh;
-  height: 102%;
-  max-height: max-content;
+  height: 100vh;
   width: max-content;
   padding: 0 0 0 10px;
   position: fixed;

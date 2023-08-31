@@ -13,7 +13,7 @@ import {ProfileInfo} from "./ProfileInfo";
 
 
 type addBtnConditionProps = {
-    condition: boolean
+    condition: string
 }
 
 export const Profile = (props: ProfilePropsType) => {
@@ -60,7 +60,7 @@ export const Profile = (props: ProfilePropsType) => {
                 <>
                     <PostAddWrapper>
                         <AddPostButton onClick={addPost}
-                                       condition={!!props.profile.newPostText}
+                                       condition={(!!props.profile.newPostText).toString()}
                                        disabled={!props.profile.newPostText}> <SendOutlined color={'white'} rev/>
                         </AddPostButton>
                         <PostAreaInput onChange={onChangeHandler}
@@ -147,6 +147,7 @@ const MyPostsWrapper = styled.div`
   padding: 10px 0 10px 0;
   border-radius: 15px;
   border: 1px solid #464646;
+  
 `
 
 //=========================ADDPOST===================================
@@ -164,17 +165,17 @@ const PostAddWrapper = styled.div`
 
 export const AddPostButton = styled.button<addBtnConditionProps>`
   height: 30px;
-  background-color: ${props => props.condition ? '#3D50FA' : 'rgba(61, 80, 250, 0.6)'};
+  background-color: ${props => props.condition === 'true' ? '#3D50FA' : 'rgba(61, 80, 250, 0.6)'};
   border: none;
   outline: none;
   border-radius: 7px;
   width: 30px;
-  color: ${props => props.condition ? 'white' : 'grey'};
-  cursor: ${props => props.condition ? 'pointer' : 'default'};
+  color: ${props => props.condition === 'true' ? 'white' : 'grey'};
+  cursor: ${props => props.condition === 'true' ? 'pointer' : 'default'};
   z-index: 2;
-  -webkit-box-shadow: ${props => props.condition ? '0px 1px 19px 4px #3D50FA' : 'none'};
-  -moz-box-shadow: ${props => props.condition ? '0px 1px 19px 4px #3D50FA' : 'none'};
-  box-shadow: ${props => props.condition ? '0px 1px 19px 4px #3D50FA' : 'none'};
+  -webkit-box-shadow: ${props => props.condition === 'true'? '0px 1px 19px 4px #3D50FA' : 'none'};
+  -moz-box-shadow: ${props => props.condition === 'true' ? '0px 1px 19px 4px #3D50FA' : 'none'};
+  box-shadow: ${props => props.condition === 'true' ? '0px 1px 19px 4px #3D50FA' : 'none'};
   transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 `
 

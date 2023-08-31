@@ -75,7 +75,7 @@ const MessagesList = (props: MessageListProps) => {
                                         : formattedDate}
                                     {message.viewed && <CheckOutlined rev/>}
                                 </>
-                            </ViewWrapper>
+                            </ViewWrapper> 
                         </MessageInnerWrapper>
                     )
                 })}

@@ -2,10 +2,11 @@ import React, {useEffect} from 'react';
 import {Header} from "../common/components/header/Header";
 import {NavBar} from "../common/components/navBar/NavBar";
 import styled from "styled-components";
-import {Navigate, Outlet} from 'react-router-dom';
+import {Navigate, Outlet, useLocation} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import {storeType} from "../redux/store";
 import {getUserProfileTC} from "../redux/profile-reducer";
+import {Footer} from "../common/components/footer/Footer";
 
 export const LayOut = () => {
 
@@ -13,6 +14,10 @@ export const LayOut = () => {
 
     const auth = useSelector((state: storeType) => state.auth)
     const dispatch = useDispatch()
+
+    const location = useLocation()
+    const footer = location.pathname === '/SocialStyled/profile'
+
 
     useEffect(() => {
         dispatch(getUserProfileTC(auth.id!))
@@ -28,6 +33,7 @@ export const LayOut = () => {
                     <NavBar/>
                 <Outlet/>
             </ContentWrapper>
+            {footer && <Footer/>}
         </AppWrapper>
     );
 };
