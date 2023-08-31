@@ -8,7 +8,6 @@ import start from '../../assets/play-store (1).png'
 import users from '../../assets/multiple-users-silhouette (1).png'
 
 
-
 export const NavBar = () => {
 
     return (
