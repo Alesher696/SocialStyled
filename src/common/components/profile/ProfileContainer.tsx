@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {storeType} from "redux/store";
 import {
     addPostAC,
     getUserProfileTC,
@@ -10,6 +9,7 @@ import {
 } from "redux/profile-reducer";
 import {Profile} from "../profile/Profile";
 import {initialAuthStateType} from "redux/auth-reducer";
+import {RootState} from "app/store";
 
 
 export type ProfilePropsType = mapStateToPropsType & mapDispatchToPropsType
@@ -26,7 +26,7 @@ type mapDispatchToPropsType = {
     getUserStatusTC:(userId:number)=> void
 }
 
-const mapStateToProps = (state: storeType) => {
+const mapStateToProps = (state: RootState) => {
     return {
         profile: state.profile,
         auth: state.auth

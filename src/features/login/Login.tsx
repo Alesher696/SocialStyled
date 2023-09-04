@@ -1,9 +1,9 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {storeType} from "redux/store";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {authLogInTC} from "redux/auth-reducer";
 import {Navigate} from "react-router-dom";
+import {RootState} from "app/store";
 
 
     type LoginFormInputs = {
@@ -14,7 +14,7 @@ import {Navigate} from "react-router-dom";
 
     export const Login = () => {
 
-        const auth = useSelector((state:storeType)=>state.auth)
+        const auth = useSelector((state:RootState)=>state.auth)
         const dispatch = useDispatch()
 
 

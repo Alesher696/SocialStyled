@@ -4,15 +4,15 @@ import {NavBar} from "common/components/navBar/NavBar";
 import styled from "styled-components";
 import {Navigate, Outlet, useLocation} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import {storeType} from "redux/store";
 import {getUserProfileTC} from "redux/profile-reducer";
 import {Footer} from "common/components/footer/Footer";
+import {RootState} from "app/store";
 
 export const LayOut = () => {
 
     console.log('layout is rendered ')
 
-    const auth = useSelector((state: storeType) => state.auth)
+    const auth = useSelector((state: RootState) => state.auth)
     const dispatch = useDispatch()
     const location = useLocation()
     const footer = location.pathname === '/SocialStyled/profile'

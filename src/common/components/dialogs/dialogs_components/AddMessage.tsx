@@ -2,9 +2,9 @@ import React, {ChangeEvent, useState} from 'react';
 import styled from "styled-components";
 import send from '../../../assets/send (1).png'
 import {useDispatch, useSelector} from "react-redux";
-import {storeType} from "../../../../redux/store";
-import {sendMessageTC} from "../../../../redux/dialogs-reducer";
+import {sendMessageTC} from "redux/dialogs-reducer";
 import {StyleSheetManager} from 'styled-components';
+import {RootState} from "app/store";
 
 
 type addBtnPropsType = {
@@ -14,7 +14,7 @@ type addBtnPropsType = {
 export const AddMessage = () => {
 
     const [newMessage, setNewMessage] = useState('')
-    const dialogs = useSelector((state: storeType) => state.dialogs)
+    const dialogs = useSelector((state: RootState) => state.dialogs)
     const dispatch = useDispatch()
 
     const addNewMessageOnChange = (e: ChangeEvent<HTMLInputElement>) => {

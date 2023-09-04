@@ -1,10 +1,10 @@
 import React, {useEffect, useRef} from 'react';
 import {AddMessage} from "./AddMessage";
-import {initialStateType, messageType} from "../../../../redux/dialogs-reducer";
+import {initialStateType, messageType} from "redux/dialogs-reducer";
 import styled from "styled-components";
 import {useSelector} from "react-redux";
-import {storeType} from "../../../../redux/store";
 import {CheckOutlined} from "@ant-design/icons";
+import {RootState} from "app/store";
 
 
 type MessageListProps = {
@@ -17,7 +17,7 @@ type MessagesUsersProps = {
 
 export const MessagesUsers = (props: MessagesUsersProps) => {
 
-    const authId = useSelector((state: storeType) => state.auth.id)
+    const authId = useSelector((state: RootState) => state.auth.id)
 
     const combinedMessages: messageType[] = []
 

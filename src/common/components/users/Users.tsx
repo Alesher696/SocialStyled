@@ -8,17 +8,17 @@ import {
     setCurrentPageAC,
     unFollowUserTC
 } from "redux/users-reducer";
-import {storeType} from "redux/store";
 import {Pagination} from 'antd';
 import {NavLink} from "react-router-dom";
 import {getMessagesListTC, setActiveUserIdAC} from "redux/dialogs-reducer";
+import {RootState} from "app/store";
 
 
 export const Users = () => {
 
     console.log('users is rendered ')
 
-    const users = useSelector((state: storeType) => state.users)
+    const users = useSelector((state: RootState) => state.users)
     const dispatch = useDispatch()
 
     const userFollowerStatus = ['follow', 'unfollow']

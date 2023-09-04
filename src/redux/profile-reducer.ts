@@ -1,5 +1,5 @@
-import {profileAPI, profileInfoResponseType} from "../common/api/api";
-import {AppDispatch, AppThunk} from "../redux/store";
+import {profileAPI, profileInfoResponseType} from "common/api/api";
+import {AppDispatch, AppThunk} from "app/store";
 
 
 export type profileActions =
@@ -136,7 +136,7 @@ const setProfilePhotoAC = (photos: { small: null | string, large: null | string 
     } as const
 }
 
-export const getUserProfileTC = (userId: number): AppThunk => {
+export const getUserProfileTC = (userId: number) => {
     return (dispatch: AppDispatch) => {
         try {
             profileAPI.getUserProfile(userId)

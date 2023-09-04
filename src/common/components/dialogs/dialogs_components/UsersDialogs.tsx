@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import {getMessagesListTC, initialStateType, setActiveUserIdAC} from "../../../../redux/dialogs-reducer";
+import {getMessagesListTC, initialStateType, setActiveUserIdAC} from "redux/dialogs-reducer";
 import {useDispatch} from "react-redux";
 import styled from "styled-components";
 

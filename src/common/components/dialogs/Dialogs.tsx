@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {storeType} from "redux/store";
 import {getDialogsTC} from "redux/dialogs-reducer";
 import {UsersDialogs} from "./dialogs_components/UsersDialogs";
 import {MessagesUsers} from "./dialogs_components/MessagesUsers";
+import {RootState} from "app/store";
 
 
 export const Dialogs = () => {
 
-    const dialogs = useSelector((state: storeType) => state.dialogs)
+    const dialogs = useSelector((state: RootState) => state.dialogs)
 
     const dispatch = useDispatch()
 

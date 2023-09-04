@@ -8,8 +8,8 @@ import {VkOutlined} from "common/assets/contactsIcons/VkOutlined";
 import {MainlinkOutlined} from "common/assets/contactsIcons/MainlinkOutlined";
 import {WebsiteOutlined} from "common/assets/contactsIcons/WebsiteOutlined";
 import {useSelector} from "react-redux";
-import {storeType} from "redux/store";
 import {Loader} from "../loader/Loader";
+import {RootState} from "app/store";
 
 
 type propsType = {
@@ -23,7 +23,7 @@ export const ProfileInfo = (props: propsType) => {
 
     const {aboutMe, lookingForAJob, lookingForAJobDescription, contacts} = props
 
-    const profile = useSelector((state: storeType) => state.profile)
+    const profile = useSelector((state: RootState) => state.profile)
 
     const icons = [
         {

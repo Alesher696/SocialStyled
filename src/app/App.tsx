@@ -7,22 +7,22 @@ import Music from "../common/components/music/Music";
 import {Settings} from "common/components/settings/Settings";
 import {ProfileContainer} from "common/components/profile/ProfileContainer";
 import {useDispatch, useSelector} from "react-redux";
-import {initializeAppTC} from "redux/app-reducer";
-import {storeType} from "redux/store";
 import {Loader} from "common/components/loader/Loader";
 import {Login} from "features/login/Login";
+import {RootState} from "app/store";
+import {tasksThunks} from "app/appSlice";
 
 
 export function App(props: any) {
 
     console.log('app is rendered ')
 
-    const app = useSelector((state: storeType) => state.app)
-    const profile = useSelector((state: storeType) => state.profile)
+    const app = useSelector((state: RootState) => state.app)
+    const profile = useSelector((state: RootState) => state.profile)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(initializeAppTC())
+        dispatch(tasksThunks.initializedApp())
     }, [])
 
     if (!app.isInitialized) {
