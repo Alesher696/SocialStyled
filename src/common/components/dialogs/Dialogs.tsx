@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import {storeType} from "../../../redux/store";
-import {getDialogsTC} from "../../../redux/dialogs-reducer";
+import {storeType} from "redux/store";
+import {getDialogsTC} from "redux/dialogs-reducer";
 import {UsersDialogs} from "./dialogs_components/UsersDialogs";
 import {MessagesUsers} from "./dialogs_components/MessagesUsers";
 

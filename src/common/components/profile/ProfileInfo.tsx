@@ -2,14 +2,15 @@ import React from 'react';
 import styled from "styled-components";
 import {GithubOutlined, InstagramOutlined, TwitterOutlined, YoutubeOutlined} from "@ant-design/icons";
 import {NavLink} from "react-router-dom";
-import {contactsType} from "../../../redux/profile-reducer";
-import {FacebookOutlined} from "../../../common/assets/contactsIcons/FacebookOutlined";
-import {VkOutlined} from "../../../common/assets/contactsIcons/VkOutlined";
-import {MainlinkOutlined} from "../../../common/assets/contactsIcons/MainlinkOutlined";
-import {WebsiteOutlined} from "../../../common/assets/contactsIcons/WebsiteOutlined";
+import {contactsType} from "redux/profile-reducer";
+import {FacebookOutlined} from "common/assets/contactsIcons/FacebookOutlined";
+import {VkOutlined} from "common/assets/contactsIcons/VkOutlined";
+import {MainlinkOutlined} from "common/assets/contactsIcons/MainlinkOutlined";
+import {WebsiteOutlined} from "common/assets/contactsIcons/WebsiteOutlined";
 import {useSelector} from "react-redux";
-import {storeType} from "../../../redux/store";
+import {storeType} from "redux/store";
 import {Loader} from "../loader/Loader";
+
 
 type propsType = {
     aboutMe: string | null
@@ -23,7 +24,6 @@ export const ProfileInfo = (props: propsType) => {
     const {aboutMe, lookingForAJob, lookingForAJobDescription, contacts} = props
 
     const profile = useSelector((state: storeType) => state.profile)
-
 
     const icons = [
         {
@@ -117,7 +117,6 @@ const ProfileInfoWrapper = styled.div`
   flex-direction: row;
   max-width: 820px;
   gap: 20px;
-
 `
 
 const AboutMeWrapper = styled.div`
@@ -141,10 +140,8 @@ const ContactsWrapper = styled.div`
   width: 400px;
   border: 1px solid #464646;
   border-radius: 15px;
-  //padding: 10px 10px 10px 0;
   color: white;
   display: flex;
-  //padding-right: 10px;
   gap: 10px;
   height: max-content;
   align-items: center;
@@ -160,15 +157,10 @@ const IconContacts = styled.div<{ color: string }>`
   border-radius: 100%;
 `
 const ContactsStyleDiv = styled.div`
-  //position: relative;
-  //top: 5px;
-  //padding-top: 4px;
   padding-left: 5px;
   padding-right: 5px;
-  //background-color: #14161a;
   min-height: 50px;
   display: flex;
   align-items: center;
   border-radius: 14px 0 0 14px;
-
 `

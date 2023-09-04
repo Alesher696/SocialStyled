@@ -7,11 +7,11 @@ import {
     getUsersTC,
     setCurrentPageAC,
     unFollowUserTC
-} from "../../../redux/users-reducer";
-import {storeType} from "../../../redux/store";
+} from "redux/users-reducer";
+import {storeType} from "redux/store";
 import {Pagination} from 'antd';
 import {NavLink} from "react-router-dom";
-import {getMessagesListTC, setActiveUserIdAC} from "../../../redux/dialogs-reducer";
+import {getMessagesListTC, setActiveUserIdAC} from "redux/dialogs-reducer";
 
 
 export const Users = () => {

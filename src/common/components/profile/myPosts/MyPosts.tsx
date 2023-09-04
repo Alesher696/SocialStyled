@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from "styled-components";
-
-import {initialProfileStateType, postType} from "../../../../redux/profile-reducer";
+import {initialProfileStateType, postType} from "redux/profile-reducer";
 import {DeleteOutlined, EditOutlined, LikeOutlined} from "@ant-design/icons";
 
 
 type MyPostPropsType = {
     profile: initialProfileStateType
 }
+
 type PostPropsType = {
     title: string
     name: string | null
@@ -72,7 +72,6 @@ const Posts = styled.div`
   align-items: center;
   background-color: #1a1a21;
   border-radius: 20px;
-
 `
 
 //=========================POST====================================

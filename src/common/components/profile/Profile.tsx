@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect} from 'react';
+import React, {ChangeEvent} from 'react';
 import styled, {StyleSheetManager} from "styled-components";
 import theme from '../../assets/1681961897_kartinki-pibig-info-p-nasishchennaya-kartinka-arti-krasivo-1.jpg'
 import avatar from '../../assets/1676295972138872283.png'

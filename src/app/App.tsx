@@ -17,10 +17,8 @@ export function App(props: any) {
 
     console.log('app is rendered ')
 
-    const auth = useSelector((state: storeType) => state.auth)
     const app = useSelector((state: storeType) => state.app)
     const profile = useSelector((state: storeType) => state.profile)
-
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -28,11 +26,11 @@ export function App(props: any) {
     }, [])
 
     if (!app.isInitialized) {
-        return <Loader/>; // Отображаем Loader, если приложение не инициализировано
+        return <Loader/>;
     }
 
     if (profile.profileInfo === undefined || null) {
-        return <Loader/>; // Отображаем Loader, если profileInfo === null
+        return <Loader/>;
     }
         return (
             <Routes>

@@ -1,8 +1,8 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {storeType} from "../../redux/store";
+import {storeType} from "redux/store";
 import {SubmitHandler, useForm} from "react-hook-form";
-import {authLogInTC} from "../../redux/auth-reducer";
+import {authLogInTC} from "redux/auth-reducer";
 import {Navigate} from "react-router-dom";
 
 
@@ -13,7 +13,7 @@ import {Navigate} from "react-router-dom";
     }
 
     export const Login = () => {
-        const app = useSelector((state:storeType)=>state.app)
+
         const auth = useSelector((state:storeType)=>state.auth)
         const dispatch = useDispatch()
 
@@ -23,7 +23,6 @@ import {Navigate} from "react-router-dom";
         const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
             dispatch(authLogInTC(data.email!, data.password!))
         };
-
 
         if (auth.isLoggedIn) {
             return <Navigate to={'/SocialStyled'}/>

@@ -14,10 +14,8 @@ export const LayOut = () => {
 
     const auth = useSelector((state: storeType) => state.auth)
     const dispatch = useDispatch()
-
     const location = useLocation()
     const footer = location.pathname === '/SocialStyled/profile'
-
 
     useEffect(() => {
         dispatch(getUserProfileTC(auth.id!))

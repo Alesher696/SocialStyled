@@ -1,15 +1,15 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {storeType} from "../../../redux/store";
+import {storeType} from "redux/store";
 import {
     addPostAC,
     getUserProfileTC,
     getUserStatusTC,
     initialProfileStateType,
     setNewPostTextAC
-} from "../../../redux/profile-reducer";
+} from "redux/profile-reducer";
 import {Profile} from "../profile/Profile";
-import {initialAuthStateType} from "../../../redux/auth-reducer";
+import {initialAuthStateType} from "redux/auth-reducer";
 
 
 export type ProfilePropsType = mapStateToPropsType & mapDispatchToPropsType
