@@ -30,7 +30,7 @@ export const Dialogs = () => {
 const DialogsWrapper = styled.div`
   color: white;
   font-size: 24px;
-  margin: 10px auto;
+  margin: 3em auto;
   display: flex;
   flex-direction: row;
   gap: 10px;

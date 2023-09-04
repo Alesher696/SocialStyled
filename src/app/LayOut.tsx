@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
-import {Header} from "../common/components/header/Header";
-import {NavBar} from "../common/components/navBar/NavBar";
+import {Header} from "common/components/header/Header";
+import {NavBar} from "common/components/navBar/NavBar";
 import styled from "styled-components";
 import {Navigate, Outlet, useLocation} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
-import {storeType} from "../redux/store";
-import {getUserProfileTC} from "../redux/profile-reducer";
-import {Footer} from "../common/components/footer/Footer";
+import {storeType} from "redux/store";
+import {getUserProfileTC} from "redux/profile-reducer";
+import {Footer} from "common/components/footer/Footer";
 
 export const LayOut = () => {
 
@@ -61,4 +61,5 @@ const ContentWrapper = styled.div`
     background-color: #2e2f3a;
     border-radius: 5px;
   }
+  
 `

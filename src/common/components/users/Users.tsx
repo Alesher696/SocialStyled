@@ -105,7 +105,7 @@ const UsersWrapper = styled.div`
   display: flex;
   color: white;
   font-size: 24px;
-  margin: 0 auto;
+  margin: 3em auto;
   flex-direction: column;
   min-height: 720px;
 `

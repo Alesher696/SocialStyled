@@ -28,5 +28,8 @@ background-color: #09090c;
   align-items: center;
   height: 3em;
   color: white;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
   //position: relative;
 `

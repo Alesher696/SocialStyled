@@ -24,6 +24,8 @@ const NavBarWrapper = styled.div`
   width: max-content;
   padding: 0 0 0 10px;
   position: fixed;
+  z-index: 10;
+  padding-top: 50px;
   
 `
 

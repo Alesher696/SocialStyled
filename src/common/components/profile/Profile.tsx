@@ -80,13 +80,13 @@ export const Profile = (props: ProfilePropsType) => {
 const ProfileWrapper = styled.div`
   background-color: #121217;
   display: flex;
-  margin: 0 auto;
+  margin: 3em auto;
   flex-direction: column;
   gap: 10px;
 `
 
 const ProfileInnerWrapper = styled.div`
-  background-color: #1a1a21;
+  //background-color: #1a1a21;
 `
 
 const ProfileTheme = styled.div`
