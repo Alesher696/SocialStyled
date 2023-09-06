@@ -53,9 +53,9 @@ const Post = (props: PostPropsType) => {
             </PostWrappper>
 
             <IconsWrapper>
-                <Icons><DeleteOutlined rev/></Icons>
-                <Icons><EditOutlined rev/></Icons>
-                <Icons><LikeOutlined rev/></Icons>
+                <Icons><DeleteOutlined rev={''}/></Icons>
+                <Icons><EditOutlined rev={''}/></Icons>
+                <Icons><LikeOutlined rev={''}/></Icons>
             </IconsWrapper>
         </PostStyled>
     )

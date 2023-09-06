@@ -1,17 +1,17 @@
 import React, {useEffect} from 'react';
 import styled from "styled-components";
-import {useDispatch, useSelector} from "react-redux";
 import {getDialogsTC} from "redux/dialogs-reducer";
 import {UsersDialogs} from "./dialogs_components/UsersDialogs";
 import {MessagesUsers} from "./dialogs_components/MessagesUsers";
-import {RootState} from "app/store";
+import {useAppDispatch} from "common/hooks/selectors";
+
 
 
 export const Dialogs = () => {
 
-    const dialogs = useSelector((state: RootState) => state.dialogs)
+    console.log('dialogs is rendered ')
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(getDialogsTC())
@@ -19,9 +19,9 @@ export const Dialogs = () => {
 
     return (
         <DialogsWrapper>
-            <MessagesUsers dialogs={dialogs}/>
+            <MessagesUsers/>
             <UsersWrapper>
-                <UsersDialogs dialogs={dialogs}/>
+                <UsersDialogs/>
             </UsersWrapper>
         </DialogsWrapper>
     );

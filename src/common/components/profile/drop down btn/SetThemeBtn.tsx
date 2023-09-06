@@ -29,7 +29,7 @@ export const SetThemeBtn = () => {
     return (
         <>
             <DropDownStyled menu={{ items }} placement="bottomRight" arrow>
-                <Button><EditOutlined rev color={'white'}/></Button>
+                <Button><EditOutlined rev={''} color={'white'}/></Button>
             </DropDownStyled>
         </>
     );

@@ -28,13 +28,13 @@ export const ProfileInfo = (props: propsType) => {
     const icons = [
         {
             id: 1,
-            icon: <GithubOutlined rev style={{fontSize: '31px', color: '#000000', backgroundPosition: 'center'}}/>,
+            icon: <GithubOutlined rev={''} style={{fontSize: '31px', color: '#000000', backgroundPosition: 'center'}}/>,
             link: contacts && contacts.github ? contacts.github : '#',
             color: contacts ? 'white' : '#333'
         },
         {
             id: 2,
-            icon: <YoutubeOutlined rev style={{
+            icon: <YoutubeOutlined rev={''} style={{
                 fontSize: '20px',
                 color: contacts && contacts.youtube ? '#c90c0c' : '#333'
             }}/>,
@@ -43,7 +43,7 @@ export const ProfileInfo = (props: propsType) => {
         },
         {
             id: 3,
-            icon: <TwitterOutlined rev style={{
+            icon: <TwitterOutlined rev={''} style={{
                 fontSize: '20px',
                 color: contacts && contacts.twitter ? '#3F48CC' : '#333'
             }}/>,
@@ -52,7 +52,7 @@ export const ProfileInfo = (props: propsType) => {
         },
         {
             id: 4,
-            icon: <InstagramOutlined rev style={{
+            icon: <InstagramOutlined rev={''} style={{
                 fontSize: '20px',
                 color: contacts && contacts.instagram ? '#3F48CC' : '#333'
             }}/>, link: contacts && contacts.instagram ? contacts.instagram : '#', color: 'black'

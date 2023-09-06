@@ -1,26 +1,25 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import {getMessagesListTC, initialStateType, setActiveUserIdAC} from "redux/dialogs-reducer";
-import {useDispatch} from "react-redux";
+import {getMessagesListTC, setActiveUserIdAC} from "redux/dialogs-reducer";
 import styled from "styled-components";
+import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
+import {dialogs} from "common/utils/dialogs-selectors";
 
 
-type UsersDialogsProps = {
-    dialogs: initialStateType
-}
+export const UsersDialogs = () => {
 
-export const UsersDialogs = (props: UsersDialogsProps) => {
+    console.log('usersDialogs is rendered ')
 
-    const dispatch = useDispatch()
+    const userDialogs = useAppSelector(dialogs)
 
-    console.log('dialogs is rendered ')
+    const dispatch = useAppDispatch()
 
     const userOnClickHandler = (userId: number) => {
         dispatch(setActiveUserIdAC(userId))
         dispatch(getMessagesListTC(userId))
     }
 
-    const userList = props.dialogs.all_dialogs?.map((el) =>
+    const userList = userDialogs?.map((el) =>
         <User key={el.id} to={`/SocialStyled/dialogs/${el.id}/messages`} onClick={() => userOnClickHandler(el.id)}>
             <div>
                 {el.userName}
@@ -34,7 +33,6 @@ export const UsersDialogs = (props: UsersDialogsProps) => {
                 {el.hasNewMessages && <NewMessageIs>{el.newMessagesCount}</NewMessageIs>}
                 {/*<NewMessageIs>{el.newMessagesCount}</NewMessageIs>*/}
             </div>
-
         </User>
     )
     return (
@@ -63,6 +61,7 @@ const UserAvatar = styled.img`
   width: 50px;
   height: 50px;
 `
+
 const DefaultAvatar = styled.div`
   border-radius: 50px;
   width: 50px;

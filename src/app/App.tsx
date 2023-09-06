@@ -6,30 +6,31 @@ import {Users} from "common/components/users/Users";
 import Music from "../common/components/music/Music";
 import {Settings} from "common/components/settings/Settings";
 import {ProfileContainer} from "common/components/profile/ProfileContainer";
-import {useDispatch, useSelector} from "react-redux";
 import {Loader} from "common/components/loader/Loader";
 import {Login} from "features/login/Login";
-import {RootState} from "app/store";
 import {tasksThunks} from "app/appSlice";
+import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
+import {isInitialized} from "common/utils/app-selectors";
+import {profileInfo} from "common/utils/profile-selectors";
 
 
-export function App(props: any) {
+export function App() {
 
     console.log('app is rendered ')
 
-    const app = useSelector((state: RootState) => state.app)
-    const profile = useSelector((state: RootState) => state.profile)
-    const dispatch = useDispatch()
+    const appIsInitialized = useAppSelector(isInitialized)
+    const profile = useAppSelector(profileInfo)
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(tasksThunks.initializedApp())
     }, [])
 
-    if (!app.isInitialized) {
+    if (!appIsInitialized) {
         return <Loader/>;
     }
 
-    if (profile.profileInfo === undefined || null) {
+    if (profile === undefined || null) {
         return <Loader/>;
     }
         return (

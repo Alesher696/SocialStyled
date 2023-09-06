@@ -3,25 +3,27 @@ import {Header} from "common/components/header/Header";
 import {NavBar} from "common/components/navBar/NavBar";
 import styled from "styled-components";
 import {Navigate, Outlet, useLocation} from 'react-router-dom';
-import {useDispatch, useSelector} from "react-redux";
 import {getUserProfileTC} from "redux/profile-reducer";
 import {Footer} from "common/components/footer/Footer";
-import {RootState} from "app/store";
+import {id, isLoggedIn} from "common/utils/auth-selectors";
+import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
+
 
 export const LayOut = () => {
 
     console.log('layout is rendered ')
 
-    const auth = useSelector((state: RootState) => state.auth)
-    const dispatch = useDispatch()
+    const authIsLoginIn = useAppSelector(isLoggedIn)
+    const authId = useAppSelector(id)
+    const dispatch = useAppDispatch()
     const location = useLocation()
     const footer = location.pathname === '/SocialStyled/profile'
 
     useEffect(() => {
-        dispatch(getUserProfileTC(auth.id!))
+        dispatch(getUserProfileTC(authId!))
     }, [])
 
-    if (!auth.isLoggedIn) {
+    if (!authIsLoginIn) {
         return <Navigate to={'/SocialStyled/login'}/>
     }
     return (

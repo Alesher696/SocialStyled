@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useEffect} from 'react';
 import styled from "styled-components";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {
     followUserTC,
     getFollowedUsersTC,
@@ -12,6 +12,7 @@ import {Pagination} from 'antd';
 import {NavLink} from "react-router-dom";
 import {getMessagesListTC, setActiveUserIdAC} from "redux/dialogs-reducer";
 import {RootState} from "app/store";
+import {useAppDispatch} from "common/hooks/selectors";
 
 
 export const Users = () => {
@@ -19,7 +20,7 @@ export const Users = () => {
     console.log('users is rendered ')
 
     const users = useSelector((state: RootState) => state.users)
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     const userFollowerStatus = ['follow', 'unfollow']
     const [termUser, setTermUser] = React.useState('')
@@ -99,7 +100,6 @@ export const Users = () => {
         </UsersWrapper>
     );
 };
-
 
 const UsersWrapper = styled.div`
   display: flex;

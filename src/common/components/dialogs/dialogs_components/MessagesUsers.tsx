@@ -1,39 +1,34 @@
 import React, {useEffect, useRef} from 'react';
 import {AddMessage} from "./AddMessage";
-import {initialStateType, messageType} from "redux/dialogs-reducer";
-import styled from "styled-components";
-import {useSelector} from "react-redux";
+import {messageType} from "redux/dialogs-reducer";
+import styled, {StyleSheetManager} from "styled-components";
 import {CheckOutlined} from "@ant-design/icons";
-import {RootState} from "app/store";
+import {useAppSelector} from "common/hooks/selectors";
+import {id} from "common/utils/auth-selectors";
+import {activeUserId, messages} from "common/utils/dialogs-selectors";
 
 
-type MessageListProps = {
-    dialogs: initialStateType
-    authId: number | null
-}
-type MessagesUsersProps = {
-    dialogs: initialStateType
-}
+export const MessagesUsers = () => {
 
-export const MessagesUsers = (props: MessagesUsersProps) => {
-
-    const authId = useSelector((state: RootState) => state.auth.id)
-
-    const combinedMessages: messageType[] = []
+    console.log('messages is rendered ')
 
     const messagesWrapperRef = useRef<HTMLDivElement | null>(null);
+    const userIdIsActive = useAppSelector(activeUserId);
+    const dialogsMessages = useAppSelector(messages);
 
     useEffect(() => {
         if (messagesWrapperRef.current) {
-            messagesWrapperRef.current.scrollTop = messagesWrapperRef.current.scrollHeight;
+            if (userIdIsActive && dialogsMessages[userIdIsActive]) {
+                messagesWrapperRef.current.scrollTop = messagesWrapperRef.current.scrollHeight;
+            }
         }
-    }, [combinedMessages])
+    }, [userIdIsActive, dialogsMessages]);
 
     return (
         <>
             <AddMessageWrapper>
                 <MessagesWrapper ref={messagesWrapperRef}>
-                    <MessagesList dialogs={props.dialogs} authId={authId}/>
+                    <MessagesList/>
                 </MessagesWrapper>
                 <AddMessage/>
             </AddMessageWrapper>
@@ -41,45 +36,51 @@ export const MessagesUsers = (props: MessagesUsersProps) => {
     );
 };
 
-const MessagesList = (props: MessageListProps) => {
+const MessagesList = () => {
 
-    const {dialogs, authId} = props
+    console.log('messageList is render')
+    const userIdIsActive = useAppSelector(activeUserId)
+    const authId = useAppSelector(id)
+    const dialogsMessages = useAppSelector(messages)
 
-    if (!dialogs.messages[dialogs.activeUserId!]) {
+    if (!dialogsMessages[userIdIsActive!]) {
         return null
     } else
         return (
-            <MessageWrapper>
-                {dialogs.messages[dialogs.activeUserId!].map((message: messageType) => {
+            <StyleSheetManager shouldForwardProp={(prop) => prop !== 'senderId'}>
+                <MessageWrapper >
+                    {dialogsMessages[userIdIsActive!].map((message: messageType) => {
 
-                    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-                    const addedAt = new Date(message.addedAt);
-                    const hours = addedAt.getHours();
-                    let minutes = addedAt.getMinutes();
-                    const newDate = new Date()
+                        const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                        const addedAt = new Date(message.addedAt);
+                        const hours = addedAt.getHours();
+                        let minutes = addedAt.getMinutes();
+                        const newDate = new Date()
 
-                    if (minutes < 10) {
-                        minutes = Number(`0${minutes}`);
-                    }
-                    const formattedDate = `${hours.toString()}:${minutes.toString().padStart(2, '0')}`;
+                        if (minutes < 10) {
+                            minutes = Number(`0${minutes}`);
+                        }
+                        const formattedDate = `${hours.toString()}:${minutes.toString().padStart(2, '0')}`;
 
-                    return (
-                        <MessageInnerWrapper key={message.id}>
-                            <Message authid={authId} senderid={message.senderId}>
-                                {message.body}
-                            </Message>
-                            <ViewWrapper>
-                                <>
-                                    {newDate.toDateString() !== addedAt.toDateString()
-                                        ? daysOfWeek[addedAt.getDay()]
-                                        : formattedDate}
-                                    {message.viewed && <CheckOutlined rev/>}
-                                </>
-                            </ViewWrapper> 
-                        </MessageInnerWrapper>
-                    )
-                })}
-            </MessageWrapper>
+                        return (
+
+                            <MessageInnerWrapper key={message.id}>
+                                <Message authid={authId} senderid={message.senderId}>
+                                    {message.body}
+                                </Message>
+                                <ViewWrapper>
+                                    <>
+                                        {newDate.toDateString() !== addedAt.toDateString()
+                                            ? daysOfWeek[addedAt.getDay()]
+                                            : formattedDate}
+                                        {message.viewed && <CheckOutlined rev={''}/>}
+                                    </>
+                                </ViewWrapper>
+                            </MessageInnerWrapper>
+                        )
+                    })}
+                </MessageWrapper>
+            </StyleSheetManager>
         )
 };
 
@@ -121,7 +122,7 @@ const Message = styled.span<{ authid: number | null, senderid: number }>`
   margin-bottom: 10px;
   font-size: 14px;
   overflow: hidden;
-  
+
 `
 
 const MessageInnerWrapper = styled.div`

@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {authAPI} from "../common/api/api";
+import {authAPI} from "common/api/api";
 
 
 export type authActions = setUserDataType | setIsLoggedInType

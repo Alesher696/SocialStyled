@@ -61,7 +61,7 @@ export const Profile = (props: ProfilePropsType) => {
                     <PostAddWrapper>
                         <AddPostButton onClick={addPost}
                                        condition={(!!props.profile.newPostText).toString()}
-                                       disabled={!props.profile.newPostText}> <SendOutlined color={'white'} rev/>
+                                       disabled={!props.profile.newPostText}> <SendOutlined color={'white'} rev={''}/>
                         </AddPostButton>
                         <PostAreaInput onChange={onChangeHandler}
                                        placeholder={"What's News?"}

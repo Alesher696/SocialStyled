@@ -145,7 +145,6 @@ export const getUsersTC = (currentPage: number, pageSize: number, user?:any) => 
                 dispatch(setUsersAC(data.items))
                 dispatch(setUserTotalCountAC(data.totalCount))
             })
-
     }
 }
 

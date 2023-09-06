@@ -1,10 +1,10 @@
 import React, {ChangeEvent, useState} from 'react';
 import styled from "styled-components";
 import send from '../../../assets/send (1).png'
-import {useDispatch, useSelector} from "react-redux";
 import {sendMessageTC} from "redux/dialogs-reducer";
 import {StyleSheetManager} from 'styled-components';
-import {RootState} from "app/store";
+import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
+import {activeUserId} from "common/utils/dialogs-selectors";
 
 
 type addBtnPropsType = {
@@ -14,8 +14,8 @@ type addBtnPropsType = {
 export const AddMessage = () => {
 
     const [newMessage, setNewMessage] = useState('')
-    const dialogs = useSelector((state: RootState) => state.dialogs)
-    const dispatch = useDispatch()
+    const userIdIsActive = useAppSelector(activeUserId)
+    const dispatch = useAppDispatch()
 
     const addNewMessageOnChange = (e: ChangeEvent<HTMLInputElement>) => {
        setNewMessage(e.currentTarget.value)
@@ -23,7 +23,7 @@ export const AddMessage = () => {
 
     const onClickAddMessage = () => {
         // dispatch(addNewMessageAC(newMessage))
-        dispatch(sendMessageTC(dialogs.activeUserId!, newMessage))
+        dispatch(sendMessageTC(userIdIsActive!, newMessage))
         setNewMessage('')
     }
 

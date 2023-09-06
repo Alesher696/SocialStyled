@@ -28,7 +28,7 @@ export const SetUserInfoModalBtn = () => {
         <StyleSheetManager shouldForwardProp={(prop) => prop !== 'text'}>
             <UploadModalWrapper>
                 <StyledButtonOpen type="primary" onClick={showModal}>
-                    <EditOutlined rev color={'white'}/> profile
+                    <EditOutlined rev={''} color={'white'}/> profile
                 </StyledButtonOpen>
                 <StyledModal
                     open={open}

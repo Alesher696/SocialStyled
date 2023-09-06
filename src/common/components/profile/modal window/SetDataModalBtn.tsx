@@ -30,7 +30,7 @@ export const SetDataModalBtn = () => {
         <StyleSheetManager shouldForwardProp={(prop) => prop !== 'text'}>
             <UploadModalWrapper>
                 <StyledButtonOpen type="primary" onClick={showModal}>
-                    <EditOutlined rev color={'white'}/> status
+                    <EditOutlined rev={''} color={'white'}/> status
                 </StyledButtonOpen>
                 <StyledModal
                     open={open}
