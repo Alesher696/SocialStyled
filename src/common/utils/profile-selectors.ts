@@ -1,4 +1,4 @@
 import {RootState} from "app/store";
 
 
-export const profileInfo = (state: RootState) => state.profile.profileInfo
+export const selectProfileInfo = (state: RootState) => state.profile.profileInfo

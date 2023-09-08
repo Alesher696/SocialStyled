@@ -11,22 +11,32 @@ import {
 import {Pagination} from 'antd';
 import {NavLink} from "react-router-dom";
 import {getMessagesListTC, setActiveUserIdAC} from "redux/dialogs-reducer";
-import {RootState} from "app/store";
-import {useAppDispatch} from "common/hooks/selectors";
+import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
+import {
+    selectCurrentPage,
+    selectFollowedUsers,
+    selectPageSize,
+    selectTotalUsersCount,
+    selectUsers
+} from "common/utils/users-selectors";
 
 
 export const Users = () => {
 
     console.log('users is rendered ')
 
-    const users = useSelector((state: RootState) => state.users)
+    const pageSize = useAppSelector(selectPageSize)
+    const currentPage = useAppSelector(selectCurrentPage)
+    const totalUsersCount = useAppSelector(selectTotalUsersCount)
+    const users = useAppSelector(selectUsers)
+    const followedUsers = useAppSelector(selectFollowedUsers)
     const dispatch = useAppDispatch()
 
     const userFollowerStatus = ['follow', 'unfollow']
     const [termUser, setTermUser] = React.useState('')
 
     useEffect(() => {
-        dispatch(getUsersTC(users.currentPage, users.pageSize))
+        dispatch(getUsersTC(currentPage, pageSize))
     }, [])
 
     useEffect(() => {
@@ -35,7 +45,7 @@ export const Users = () => {
 
     const onClickPageHandler = (page: number) => {
         dispatch(setCurrentPageAC(page));
-        dispatch(getUsersTC(page, users.pageSize, termUser))
+        dispatch(getUsersTC(page, pageSize, termUser))
     }
 
     const followUnfollowHandler = (userId: number, status: boolean) => {
@@ -47,7 +57,7 @@ export const Users = () => {
     }
 
     const getSearchUserHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch(getUsersTC(users.currentPage, users.pageSize, e.currentTarget.value))
+        dispatch(getUsersTC(currentPage, pageSize, e.currentTarget.value))
         setTermUser(e.currentTarget.value)
     }
 
@@ -65,7 +75,7 @@ export const Users = () => {
 
 
             <div>
-                {users.users.map(el =>
+                {users.map(el =>
                     <UsersName key={el.id}>
                         {el.name}
                         <br/>
@@ -80,12 +90,12 @@ export const Users = () => {
                     </UsersName>)}
             </div>
             <br/>
-            <PaginationWrapper defaultCurrent={1} total={users.totalUsersCount} onChange={onClickPageHandler}
+            <PaginationWrapper defaultCurrent={1} total={totalUsersCount} onChange={onClickPageHandler}
                                showSizeChanger={false}></PaginationWrapper>
             <div>
                 <br/>
                 <div>followedUsers:</div>
-                {users.followedUsers.map(el =>
+                {followedUsers.map(el =>
                     <UsersName key={el.id}>
                         {el.name}
                         <button

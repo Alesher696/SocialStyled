@@ -10,23 +10,23 @@ import {Loader} from "common/components/loader/Loader";
 import {Login} from "features/login/Login";
 import {tasksThunks} from "app/appSlice";
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
-import {isInitialized} from "common/utils/app-selectors";
-import {profileInfo} from "common/utils/profile-selectors";
+import {selectIsInitialized} from "common/utils/app-selectors";
+import {selectProfileInfo} from "common/utils/profile-selectors";
 
 
 export function App() {
 
     console.log('app is rendered ')
 
-    const appIsInitialized = useAppSelector(isInitialized)
-    const profile = useAppSelector(profileInfo)
+    const isInitialized = useAppSelector(selectIsInitialized)
+    const profile = useAppSelector(selectProfileInfo)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(tasksThunks.initializedApp())
     }, [])
 
-    if (!appIsInitialized) {
+    if (!isInitialized) {
         return <Loader/>;
     }
 

@@ -4,7 +4,7 @@ import send from '../../../assets/send (1).png'
 import {sendMessageTC} from "redux/dialogs-reducer";
 import {StyleSheetManager} from 'styled-components';
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
-import {activeUserId} from "common/utils/dialogs-selectors";
+import {selectActiveUserId} from "common/utils/dialogs-selectors";
 
 
 type addBtnPropsType = {
@@ -13,8 +13,10 @@ type addBtnPropsType = {
 
 export const AddMessage = () => {
 
+    console.log('AddMessage is render')
+
     const [newMessage, setNewMessage] = useState('')
-    const userIdIsActive = useAppSelector(activeUserId)
+    const userIdIsActive = useAppSelector(selectActiveUserId)
     const dispatch = useAppDispatch()
 
     const addNewMessageOnChange = (e: ChangeEvent<HTMLInputElement>) => {

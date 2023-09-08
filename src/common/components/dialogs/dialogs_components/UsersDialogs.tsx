@@ -3,15 +3,15 @@ import {NavLink} from "react-router-dom";
 import {getMessagesListTC, setActiveUserIdAC} from "redux/dialogs-reducer";
 import styled from "styled-components";
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
-import {dialogs} from "common/utils/dialogs-selectors";
+import {selectDialogs} from "common/utils/dialogs-selectors";
+import {Loader} from "common/components/loader/Loader";
 
 
 export const UsersDialogs = () => {
 
     console.log('usersDialogs is rendered ')
 
-    const userDialogs = useAppSelector(dialogs)
-
+    const userDialogs = useAppSelector(selectDialogs)
     const dispatch = useAppDispatch()
 
     const userOnClickHandler = (userId: number) => {
@@ -35,6 +35,9 @@ export const UsersDialogs = () => {
             </div>
         </User>
     )
+    if(!userDialogs){
+        return <Loader/>
+    }
     return (
         <UserListWrapper>
             {userList}
@@ -44,8 +47,8 @@ export const UsersDialogs = () => {
 
 const NewMessageIs = styled.div`
   position: relative;
-  bottom: 20px;
-  right: 20px;
+  bottom: 65px;
+  left: 40px;
   background-color: rgba(210, 30, 30, 0.83);
   width: 20px;
   height: 20px;
@@ -100,4 +103,5 @@ const UserListWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  margin-right: 10px;
 `

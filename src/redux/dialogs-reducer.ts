@@ -42,7 +42,7 @@ export type initialStateType = {
 const initialState: initialStateType = {
     all_dialogs: null,
     messages: {},
-    activeUserId: 1,
+    activeUserId: 0,
 }
 
 export const dialogsReducer = (state: initialStateType = initialState, action: dialogsActions) => {

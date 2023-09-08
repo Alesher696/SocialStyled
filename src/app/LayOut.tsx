@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {Navigate, Outlet, useLocation} from 'react-router-dom';
 import {getUserProfileTC} from "redux/profile-reducer";
 import {Footer} from "common/components/footer/Footer";
-import {id, isLoggedIn} from "common/utils/auth-selectors";
+import {selectId, selectIsLoggedIn} from "common/utils/auth-selectors";
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
 
 
@@ -13,8 +13,8 @@ export const LayOut = () => {
 
     console.log('layout is rendered ')
 
-    const authIsLoginIn = useAppSelector(isLoggedIn)
-    const authId = useAppSelector(id)
+    const authIsLoginIn = useAppSelector(selectIsLoggedIn)
+    const authId = useAppSelector(selectId)
     const dispatch = useAppDispatch()
     const location = useLocation()
     const footer = location.pathname === '/SocialStyled/profile'

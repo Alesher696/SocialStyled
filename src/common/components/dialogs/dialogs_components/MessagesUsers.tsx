@@ -1,52 +1,27 @@
-import React, {useEffect, useRef} from 'react';
-import {AddMessage} from "./AddMessage";
+import React from 'react';
 import {messageType} from "redux/dialogs-reducer";
 import styled, {StyleSheetManager} from "styled-components";
 import {CheckOutlined} from "@ant-design/icons";
 import {useAppSelector} from "common/hooks/selectors";
-import {id} from "common/utils/auth-selectors";
-import {activeUserId, messages} from "common/utils/dialogs-selectors";
+import {selectId} from "common/utils/auth-selectors";
+import {selectActiveUserId, selectMessages} from "common/utils/dialogs-selectors";
+import {Loader} from "common/components/loader/Loader";
+import {AddMessage} from "common/components/dialogs/dialogs_components/AddMessage";
 
 
-export const MessagesUsers = () => {
-
-    console.log('messages is rendered ')
-
-    const messagesWrapperRef = useRef<HTMLDivElement | null>(null);
-    const userIdIsActive = useAppSelector(activeUserId);
-    const dialogsMessages = useAppSelector(messages);
-
-    useEffect(() => {
-        if (messagesWrapperRef.current) {
-            if (userIdIsActive && dialogsMessages[userIdIsActive]) {
-                messagesWrapperRef.current.scrollTop = messagesWrapperRef.current.scrollHeight;
-            }
-        }
-    }, [userIdIsActive, dialogsMessages]);
-
-    return (
-        <>
-            <AddMessageWrapper>
-                <MessagesWrapper ref={messagesWrapperRef}>
-                    <MessagesList/>
-                </MessagesWrapper>
-                <AddMessage/>
-            </AddMessageWrapper>
-        </>
-    );
-};
-
-const MessagesList = () => {
+export const MessagesList = () => {
 
     console.log('messageList is render')
-    const userIdIsActive = useAppSelector(activeUserId)
-    const authId = useAppSelector(id)
-    const dialogsMessages = useAppSelector(messages)
+
+    const userIdIsActive = useAppSelector(selectActiveUserId)
+    const authId = useAppSelector(selectId)
+    const dialogsMessages = useAppSelector(selectMessages)
 
     if (!dialogsMessages[userIdIsActive!]) {
-        return null
+        return <Loader/>
     } else
         return (
+            <>
             <StyleSheetManager shouldForwardProp={(prop) => prop !== 'senderId'}>
                 <MessageWrapper >
                     {dialogsMessages[userIdIsActive!].map((message: messageType) => {
@@ -79,37 +54,12 @@ const MessagesList = () => {
                             </MessageInnerWrapper>
                         )
                     })}
+
                 </MessageWrapper>
             </StyleSheetManager>
+            </>
         )
 };
-
-const MessagesWrapper = styled.div`
-  border-radius: 10px 6px 6px 10px;
-  background-color: #1a1a21;
-  width: 600px;
-  display: flex;
-  flex-direction: column;
-  min-height: 800px;
-  max-height: 800px;
-  position: relative;
-  overflow: auto;
-  overflow-x: hidden;
-
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #494957;
-    border-radius: 5px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: #2e2f3a;
-    border-radius: 5px;
-  }
-`
 
 const Message = styled.span<{ authid: number | null, senderid: number }>`
   background-color: ${props => props.authid === props.senderid ? '#38438c' : '#494957'};
@@ -122,7 +72,6 @@ const Message = styled.span<{ authid: number | null, senderid: number }>`
   margin-bottom: 10px;
   font-size: 14px;
   overflow: hidden;
-
 `
 
 const MessageInnerWrapper = styled.div`
@@ -135,13 +84,6 @@ const MessageInnerWrapper = styled.div`
 `
 
 const MessageWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-const AddMessageWrapper = styled.div`
-  border: 1px solid #464646;
-  border-radius: 10px 6px 6px 10px;
   display: flex;
   flex-direction: column;
 `
