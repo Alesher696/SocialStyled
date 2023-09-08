@@ -37,9 +37,6 @@ export const Users = () => {
 
     useEffect(() => {
         dispatch(getUsersTC(currentPage, pageSize))
-    }, [])
-
-    useEffect(() => {
         dispatch(getFollowedUsersTC())
     }, [])
 
