@@ -1,7 +1,14 @@
 {
   "files": {
     "main.css": "/SocialStyled/static/css/main.28936d9a.css",
-    "main.js": "/SocialStyled/static/js/main.e9062d9b.js",
+    "main.js": "/SocialStyled/static/js/main.c38c0ae1.js",
+    "static/js/959.00ba53ca.chunk.js": "/SocialStyled/static/js/959.00ba53ca.chunk.js",
+    "static/js/11.172aa216.chunk.js": "/SocialStyled/static/js/11.172aa216.chunk.js",
+    "static/js/331.60af11d1.chunk.js": "/SocialStyled/static/js/331.60af11d1.chunk.js",
+    "static/js/929.c3fe430d.chunk.js": "/SocialStyled/static/js/929.c3fe430d.chunk.js",
+    "static/js/305.ec0a00aa.chunk.js": "/SocialStyled/static/js/305.ec0a00aa.chunk.js",
+    "static/js/249.25c78965.chunk.js": "/SocialStyled/static/js/249.25c78965.chunk.js",
+    "static/js/112.c2c07ed1.chunk.js": "/SocialStyled/static/js/112.c2c07ed1.chunk.js",
     "static/media/png": "/SocialStyled/static/media/1676295972138872283.6f68e0cd529473dd78a7.png",
     "static/media/1681961897_kartinki-pibig-info-p-nasishchennaya-kartinka-arti-krasivo-1.jpg": "/SocialStyled/static/media/1681961897_kartinki-pibig-info-p-nasishchennaya-kartinka-arti-krasivo-1.2ed5b21c0869f5eebb6c.jpg",
     "static/media/vk.png": "/SocialStyled/static/media/vk.7603f231edc3debcd3f2.png",
@@ -9,10 +16,17 @@
     "static/media/ball-triangle.svg": "/SocialStyled/static/media/ball-triangle.26bdbaf85c961541b7da22df5e5714a8.svg",
     "index.html": "/SocialStyled/index.html",
     "main.28936d9a.css.map": "/SocialStyled/static/css/main.28936d9a.css.map",
-    "main.e9062d9b.js.map": "/SocialStyled/static/js/main.e9062d9b.js.map"
+    "main.c38c0ae1.js.map": "/SocialStyled/static/js/main.c38c0ae1.js.map",
+    "959.00ba53ca.chunk.js.map": "/SocialStyled/static/js/959.00ba53ca.chunk.js.map",
+    "11.172aa216.chunk.js.map": "/SocialStyled/static/js/11.172aa216.chunk.js.map",
+    "331.60af11d1.chunk.js.map": "/SocialStyled/static/js/331.60af11d1.chunk.js.map",
+    "929.c3fe430d.chunk.js.map": "/SocialStyled/static/js/929.c3fe430d.chunk.js.map",
+    "305.ec0a00aa.chunk.js.map": "/SocialStyled/static/js/305.ec0a00aa.chunk.js.map",
+    "249.25c78965.chunk.js.map": "/SocialStyled/static/js/249.25c78965.chunk.js.map",
+    "112.c2c07ed1.chunk.js.map": "/SocialStyled/static/js/112.c2c07ed1.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.28936d9a.css",
-    "static/js/main.e9062d9b.js"
+    "static/js/main.c38c0ae1.js"
   ]
 }
