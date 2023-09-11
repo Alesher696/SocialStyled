@@ -1,4 +1,4 @@
-import React, {ChangeEvent, Suspense, useEffect} from 'react';
+import React, {ChangeEvent, useEffect} from 'react';
 import styled from "styled-components";
 import {
     followUserTC,
@@ -8,7 +8,7 @@ import {
     unFollowUserTC
 } from "redux/users-reducer";
 import {Pagination} from 'antd';
-import {Await, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {getMessagesListTC, setActiveUserIdAC} from "redux/dialogs-reducer";
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
 import {
@@ -18,7 +18,6 @@ import {
     selectTotalUsersCount,
     selectUsers
 } from "common/utils/users-selectors";
-import {Loader} from "common/components/loader/Loader";
 
 
 export const Users = () => {

@@ -1,10 +1,6 @@
 import axios from "axios";
 
 
-type getMessagesResponseType={
-
-}
-
 export type profileInfoResponseType={
     aboutMe: string,
     userId: number,

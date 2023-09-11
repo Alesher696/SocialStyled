@@ -1,4 +1,4 @@
-import React, {memo, useEffect} from 'react';
+import React, {memo, Suspense, useEffect} from 'react';
 import {Header} from "common/components/header/Header";
 import {NavBar} from "common/components/navBar/NavBar";
 import styled from "styled-components";
@@ -7,8 +7,7 @@ import {getUserProfileTC} from "redux/profile-reducer";
 import {Footer} from "common/components/footer/Footer";
 import {selectId, selectIsLoggedIn} from "common/utils/auth-selectors";
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
-
-import {selectProfileInfo} from "common/utils/profile-selectors";
+import {Loader} from "common/components/loader/Loader";
 
 
 export const LayOut = memo(() => {
@@ -35,7 +34,9 @@ export const LayOut = memo(() => {
             <Header/>
             <ContentWrapper>
                     <NavBar/>
-                        <Outlet/>
+                <Suspense fallback={<Loader/>}>
+                    <Outlet/>
+                </Suspense>
             </ContentWrapper>
             {footer && <Footer/>}
         </AppWrapper>
