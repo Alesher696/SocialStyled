@@ -1,6 +1,5 @@
-import React, {ChangeEvent, useEffect} from 'react';
+import React, {ChangeEvent, Suspense, useEffect} from 'react';
 import styled from "styled-components";
-import {useSelector} from "react-redux";
 import {
     followUserTC,
     getFollowedUsersTC,
@@ -9,7 +8,7 @@ import {
     unFollowUserTC
 } from "redux/users-reducer";
 import {Pagination} from 'antd';
-import {NavLink} from "react-router-dom";
+import {Await, NavLink} from "react-router-dom";
 import {getMessagesListTC, setActiveUserIdAC} from "redux/dialogs-reducer";
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
 import {
@@ -19,6 +18,7 @@ import {
     selectTotalUsersCount,
     selectUsers
 } from "common/utils/users-selectors";
+import {Loader} from "common/components/loader/Loader";
 
 
 export const Users = () => {
@@ -69,23 +69,21 @@ export const Users = () => {
                 <input onChange={getSearchUserHandler}/>
                 <button> search...</button>
             </div>
-
-
-            <div>
-                {users.map(el =>
-                    <UsersName key={el.id}>
-                        {el.name}
-                        <br/>
-                        {el.id}
-                        <button
-                            onClick={() => followUnfollowHandler(el.id, el.followed)}>{el.followed ? userFollowerStatus[1] : userFollowerStatus[0]}
-                        </button>
-                        <NavLink to={`/SocialStyled/dialogs/${el.id}/messages`}
-                                 onClick={() => onClickActiveUserIdHandler(el.id, el.name)}>
-                            <button>Write a message</button>
-                        </NavLink>
-                    </UsersName>)}
-            </div>
+        <div>
+            {users.map(el =>
+                <UsersName key={el.id}>
+                    {el.name}
+                    <br/>
+                    {el.id}
+                    <button
+                        onClick={() => followUnfollowHandler(el.id, el.followed)}>{el.followed ? userFollowerStatus[1] : userFollowerStatus[0]}
+                    </button>
+                    <NavLink to={`/SocialStyled/dialogs/${el.id}/messages`}
+                             onClick={() => onClickActiveUserIdHandler(el.id, el.name)}>
+                        <button>Write a message</button>
+                    </NavLink>
+                </UsersName>)}
+        </div>
             <br/>
             <PaginationWrapper defaultCurrent={1} total={totalUsersCount} onChange={onClickPageHandler}
                                showSizeChanger={false}></PaginationWrapper>

@@ -1,4 +1,4 @@
-import React, {ChangeEvent, memo, useEffect} from 'react';
+import React, {ChangeEvent, memo} from 'react';
 import styled, {StyleSheetManager} from "styled-components";
 import theme from '../../assets/1681961897_kartinki-pibig-info-p-nasishchennaya-kartinka-arti-krasivo-1.jpg'
 import avatar from '../../assets/1676295972138872283.png'
@@ -17,8 +17,7 @@ import {
     selectLookingForAJob, selectLookingForAJobDescription, selectNewPost,
     selectPhotos, selectStatus
 } from "common/utils/profile-selectors";
-import {addPostAC, getUserProfileTC, setNewPostTextAC} from "redux/profile-reducer";
-import {selectId} from "common/utils/auth-selectors";
+import {addPostAC,setNewPostTextAC} from "redux/profile-reducer";
 
 
 type addBtnConditionProps = {

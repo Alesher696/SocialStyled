@@ -8,6 +8,8 @@ import {Footer} from "common/components/footer/Footer";
 import {selectId, selectIsLoggedIn} from "common/utils/auth-selectors";
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
 
+import {selectProfileInfo} from "common/utils/profile-selectors";
+
 
 export const LayOut = memo(() => {
 
@@ -15,7 +17,9 @@ export const LayOut = memo(() => {
 
     const authIsLoginIn = useAppSelector(selectIsLoggedIn)
     const authId = useAppSelector(selectId)
+
     const dispatch = useAppDispatch()
+
     const location = useLocation()
     const footer = location.pathname === '/SocialStyled/profile'
 
@@ -31,12 +35,18 @@ export const LayOut = memo(() => {
             <Header/>
             <ContentWrapper>
                     <NavBar/>
-                <Outlet/>
+                        <Outlet/>
             </ContentWrapper>
             {footer && <Footer/>}
         </AppWrapper>
     );
 })
+
+
+export const profileLoader = async ()=>{
+
+}
+
 
 const AppWrapper = styled.div`
   flex-direction: column;
