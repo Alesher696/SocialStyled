@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {memo} from 'react';
 import styled from "styled-components";
-import {initialProfileStateType, postType} from "redux/profile-reducer";
+import {postType} from "redux/profile-reducer";
 import {DeleteOutlined, EditOutlined, LikeOutlined} from "@ant-design/icons";
+import {useAppSelector} from "common/hooks/selectors";
+import {selectPosts} from "common/utils/profile-selectors";
 
 
 type MyPostPropsType = {
-    profile: initialProfileStateType
+    fullName: string
+    photo: string
 }
 
 type PostPropsType = {
@@ -14,12 +17,16 @@ type PostPropsType = {
     avatar: string | null
 }
 
-export const MyPosts = (props: MyPostPropsType) => {
+export const MyPosts = memo((props: MyPostPropsType) => {
 
-    const postList = props.profile.posts.map((el: postType) => <Post key={el.id}
-                                                                     title={el.data}
-                                                                     name={props.profile.profileInfo?.fullName!}
-                                                                     avatar={props.profile.profileInfo?.photos.small!}
+    console.log('MyPosts is render')
+
+    const posts = useAppSelector(selectPosts)
+
+    const postList = posts.map((el: postType) => <Post key={el.id}
+                                                       title={el.data}
+                                                       name={props.fullName}
+                                                       avatar={props.photo}
     />)
 
     return (
@@ -27,39 +34,42 @@ export const MyPosts = (props: MyPostPropsType) => {
             {postList}
         </Posts>
     );
-};
+});
 
-const Post = (props: PostPropsType) => {
+const Post = memo((props: PostPropsType) => {
 
-    return (
-        <PostStyled>
-            <PostWrappper>
-                <AvatarAndTimeWrapper>
-                    <PostAvatar avatar={props.avatar!}>
+        console.log('Post is render')
 
-                    </PostAvatar>
-                    <TimePost>
-                        12.07.23
-                    </TimePost>
-                </AvatarAndTimeWrapper>
-                <TextWrapper>
-                    <UserName>
-                        {props.name}
-                    </UserName>
-                    <PostTitle>
-                        {props.title}
-                    </PostTitle>
-                </TextWrapper>
-            </PostWrappper>
+        return (
+            <PostStyled>
+                <PostWrappper>
+                    <AvatarAndTimeWrapper>
+                        <PostAvatar avatar={props.avatar!}>
 
-            <IconsWrapper>
-                <Icons><DeleteOutlined rev={''}/></Icons>
-                <Icons><EditOutlined rev={''}/></Icons>
-                <Icons><LikeOutlined rev={''}/></Icons>
-            </IconsWrapper>
-        </PostStyled>
-    )
-}
+                        </PostAvatar>
+                        <TimePost>
+                            12.07.23
+                        </TimePost>
+                    </AvatarAndTimeWrapper>
+                    <TextWrapper>
+                        <UserName>
+                            {props.name}
+                        </UserName>
+                        <PostTitle>
+                            {props.title}
+                        </PostTitle>
+                    </TextWrapper>
+                </PostWrappper>
+
+                <IconsWrapper>
+                    <Icons><DeleteOutlined rev={''}/></Icons>
+                    <Icons><EditOutlined rev={''}/></Icons>
+                    <Icons><LikeOutlined rev={''}/></Icons>
+                </IconsWrapper>
+            </PostStyled>
+        )
+    }
+)
 
 //=========================MYPOSTS=================================
 
@@ -97,7 +107,7 @@ const PostWrappper = styled.div`
 `
 
 const TextWrapper = styled.div`
-position: relative;
+  position: relative;
   bottom: 10px;
 `
 
@@ -114,9 +124,9 @@ const TimePost = styled.div`
   margin-top: 4px;
 `
 
-const PostAvatar = styled.div<{avatar:string}>`
-  background-image: url(${props=> props.avatar ? props.avatar : ''});
-  background-color: ${props=> !props.avatar ? 'gray': ''};
+const PostAvatar = styled.div<{ avatar: string }>`
+  background-image: url(${props => props.avatar ? props.avatar : ''});
+  background-color: ${props => !props.avatar ? 'gray' : ''};
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

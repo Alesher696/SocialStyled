@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {memo, useEffect} from 'react';
 import {Header} from "common/components/header/Header";
 import {NavBar} from "common/components/navBar/NavBar";
 import styled from "styled-components";
@@ -9,7 +9,7 @@ import {selectId, selectIsLoggedIn} from "common/utils/auth-selectors";
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
 
 
-export const LayOut = () => {
+export const LayOut = memo(() => {
 
     console.log('layout is rendered ')
 
@@ -36,7 +36,7 @@ export const LayOut = () => {
             {footer && <Footer/>}
         </AppWrapper>
     );
-};
+})
 
 const AppWrapper = styled.div`
   flex-direction: column;

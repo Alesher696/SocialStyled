@@ -1,32 +1,51 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, memo, useEffect} from 'react';
 import styled, {StyleSheetManager} from "styled-components";
 import theme from '../../assets/1681961897_kartinki-pibig-info-p-nasishchennaya-kartinka-arti-krasivo-1.jpg'
 import avatar from '../../assets/1676295972138872283.png'
 import {MyPosts} from "./myPosts/MyPosts";
-import {ProfilePropsType} from "../profile/ProfileContainer";
 import {SetThemeBtn} from "./drop down btn/SetThemeBtn";
 import {EditableStatus} from "./editable status/EditableStatus";
 import {SetDataModalBtn} from "./modal window/SetDataModalBtn";
 import {SetUserInfoModalBtn} from "./modal window/SetUserInfoModalBtn";
 import {SendOutlined} from "@ant-design/icons";
 import {ProfileInfo} from "./ProfileInfo";
+import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
+import {
+    selectAboutMe,
+    selectContacts,
+    selectFullName,
+    selectLookingForAJob, selectLookingForAJobDescription, selectNewPost,
+    selectPhotos, selectStatus
+} from "common/utils/profile-selectors";
+import {addPostAC, getUserProfileTC, setNewPostTextAC} from "redux/profile-reducer";
+import {selectId} from "common/utils/auth-selectors";
 
 
 type addBtnConditionProps = {
     condition: string
 }
 
-export const Profile = (props: ProfilePropsType) => {
+export const Profile = memo(() => {
 
     console.log('profile is rendered ')
 
+    const fullName = useAppSelector(selectFullName)
+    const contacts = useAppSelector(selectContacts)
+    const photos = useAppSelector(selectPhotos)
+    const aboutMe = useAppSelector(selectAboutMe)
+    const lookingForAJob = useAppSelector(selectLookingForAJob)
+    const lookingForAJobDescription = useAppSelector(selectLookingForAJobDescription)
+    const status = useAppSelector(selectStatus)
+    const newPost = useAppSelector(selectNewPost)
+    const dispatch = useAppDispatch()
+
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        props.setNewPostTextAC(e.currentTarget.value)
+        dispatch(setNewPostTextAC(e.currentTarget.value))
     }
 
     const addPost = () => {
-        props.addPostAC()
-        props.setNewPostTextAC('')
+        dispatch(addPostAC())
+        dispatch(setNewPostTextAC(''))
     }
 
     return (
@@ -39,42 +58,42 @@ export const Profile = (props: ProfilePropsType) => {
                     <ProfileNameStatusWrapper>
                         <div>
                             <ProfileName>
-                                {props.profile.profileInfo?.fullName}
+                                {fullName}
                             </ProfileName>
                             <ProfileStatus>
-                                <EditableStatus status={props.profile.status}/>
+                                <EditableStatus status={status}/>
                                 <ModalBtnWrapper>
                                     <SetDataModalBtn/>
                                     <SetUserInfoModalBtn/>
                                 </ModalBtnWrapper>
                             </ProfileStatus>
-                            <ProfileAvatar avatar={props.profile.profileInfo?.photos.large!}/>
+                            <ProfileAvatar avatar={photos?.large!}/>
                         </div>
                     </ProfileNameStatusWrapper>
                 </ProfileInnerWrapper>
-                <ProfileInfo contacts={props.profile.profileInfo?.contacts!}
-                             aboutMe={props.profile.profileInfo?.aboutMe!}
-                             lookingForAJob={props.profile.profileInfo?.lookingForAJob!}
-                             lookingForAJobDescription={props.profile.profileInfo?.lookingForAJobDescription!}
+                <ProfileInfo contacts={contacts!}
+                             aboutMe={aboutMe!}
+                             lookingForAJob={lookingForAJob!}
+                             lookingForAJobDescription={lookingForAJobDescription!}
                 />
                 <>
                     <PostAddWrapper>
                         <AddPostButton onClick={addPost}
-                                       condition={(!!props.profile.newPostText).toString()}
-                                       disabled={!props.profile.newPostText}> <SendOutlined color={'white'} rev={''}/>
+                                       condition={(!!newPost).toString()}
+                                       disabled={!newPost}> <SendOutlined color={'white'} rev={''}/>
                         </AddPostButton>
                         <PostAreaInput onChange={onChangeHandler}
                                        placeholder={"What's News?"}
-                                       value={props.profile.newPostText}/>
+                                       value={newPost}/>
                     </PostAddWrapper>
                 </>
                 <MyPostsWrapper>
-                    <MyPosts profile={props.profile}/>
+                    <MyPosts fullName={fullName!} photo={photos?.small!}/>
                 </MyPostsWrapper>
             </ProfileWrapper>
         </StyleSheetManager>
     );
-};
+});
 
 
 const ProfileWrapper = styled.div`

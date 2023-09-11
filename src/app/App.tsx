@@ -5,16 +5,16 @@ import {Dialogs} from "common/components/dialogs/Dialogs";
 import {Users} from "common/components/users/Users";
 import Music from "../common/components/music/Music";
 import {Settings} from "common/components/settings/Settings";
-import {ProfileContainer} from "common/components/profile/ProfileContainer";
 import {Loader} from "common/components/loader/Loader";
 import {Login} from "features/login/Login";
 import {tasksThunks} from "app/appSlice";
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
 import {selectIsInitialized} from "common/utils/app-selectors";
 import {selectProfileInfo} from "common/utils/profile-selectors";
+import {Profile} from "common/components/profile/Profile";
 
 
-export function App() {
+export const App = ()=>{
 
     console.log('app is rendered ')
 
@@ -36,8 +36,8 @@ export function App() {
         return (
             <Routes>
                 <Route path={'/SocialStyled/'} element={<LayOut/>}>
-                    <Route index element={<ProfileContainer/>}></Route>
-                    <Route path={'/SocialStyled/profile/:userId?'} element={<ProfileContainer/>}></Route>
+                    <Route index element={<Profile/>}></Route>
+                    <Route path={'/SocialStyled/profile/:userId?'} element={<Profile/>}></Route>
                     <Route path={'/SocialStyled/dialogs/:userId?/messages?'} element={<Dialogs/>}></Route>
                     <Route path={'/SocialStyled/users'} element={<Users/>}></Route>
                     <Route path={'/SocialStyled/music'} element={<Music/>}></Route>
