@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Music = () => {
+export const Music = () => {
     return (
         <div>
             

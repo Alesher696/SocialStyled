@@ -1,9 +1,9 @@
 import React, {memo} from 'react';
 import styled from "styled-components";
-import {postType} from "redux/profile-reducer";
+import {postType} from "features/profile/profile-reducer";
 import {DeleteOutlined, EditOutlined, LikeOutlined} from "@ant-design/icons";
 import {useAppSelector} from "common/hooks/selectors";
-import {selectPosts} from "common/utils/profile-selectors";
+import {selectPosts} from "features/profile/profile-selectors";
 
 
 type MyPostPropsType = {

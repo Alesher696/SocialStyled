@@ -1,7 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {SubmitHandler, useForm} from "react-hook-form";
-import {authLogInTC} from "redux/auth-reducer";
+import {authLogInTC} from "features/login/auth-reducer";
 import {Navigate} from "react-router-dom";
 import {RootState} from "app/store";
 

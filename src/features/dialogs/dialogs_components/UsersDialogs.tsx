@@ -1,9 +1,9 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import {getMessagesListTC, setActiveUserIdAC} from "redux/dialogs-reducer";
+import {getMessagesListTC, setActiveUserIdAC} from "features/dialogs/dialogs-reducer";
 import styled from "styled-components";
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
-import {selectDialogs} from "common/utils/dialogs-selectors";
+import {selectDialogs} from "features/dialogs/dialogs-selectors";
 import {Loader} from "common/components/loader/Loader";
 
 

@@ -51,8 +51,12 @@ const IconInnerWrapper = styled.div<PropsColorType>`
   -webkit-box-shadow: 0 1px 19px 4px #3D50FA;
   -moz-box-shadow: 0 1px 19px 4px #3D50FA;
   box-shadow: 0 1px 10px 4px #3D50FA;
-  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+  transition: box-shadow 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 
+  &:active {
+    transform: scale(0.90);
+  }
+  
   &:hover {
     box-shadow: 0px 1px 10px 4px ${props => props.color};
     background-color: ${props=> props.color};
@@ -99,6 +103,8 @@ const ForIconBackGround = styled.div`
   align-items: center;
   border-radius: 10px 0px 0px 10px;
   margin-left: 5px;
+
+
 `
 
 const BackGroundBodyGrey = styled.div`

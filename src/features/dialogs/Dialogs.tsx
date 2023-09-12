@@ -1,14 +1,12 @@
 import React, {useEffect, useRef} from 'react';
-import styled from "styled-components";
-import {getDialogsTC, setActiveUserIdAC} from "redux/dialogs-reducer";
-import {MessagesList} from "./dialogs_components/MessagesUsers";
+import styled, {keyframes} from "styled-components";
+import {getDialogsTC, setActiveUserIdAC} from "features/dialogs/dialogs-reducer";
+import {MessagesList} from "features/dialogs/dialogs_components/MessagesUsers";
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
-import {AddMessage} from "common/components/dialogs/dialogs_components/AddMessage";
-import {selectActiveUserId, selectMessages} from "common/utils/dialogs-selectors";
-import {UsersDialogs} from "common/components/dialogs/dialogs_components/UsersDialogs";
+import {AddMessage} from "features/dialogs/dialogs_components/AddMessage";
+import {selectActiveUserId, selectMessages} from "features/dialogs/dialogs-selectors";
+import {UsersDialogs} from "features/dialogs/dialogs_components/UsersDialogs";
 import {DoubleLeftOutlined} from "@ant-design/icons";
-
-
 
 
 export const Dialogs = () => {
@@ -35,7 +33,7 @@ export const Dialogs = () => {
 
     return (
         <DialogsWrapper>
-            { !userIdIsActive ? '': <StyledBackButton onClick={()=> dispatch(setActiveUserIdAC(0))}>
+            { !userIdIsActive ? '': <StyledBackButton id={'myButton'} onClick={()=> dispatch(setActiveUserIdAC(0))}>
                     <DoubleLeftOutlined rev={''} />
                 </StyledBackButton>}
             <AddMessageWrapper>
@@ -49,6 +47,7 @@ export const Dialogs = () => {
     );
 };
 
+
 const StyledBackButton = styled.button`
   background-color: #2e2f3a;
   border-radius: 10px 10px 10px 10px;
@@ -56,10 +55,16 @@ const StyledBackButton = styled.button`
   border: none;
   color: white;
   position: relative;
-
-  &:hover {
+  height: 40px;
+  transition: background-color 0.3s;
+  transform: scale(1);
+  
+  &:hover{
     background-color: #494957;
+    transform: scaleY(1.1);
+    transition: transform 0.3s ease;
   }
+
 `
 
 const DialogsWrapper = styled.div`
@@ -68,6 +73,7 @@ const DialogsWrapper = styled.div`
   margin: 3em auto;
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 10px;
 `
 

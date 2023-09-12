@@ -1,12 +1,12 @@
 import React from 'react';
-import {messageType} from "redux/dialogs-reducer";
+import {messageType} from "features/dialogs/dialogs-reducer";
 import styled, {StyleSheetManager} from "styled-components";
 import {CheckOutlined} from "@ant-design/icons";
 import {useAppSelector} from "common/hooks/selectors";
-import {selectId} from "common/utils/auth-selectors";
-import {selectActiveUserId, selectMessages} from "common/utils/dialogs-selectors";
+import {selectId} from "features/login/auth-selectors";
+import {selectActiveUserId, selectMessages} from "features/dialogs/dialogs-selectors";
 import {Loader} from "common/components/loader/Loader";
-import {AddMessage} from "common/components/dialogs/dialogs_components/AddMessage";
+import {AddMessage} from "features/dialogs/dialogs_components/AddMessage";
 
 
 export const MessagesList = () => {

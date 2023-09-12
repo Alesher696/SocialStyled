@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {useDispatch} from "react-redux";
-import {authLogOutTC} from "../../../redux/auth-reducer";
+import {authLogOutTC} from "features/login/auth-reducer";
 
 
 export const Header = () => {

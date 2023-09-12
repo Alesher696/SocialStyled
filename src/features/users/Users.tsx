@@ -6,10 +6,10 @@ import {
     getUsersTC,
     setCurrentPageAC,
     unFollowUserTC
-} from "redux/users-reducer";
+} from "features/users/users-reducer";
 import {Pagination} from 'antd';
 import {NavLink} from "react-router-dom";
-import {getMessagesListTC, setActiveUserIdAC} from "redux/dialogs-reducer";
+import {getMessagesListTC, setActiveUserIdAC} from "features/dialogs/dialogs-reducer";
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
 import {
     selectCurrentPage,
@@ -17,7 +17,7 @@ import {
     selectPageSize,
     selectTotalUsersCount,
     selectUsers
-} from "common/utils/users-selectors";
+} from "features/users/users-selectors";
 
 
 export const Users = () => {

@@ -2,13 +2,13 @@ import React from 'react';
 import styled from "styled-components";
 import {GithubOutlined, InstagramOutlined, TwitterOutlined, YoutubeOutlined} from "@ant-design/icons";
 import {NavLink} from "react-router-dom";
-import {contactsType} from "redux/profile-reducer";
+import {contactsType} from "features/profile/profile-reducer";
 import {FacebookOutlined} from "common/assets/contactsIcons/FacebookOutlined";
 import {VkOutlined} from "common/assets/contactsIcons/VkOutlined";
 import {MainlinkOutlined} from "common/assets/contactsIcons/MainlinkOutlined";
 import {WebsiteOutlined} from "common/assets/contactsIcons/WebsiteOutlined";
 import {useSelector} from "react-redux";
-import {Loader} from "../loader/Loader";
+import {Loader} from "common/components/loader/Loader";
 import {RootState} from "app/store";
 
 

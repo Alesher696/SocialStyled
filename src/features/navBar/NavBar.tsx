@@ -1,15 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from "styled-components";
-import {Icon} from '../../components/navBar/Icon'
-import setting from '../../assets/gear (1).png'
-import music from '../../assets/music-player (1).png'
-import message from '../../assets/letter (1).png'
-import start from '../../assets/play-store (1).png'
-import users from '../../assets/multiple-users-silhouette (1).png'
+import {Icon} from 'features/navBar/Icon'
+import setting from 'common/assets/gear (1).png'
+import music from 'common/assets/music-player (1).png'
+import message from 'common/assets/letter (1).png'
+import start from 'common/assets/play-store (1).png'
+import users from 'common/assets/multiple-users-silhouette (1).png'
 
 
 export const NavBar = () => {
-
     return (
         <NavBarWrapper>
             <WrappedContent/>
@@ -26,7 +25,6 @@ const NavBarWrapper = styled.div`
   position: fixed;
   z-index: 10;
   padding-top: 50px;
-  
 `
 
 const WrappedContentIcons = styled.div`

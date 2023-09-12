@@ -1,11 +1,11 @@
 import React, {memo, Suspense, useEffect} from 'react';
 import {Header} from "common/components/header/Header";
-import {NavBar} from "common/components/navBar/NavBar";
+import {NavBar} from "features/navBar/NavBar";
 import styled from "styled-components";
 import {Navigate, Outlet, useLocation} from 'react-router-dom';
-import {getUserProfileTC} from "redux/profile-reducer";
+import {getUserProfileTC} from "features/profile/profile-reducer";
 import {Footer} from "common/components/footer/Footer";
-import {selectId, selectIsLoggedIn} from "common/utils/auth-selectors";
+import {selectId, selectIsLoggedIn} from "features/login/auth-selectors";
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
 import {Loader} from "common/components/loader/Loader";
 
@@ -42,11 +42,6 @@ export const LayOut = memo(() => {
         </AppWrapper>
     );
 })
-
-
-export const profileLoader = async ()=>{
-
-}
 
 
 const AppWrapper = styled.div`

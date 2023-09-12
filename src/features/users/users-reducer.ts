@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
-import {followAPI, usersAPI} from "common/api/api";
+import {followAPI, usersAPI} from "features/users/users-api";
+
 
 
 export type usersActions = setUsersType |

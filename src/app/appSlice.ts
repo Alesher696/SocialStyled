@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {createAppAsyncThunk} from "common/utils/app-async-thunk";
-import {authAPI} from "common/api/api";
-import {setIsLoggedInAC, setUserDataAC} from "redux/auth-reducer";
+import {setIsLoggedInAC, setUserDataAC} from "features/login/auth-reducer";
+import {createAppAsyncThunk} from "common/utils";
+import {authAPI} from "features/login/auth-api";
 
 
 const initializedApp = createAppAsyncThunk(

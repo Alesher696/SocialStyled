@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import {Modal, Button, Input} from 'antd';
 import styled, {StyleSheetManager} from "styled-components";
 import {useDispatch} from "react-redux";
-import {setProfilePhotoTC} from "../../../../redux/profile-reducer";
+import {setProfilePhotoTC} from "features/profile/profile-reducer";
 
 
 export const PhotoUploadModal = () => {

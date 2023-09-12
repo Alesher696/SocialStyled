@@ -1,10 +1,10 @@
 import React, {ChangeEvent, useState} from 'react';
 import styled from "styled-components";
-import send from '../../../assets/send (1).png'
-import {sendMessageTC} from "redux/dialogs-reducer";
+import send from 'common/assets/send (1).png'
+import {sendMessageTC} from "features/dialogs/dialogs-reducer";
 import {StyleSheetManager} from 'styled-components';
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
-import {selectActiveUserId} from "common/utils/dialogs-selectors";
+import {selectActiveUserId} from "features/dialogs/dialogs-selectors";
 
 
 type addBtnPropsType = {

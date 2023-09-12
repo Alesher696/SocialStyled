@@ -1,5 +1,6 @@
-import {profileAPI, profileInfoResponseType} from "common/api/api";
+import {profileInfoResponseType} from "common/api/api";
 import {AppDispatch, AppThunk} from "app/store";
+import {profileAPI} from "features/profile/profile-api";
 
 
 export type profileActions =

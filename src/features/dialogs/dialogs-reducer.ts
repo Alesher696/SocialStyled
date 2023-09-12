@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {dialogsAPI} from "../common/api/api";
+import {dialogsAPI} from "features/dialogs/dialogs-api";
 
 
 export type dialogsActions =

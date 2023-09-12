@@ -1,8 +1,8 @@
 import {AnyAction, configureStore} from "@reduxjs/toolkit";
-import {profileReducer} from "redux/profile-reducer";
-import {usersReducer} from "redux/users-reducer";
-import {dialogsReducer} from "redux/dialogs-reducer";
-import {authReducer} from "redux/auth-reducer";
+import {profileReducer} from "features/profile/profile-reducer";
+import {usersReducer} from "features/users/users-reducer";
+import {dialogsReducer} from "features/dialogs/dialogs-reducer";
+import {authReducer} from "features/login/auth-reducer";
 import {combineReducers} from "redux";
 import {ThunkAction} from "redux-thunk";
 import {appReducer} from "app/appSlice";

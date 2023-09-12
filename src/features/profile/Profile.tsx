@@ -1,14 +1,14 @@
 import React, {ChangeEvent, memo} from 'react';
 import styled, {StyleSheetManager} from "styled-components";
-import theme from '../../assets/1681961897_kartinki-pibig-info-p-nasishchennaya-kartinka-arti-krasivo-1.jpg'
-import avatar from '../../assets/1676295972138872283.png'
-import {MyPosts} from "./myPosts/MyPosts";
-import {SetThemeBtn} from "./drop down btn/SetThemeBtn";
-import {EditableStatus} from "./editable status/EditableStatus";
-import {SetDataModalBtn} from "./modal window/SetDataModalBtn";
-import {SetUserInfoModalBtn} from "./modal window/SetUserInfoModalBtn";
+import theme from 'common/assets/1681961897_kartinki-pibig-info-p-nasishchennaya-kartinka-arti-krasivo-1.jpg'
+import avatar from 'common/assets/1676295972138872283.png'
+import {MyPosts} from "features/profile/myPosts/MyPosts";
+import {SetThemeBtn} from "features/profile/drop down btn/SetThemeBtn";
+import {EditableStatus} from "features/profile/editable status/EditableStatus";
+import {SetDataModalBtn} from "features/profile/modal window/SetDataModalBtn";
+import {SetUserInfoModalBtn} from "features/profile/modal window/SetUserInfoModalBtn";
 import {SendOutlined} from "@ant-design/icons";
-import {ProfileInfo} from "./ProfileInfo";
+import {ProfileInfo} from "features/profile/ProfileInfo";
 import {useAppDispatch, useAppSelector} from "common/hooks/selectors";
 import {
     selectAboutMe,
@@ -16,8 +16,8 @@ import {
     selectFullName,
     selectLookingForAJob, selectLookingForAJobDescription, selectNewPost,
     selectPhotos, selectStatus
-} from "common/utils/profile-selectors";
-import {addPostAC,setNewPostTextAC} from "redux/profile-reducer";
+} from "features/profile/profile-selectors";
+import {addPostAC,setNewPostTextAC} from "features/profile/profile-reducer";
 
 
 type addBtnConditionProps = {
