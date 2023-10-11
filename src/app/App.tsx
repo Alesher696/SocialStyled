@@ -40,7 +40,6 @@ export const App = ()=>{
         );
 }
 
-
 const router = createBrowserRouter(createRoutesFromElements(
     <>
         <Route path={'/SocialStyled/'} element={<LayOut/>}>
